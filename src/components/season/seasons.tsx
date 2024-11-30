@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import ReactMarkdown  from 'react-markdown'
 import remarkGfm from 'remark-gfm';
-import './seasons.css'
+import './seasons.css';
 
 const seasons = [
     {name: "2023-2024 Centerstage", color: "#F4D738",    },
