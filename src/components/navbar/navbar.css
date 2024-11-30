@@ -1,0 +1,148 @@
+.navBar {
+    list-style-type: none;
+    background-color: #3300FF;
+    position: fixed;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    top: 0;
+    width: 100%;
+    margin: 0;
+    height: 4em;
+    z-index: 200;
+    padding: 1em;
+    border-bottom: 4px solid black;
+}
+
+.navItem {
+    font-family: "Inter";
+    font-weight:700;
+    color: white;
+    font-size: 1.3em;
+    z-index: 4000;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.navItem:hover {
+    transition: color .2s ease-in-out;
+    color: rgb(155, 155, 155);
+}
+.navItem:not(hover) {
+    transition: color .2s ease-in-out;
+    color: white;
+}
+
+
+.left {
+    height: 100%;
+    position: relative;
+    float: left;
+    img {
+        height: 100%;
+    }
+    
+    img:hover {
+        transition: filter .4s ease-in-out;
+        filter: brightness(0.6);
+    }
+    img:not(hover) {
+        transition: filter .4s ease-in-out;
+        filter: brightness(1);
+    }
+}
+
+
+.right {
+    position: relative;    
+    right: 0;
+    margin-right: 10px;
+
+    .menu {
+        display: flex;
+        gap: 40px;
+        justify-content: center;
+    }
+}
+
+
+@media only screen and (max-width: 1200px) {
+
+    .right {
+        position: relative;
+    }
+
+        .bar {
+            color: #fff;
+            display: block;
+            position: relative;
+            margin-right: 10px;
+            img {
+                width: 60px
+            }
+        }
+
+        .menu {            
+            flex-direction: column;
+            z-index: 3000;
+            top: 3.3em;
+            display: none;
+            position: absolute;
+            right: 0em;
+            background-color: #3300FF;
+            padding: 0 1em 1em;
+            border-bottom-left-radius: 1em;
+            padding-top: 1em;
+        }
+    
+            .menu > li {
+                padding-top: 1em;
+                size: 100px;
+            }
+
+            .navItem {
+                size: 50%;
+            }
+
+                .dropdownContent {
+                    margin-top: -1.6em;
+                    z-index: 4000;
+                    text-align: left;
+                    right: 7.5em;
+                    top: initial;
+                    padding-top: 0;
+                    /* position: relative; */
+                }
+}
+
+/* just for decoupleing small size from large */
+@media only screen and (min-width: 1200px) {
+    .right {
+        position: relative;
+        display: flex;
+        align-items: center;
+        float: right;
+        padding: 0 2em 0 0;
+        height: 100%;
+    }
+
+        .bar {
+            display: none;
+        }
+
+        .menu {
+            list-style-type: none;
+            position: relative;
+            display: flex;
+            z-index: 3000;
+            padding: 0;
+            right: 0;
+            top: 0;
+            background-color: none;
+        }
+
+            .menu > li {
+                padding-top: 0em;
+            }
+}
+

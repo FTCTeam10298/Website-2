@@ -1,0 +1,76 @@
+.award-content {
+    background-color: rgb(255, 255, 255);
+    width: 100%;
+    margin-top: 6em;
+    min-height: calc(100vh - 6em);
+
+    h2 {
+        padding: 20px 0 0 20px;
+    }
+
+    .season {
+        display: flex;
+        .seasons-list {    
+            min-width: 250px;
+        
+            .season-container {
+                display: flex;
+    
+                .season-card {
+                    font-weight: bolder;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    position: relative;
+                    min-height: 100px;
+                    border-top: 2px solid black;
+                    border-right: 2px solid black;
+                    border-bottom: 2px solid black;
+                    border-top-right-radius: 8px;
+                    border-bottom-right-radius: 8px;
+                    box-shadow: 5px 5px black;
+        
+                    cursor: pointer;
+        
+                }
+        
+                .season-card.expanded {
+                    transition: width 0.5s ease;
+                    width:100%;
+                }
+        
+                .season-card:not(.expanded):hover {
+                    transition: width 0.5s ease;
+                    width: 90%;
+                }
+                
+                .season-card:not(.expanded) {
+                    transition: width 0.5s ease;
+                    width: 85%;
+                }
+    
+                
+            }        
+        }   
+        
+        .season-info {
+            text-align: center;
+            margin: 25px;
+
+            .markdown {
+                font-family: "Caslon";
+
+                img {
+                    max-width: 80%;
+                    margin: 10px;
+                }
+                ul {
+                    list-style: none;
+                }
+            }
+        }
+    }
+
+    
+    
+}

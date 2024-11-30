@@ -1,0 +1,1 @@
+So Basically we tried hard and did our best and we learned that hard work pays off and we won regionals and we went to worlds and made it to division finals and lost in div finals and we ended the season as ochoa division finalists:D
