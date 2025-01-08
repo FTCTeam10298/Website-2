@@ -5,70 +5,24 @@
     min-height: calc(100vh - 6em);
 
     .top-bar {
-        font-family: "Inter";
-        font-weight: 900;
-        font-size: x-large ;
-        padding: 20px;
-        min-width: 100px;
+        padding-top: 20px;
+        font-size: xx-large;
+        font-weight:800;
+        margin: 20px;
     }
-
+    
     .info-container {
-        font-family: "Caslon";
-
         display: block;
-
-        font-size: large;  
-        padding-bottom: 20px;
-
-    }
-    .about {   
-        margin:  0px 20px 20px 20px;
-        height: fit-content;
-        background-color: #FFDB58;
-        padding: 10px;
-        border: 2px solid black;
-        border-radius: 8px;
-        box-shadow: 5px 5px black;
-    }
-    .core {
-        margin: 20px;
-        height: fit-content;
-        background-color: #FF69B4;
-        padding: 10px;
-        border: 2px solid black;
-        border-radius: 8px;
-        box-shadow: 5px 5px black;
-
+        div {
+            margin: 20px;
+        }
     }
 
-    .first {
-        margin: 20px;
-        height: fit-content;
-        background-color: #C4A1FF;
-        padding: 10px;
-        border: 2px solid black;
-        border-radius: 8px;
-        box-shadow: 5px 5px black;
-
-    }
-    .ftc {
-        margin: 20px;
-        height: fit-content;
-        background-color: #B5D2AD;
-        padding: 10px;
-        border: 2px solid black;
-        border-radius: 8px;
-        box-shadow: 5px 5px black;
-
-    }
     .memoriam {
         margin: 20px;
         height: fit-content;
-        background-color: #B5D2AD;
         padding: 10px;
-        border: 2px solid black;
-        border-radius: 8px;
-        box-shadow: 5px 5px black;
+       
         img {
             max-width: 300px;
         }

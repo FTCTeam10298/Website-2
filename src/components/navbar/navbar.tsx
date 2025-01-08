@@ -4,6 +4,7 @@ import './navbar.css'
 const pages = [
   {name: "About", link: "/about"},
   {name: "Seasons", link: "/seasons"},
+  {name: "Awards", link: "/awards"},
   {name: "Team", link: "/team"},
   {name: "Sponsors", link: "/sponsors"},    
 ]

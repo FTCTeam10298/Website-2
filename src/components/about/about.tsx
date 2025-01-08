@@ -12,7 +12,7 @@ function About() {
                     Who are we?
                 </h2>
                 <p>
-                Brain Stormz is a private, non-profit robotics team competing in FIRST Tech Challenge (FTC). Located in a garage in Newbury Park, CA, we are a collection of High School and Middle School students from various schools throughout the region, as well as various mentors and coaches who help the team learn. Since the creation of this team in 2015, our team has put up many great performances, including reaching the World Championship in Houston multiple times! 
+                Brain Stormz is a private, non-profit robotics team competing in FIRST Tech Challenge (FTC). 
                 </p>
             </div>
             <div className='core'>

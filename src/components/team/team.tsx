@@ -16,7 +16,7 @@ const team = [
         age: 16,
         grade: "Sophomore @ Westlake High School",
         role: "Software",
-        hobbies: "Cooking and Eating",
+        hobbies: "Coding",
         food: "Pho",
         photo: "src/components/team/team-pictures/kevin.png"
     },
@@ -37,13 +37,22 @@ const team = [
         hobbies: "Racing, robotics, mock trial",
         food: "Chicken Picatta",
         photo: "src/components/team/team-pictures/aaden.png"
+    },
+    {
+        name: "Livi Richert",
+        age: 16,
+        grade: "11th Grade @ Moorpark College",
+        role: "Outreach / Build",
+        hobbies: "life",
+        food: "Salami",
+        photo: "src/components/team/team-pictures/livi.png"
     }
 ]
 
 function Team() {
-    const [expandedMember, setExpandedMember] = useState(null); 
+    const [expandedMember, setExpandedMember] = useState<string|null>(null); 
 
-    const toggleMemberInfo = (name) => {
+    const toggleMemberInfo = (name : string|null) => {
         setExpandedMember((prevName) => (prevName === name ? null : name)); 
     };
     return (

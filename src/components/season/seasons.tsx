@@ -16,9 +16,9 @@ const seasons = [
 
 function Seasons() {
 
-    const [selectedSeason, setSelectedSeason] = useState("2023-2024 Centerstage");
+    const [selectedSeason, setSelectedSeason] = useState<string>("2023-2024 Centerstage");
     const [markdownContent, setMarkdownContent] = useState("");
-    const toggleSeason = (name) => {
+    const toggleSeason = (name : string) => {
         setSelectedSeason(name); 
     };
     
@@ -32,7 +32,7 @@ function Seasons() {
     }, [selectedSeason]);
 
     return (
-        <div className="award-content">
+        <div className="season-content">
             <h2>Seasons</h2>
             <div className='season'>
             <div className='seasons-list'>
