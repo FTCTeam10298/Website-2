@@ -34,25 +34,25 @@ function Seasons() {
     return (
         <div className="season-content">
             <h2>Seasons</h2>
-            <div className='season'>
-            <div className='seasons-list'>
-                 {seasons.map((season) => (
-                    <div className='season-container'>
-                        <div className={`season-card ${
-                            selectedSeason === season.name ? "expanded" : ""
-                        }`} onClick={() => toggleSeason(season.name)} key={season.name} style={{
-                            backgroundColor: season.color
-                            
-                        }}>
+            <span className='dropdown'>
+                Selected Season: {selectedSeason} 
+
+                <div className='dropdown-content'>
+                    {seasons.map((season) => (
+                        <div 
+                            key={season.name} 
+                            onClick={() => toggleSeason(season.name)}
+                        >
                             {season.name}
                         </div>
-                        
-                    </div>
-                ))}
-            </div>
-            <div className='season-info'>
-                <ReactMarkdown className='markdown' remarkPlugins={[remarkGfm]}>{markdownContent}</ReactMarkdown>
-            </div>
+                    ))}
+                </div>
+            </span>
+            
+            <div className='season'>
+                <div className='season-info'>
+                    <ReactMarkdown className='markdown' remarkPlugins={[remarkGfm]}>{markdownContent}</ReactMarkdown>
+                </div>
             </div>
         </div>
     )

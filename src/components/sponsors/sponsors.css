@@ -9,6 +9,10 @@
         padding: 30px;
     }
 
+    .bg {
+        background-color: black;
+    }
+
     .sponsor-img {
         display: flex;
         align-items: center;
