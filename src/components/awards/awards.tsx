@@ -18,7 +18,7 @@ function Awards() {
 
     return (
         <div className='awards-content'>
-            <h2>Awards</h2>
+            <h2 className='title'>Awards</h2>
             <div>
                 <ReactMarkdown className='markdown' remarkPlugins={[remarkGfm]}>{markdownContent}</ReactMarkdown>
             </div>

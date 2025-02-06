@@ -12,7 +12,7 @@
         width: 100%;
         font-size: larger;
         font-weight: bold;
-        margin-bottom: 50px;
+        margin-bottom: 20px;
         border-bottom: 3px solid black;
     }
 }
@@ -21,28 +21,30 @@
     font-family: "Robotech";
 
     display: flex;
+    padding-bottom: 50px;
     flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
 
     .team-card {
         display: flex;
-        margin: 5px 20px;
+        margin: 20px 20px;
 
-        height: 310px;
+        height: 300px;
 
         .team-expand-card {
             background-color: rgb(131, 131, 131);
             border: 3px solid black;
-
+            border-left:  none;
             padding: 5px;
+            width: 250px;
+
+            border-top-right-radius: 6px;
+            border-bottom-right-radius: 6px;
+
             
             color: rgb(237, 237, 237);
-            max-width: 0px;
-            display: block;
-            opacity: 0;
             height: 300px;
-            border-radius: 6px;  
-            transition: max-width 0.5s ease, opacity 0.4s;
-
             font-size: larger;
 
             div {
@@ -50,28 +52,21 @@
                 margin-top: 5px;
             }
         }
-        .team-expand-card.expanded {
-            max-width: 200px;
-            opacity:1;
-        }
-
         
     }
 
     .team-main-card {
 
         border: 3px solid black;
-        border-radius: 6px;
-
+        border-right: 2px solid black;
         padding: 5px;
         width: 200px;
         height: 300px;
+
+        border-top-left-radius: 6px;
+        border-bottom-left-radius: 6px;
         .team-name {
             margin: 5px 0px;
-        }
-
-        .team-role {
-
         }
 
         .team-photo-frame {
@@ -81,42 +76,24 @@
             margin: 5px 2px 20px 10px;
             border: 1px solid rgb(0, 0, 0);
             border-radius: 5px;
-            background-color: black;
+            background-color: rgb(0, 0, 0);
 
             img {
                 width: 175px;
-                height: 175px;
             }
-        }
-
-        .team-expand-button {
-            border: 1px solid black;
-            background-color: rgb(255, 255, 255);
-            margin-left: 90px;
-            padding: 6px 3px;
-            cursor: pointer;
-            white-space: nowrap;
-        }
-        .team-expand-button:hover {
-            transition: all 0.3s ease-in-out;
-            background-color: rgb(0, 157, 255);
-        }
-        .team-expand-button:not(hover) {
-            transition: all 0.3s ease-in-out;
         }
     }
 
-
     .Drive {
-        background-color: rgb(179, 255, 0);
+        background-color: rgb(0, 255, 208);
     }
     .Software {
         background-color: rgb(255, 0, 111);
     }
     .Hardware {
-        background-color: rgb(0, 162, 255);
+        background-color: rgb(0, 255, 34);
     }
     .Outreach {
-        background-color: rgb(245, 255, 152);
+        background-color: rgb(255, 152, 233);
     }
 }

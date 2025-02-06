@@ -5,8 +5,11 @@
     min-height: calc(100vh - 6em);
 
     h2 {
-        padding: 20px 0 0 20px;
-    }
+            padding-top: 20px;
+            font-size: xx-large;
+            font-weight:800;
+            margin: 20px;
+      }
 
     .dropdown {
         position: relative;
@@ -22,9 +25,9 @@
         position: absolute;
     
         background-color: #f9f9f9;
-        min-width: 200px;
         box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
         z-index: 1;
+        overflow: hidden;
 
         div {
             padding-top: 5px;
@@ -37,16 +40,16 @@
         div:hover { 
             background-color: rgb(165, 165, 165);
         }
+
       }
       
-      .dropdown:hover .dropdown-content {
-        display: block;
-      }.dropdown:not(hover) .dropdown-content {
-        display: none;
+      .selected .dropdown-content {
+        animation: dropdown-scroll-in 0.2s ease-in;
+        
       }
-
     .season {
         display: flex;
+        align-items: center;
         
         .season-info {
             text-align: center;
@@ -68,4 +71,17 @@
 
     
     
+}
+
+
+@keyframes dropdown-scroll-in {
+    from {
+        display: none;
+        height: 0px;
+        
+    }
+    to {
+        display: block;
+        height: 200px;
+    }
 }

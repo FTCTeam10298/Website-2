@@ -19,10 +19,10 @@
             font-size: x-large;
             margin: 0 0 10vw 0;
             background: #33333360;
+            backdrop-filter: blur(10px);
             display: inline-block;
             border-radius: 20px;
             padding: 1em;
-            backdrop-filter: blur(10px);
         }
     }
 }

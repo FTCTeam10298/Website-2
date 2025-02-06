@@ -4,11 +4,19 @@
     margin-top: 6em;
     min-height: calc(100vh - 6em);
 
-    padding-top: 10px;
-    padding-left: 20px;
-    padding-bottom: 10px;
+    .title {
+        padding-top: 20px;
+        font-size: xx-large;
+        font-weight:800;
+        margin: 20px;
+  }
 
     img {
         max-width: 500px;
+    }
+
+    div {
+        margin-left: 10px;
+        padding-bottom: 20px;
     }
 }
