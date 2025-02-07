@@ -3,6 +3,8 @@
     width: 100%;
     margin-top: 6em;
     min-height: calc(100vh - 6em);
+    font-family: 'montserrat';
+
 
     h2 {
             padding-top: 20px;
@@ -48,12 +50,13 @@
         
       }
     .season {
-        display: flex;
         align-items: center;
-        
+        width: 100%;
         .season-info {
             text-align: center;
-            margin: 25px;
+            margin-left: 50px;
+            margin-right: 50px;
+            padding-bottom: 25px;
 
             .markdown {
                 font-family: "Caslon";
@@ -62,9 +65,9 @@
                     max-width: 80%;
                     margin: 10px;
                 }
-                ul {
-                    list-style: none;
-                }
+               ul {
+                list-style-position: inside;
+               }
             }
         }
     }

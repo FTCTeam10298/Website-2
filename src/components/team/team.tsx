@@ -1,5 +1,4 @@
-import { useState } from 'react';
-import './team.css'
+    import './team.css'
 
 const team = [
     {
@@ -7,7 +6,7 @@ const team = [
         age: 15,
         grade: "Sophomore @ Oak Park High",
         role: "Hardware",
-        hobbies: "Overwatch, Eating, and Manwha",
+        hobbies: "Marvel Rivals, Eating, and Manwha",
         food: "Everything",
         photo: "src/components/team/team-pictures/albert.png"
     },
@@ -88,7 +87,16 @@ const team = [
         food: "Soup",
         photo: "src/components/team/team-pictures/therelene.png",
     },
-   
+]
+
+const mentors = [
+    {
+        name: "Garret Smalley", 
+        role: "Hardware",
+        hobbies: "Robot",
+        food: "None",
+        photo: "src/components/team/team-pictures/garret.png"
+    },
 ]
 
 function Team() {
@@ -118,6 +126,31 @@ function Team() {
                         <div>
                             School: {member.grade}
                         </div>
+                        <div>
+                            Hobbies: {member.hobbies}
+                        </div>
+                        <div>
+                            Favorite Food: {member.food}
+                        </div>
+                    </div>
+                </div>
+            ))}
+            </div>
+
+
+            <div className='team-list'>
+            {mentors.map((member) => (
+                <div key={member.name} className="team-card">
+                    <div className={`team-main-card ${member.role}`}>
+                        <h2 className='team-name'>
+                            {member.name}
+                        </h2>
+                        <div className='team-role'>{member.role}</div>
+                        <div className='team-photo-frame'>
+                            <img src={member.photo}/>
+                        </div>
+                    </div>
+                    <div className='team-expand-card'>
                         <div>
                             Hobbies: {member.hobbies}
                         </div>

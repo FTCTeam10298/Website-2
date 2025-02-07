@@ -3,3 +3,7 @@
   src: local("Robotech"),
   url("./assets//robotech_gp/ROBOTECHGP.ttf") format("truetype");
 }
+@font-face {
+  font-family: 'montserrat';
+  src: url('./assets/webfontkit-20200720-012313/montserrat-regular-webfont.woff') format("truetype");
+}
