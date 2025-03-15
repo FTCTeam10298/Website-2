@@ -4,13 +4,13 @@ import remarkGfm from 'remark-gfm';
 import './seasons.css';
 
 const seasons = [
-    { name: "2023-2024 Centerstage", color: "#F4D738" },
-    { name: "2022-2023 Power Play", color: "#87CEEB" },
-    { name: "2021-2022 Freight Frenzy", color: "#FFDB58" },
-    { name: "2018-2019 Rover Ruckus", color: "#E3A018" },
-    { name: "2017-2018 Relic Recovery", color: "#7FBC8C" },
-    { name: "2016-2017 Velocity Vortex", color: "#FF6B6B" },
-    { name: "2015-2016 Res-Q", color: "#F8D6B3" },
+    { name: "2023-2024 Centerstage"},
+    { name: "2022-2023 Power Play" },
+    { name: "2021-2022 Freight Frenzy"},
+    { name: "2018-2019 Rover Ruckus"},
+    { name: "2017-2018 Relic Recovery"},
+    { name: "2016-2017 Velocity Vortex" },
+    { name: "2015-2016 Res-Q"},
 ];
 
 function Seasons() {

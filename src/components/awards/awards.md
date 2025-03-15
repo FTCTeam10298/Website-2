@@ -1,3 +1,51 @@
+## 2024-25 Into The Deep
+
+#### SoCal Regional Championship (March 2025)
+![](src/components/awards/awards-assets/itdregionals.jpg)
+- Winning Alliance 1st Pick
+- Motivate Award 3rd Place
+
+#### SoCal ILT6 - Monrovia Saturday (February 2025)
+![](src/components/awards/awards-assets/itdilt.jpg)
+- Finalist Alliance Captain
+- Control Award Winner
+
+## 2023-24 Centerstage
+
+#### FIRST World Championship - Ochoa Division (April 2024)
+![](src/components/awards/awards-assets/2022Regionals.jpeg)
+- Finalist Alliance 2nd Pick
+- Innovate Award 3rd Place
+
+#### SoCal Regional Championship (March 2024)
+![](src/components/awards/awards-assets/2022Regionals.jpeg)
+- Winning Alliance Captain
+- Inspire Award 2nd Place
+- Compass Award 2nd Place
+
+
+#### CA-SoCal FTC - ILT6 - MHS Sunday (February 2024)
+![](src/components/awards/awards-assets/2022QualsAwards.jpeg)
+- Inspire Award Winner
+- Finalist Alliance Captain
+- Motivate Award 2nd Place
+- Compass Award 2nd Place
+
+## 2022-23 Power Play
+
+#### SoCal Regional Championship (March 2023)
+![](src/components/awards/awards-assets/2022Regionals.jpeg)
+- Winning Alliance 2nd Pick
+- Control Award Winner
+
+#### CA-SoCal ILT 5 - Diamond Bar Saturday (February 2023)
+![](src/components/awards/awards-assets/2022QualsAwards.jpeg)
+- Inspire Award Winner
+- Finalist Alliance 1st Pick
+- Connect Award 2nd Place
+- Control Award 3rd Place
+- Motivate Award 2nd Place
+
 ## 2021-22 Freight Frenzy
 
 #### SoCal Regional Championship (March 2022)
