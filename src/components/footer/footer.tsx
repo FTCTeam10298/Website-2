@@ -8,7 +8,6 @@ function Footer() {
 
                 <li><a className="border" href="https://github.com/FTCTeam10298" target="_blank">Github</a></li>
                 <li><a className="border" href="https://ftcscout.org/teams/10298" target="_blank">FTCScout</a></li>
-
                 
                 <li className="icon"><a href="https://www.youtube.com/channel/UCpSItH8a8vWw5IcwylQ21Xg" target="_blank"><img src="src/components/footer/footer_assets/icon-youtube.svg"/></a></li>
                 <li className="icon"><a href="https://twitter.com/ftc10298?lang=en" target="_blank"><img src="src/components/footer/footer_assets/icon-twitter.svg"/></a></li>

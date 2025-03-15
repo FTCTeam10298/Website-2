@@ -13,19 +13,19 @@
 ## 2023-24 Centerstage
 
 #### FIRST World Championship - Ochoa Division (April 2024)
-![](src/components/awards/awards-assets/2022Regionals.jpeg)
+![](src/components/awards/awards-assets/.jpeg)
 - Finalist Alliance 2nd Pick
 - Innovate Award 3rd Place
 
 #### SoCal Regional Championship (March 2024)
-![](src/components/awards/awards-assets/2022Regionals.jpeg)
+![](src/components/awards/awards-assets/.jpeg)
 - Winning Alliance Captain
 - Inspire Award 2nd Place
 - Compass Award 2nd Place
 
 
 #### CA-SoCal FTC - ILT6 - MHS Sunday (February 2024)
-![](src/components/awards/awards-assets/2022QualsAwards.jpeg)
+![](src/components/awards/awards-assets/.jpeg)
 - Inspire Award Winner
 - Finalist Alliance Captain
 - Motivate Award 2nd Place
@@ -34,12 +34,12 @@
 ## 2022-23 Power Play
 
 #### SoCal Regional Championship (March 2023)
-![](src/components/awards/awards-assets/2022Regionals.jpeg)
+![](src/components/awards/awards-assets/.jpeg)
 - Winning Alliance 2nd Pick
 - Control Award Winner
 
 #### CA-SoCal ILT 5 - Diamond Bar Saturday (February 2023)
-![](src/components/awards/awards-assets/2022QualsAwards.jpeg)
+![](src/components/awards/awards-assets/.jpeg)
 - Inspire Award Winner
 - Finalist Alliance 1st Pick
 - Connect Award 2nd Place
