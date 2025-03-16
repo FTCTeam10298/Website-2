@@ -4,7 +4,7 @@ import remarkGfm from 'remark-gfm';
 import './seasons.css';
 
 const seasons = [
-    { name: "2024-2025 Into the Deep" },
+    { name: "2024-2025 Into The Deep" },
     { name: "2023-2024 Centerstage"},
     { name: "2022-2023 Power Play" },
     { name: "2021-2022 Freight Frenzy"},
@@ -15,7 +15,7 @@ const seasons = [
 ];
 
 function Seasons() {
-    const [selectedSeason, setSelectedSeason] = useState<string>("2023-2024 Centerstage");
+    const [selectedSeason, setSelectedSeason] = useState<string>("2024-2025 Into The Deep");
     const [toggleSelect, setToggleSelect] = useState<boolean>(false);
     const [markdownContent, setMarkdownContent] = useState("");
     const dropdownRef = useRef<HTMLDivElement>(null);

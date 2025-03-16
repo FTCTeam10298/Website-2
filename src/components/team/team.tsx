@@ -17,7 +17,7 @@ const team = [
         role: "Hardware / Drive",
         hobbies: "Marvel Rivals, Eating, and Manwha",
         food: "Everything",
-        photo: "src/components/team/team-pictures/albert.png"
+        photo: "src/components/team/team-pictures/albert.jpeg"
     },
 
     {

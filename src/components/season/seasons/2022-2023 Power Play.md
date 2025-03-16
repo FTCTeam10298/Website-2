@@ -1,1 +1,1 @@
-So basically we coulda been cracked but lowk the auto wouldnt work w our roller intake and we still ended up winning regionals but as 2nd pick so we didnt go to worlds... but on the bright side our alliance captian went to and won worlds :D and we sent teague and alon to go to worlds :D
+Under Construction!
