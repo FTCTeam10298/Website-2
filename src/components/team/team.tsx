@@ -36,7 +36,7 @@ const team = [
         role: "Software",
         hobbies: "Coding",
         food: "Pho",
-        photo: "src/components/team/team-pictures/kevin.png"
+        photo: "src/components/team/team-pictures/kevin.jpeg"
     },
     {
         name: "Micah Chi",
