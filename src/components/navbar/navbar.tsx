@@ -7,6 +7,7 @@ const pages = [
   {name: "Awards", link: "/awards"},
   {name: "Team", link: "/team"},
   {name: "Sponsors", link: "/sponsors"},    
+  {name: "Donate Now!", link: "/donations"},  
 ]
 
 function NavBar() { 

@@ -4,6 +4,7 @@ import remarkGfm from 'remark-gfm';
 import './seasons.css';
 
 const seasons = [
+    { name: "2024-2025 Into the Deep" },
     { name: "2023-2024 Centerstage"},
     { name: "2022-2023 Power Play" },
     { name: "2021-2022 Freight Frenzy"},
