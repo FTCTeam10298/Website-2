@@ -51,9 +51,6 @@
 
 
 .right {
-    position: fixed;    
-    right: 0;
-    margin-right: 10px;
 
     .menu {
         display: flex;
@@ -67,16 +64,18 @@
 
     .right {
         position: relative;
+        display: flex;
+        align-items: center;
+        float: right;
+        height: 100%;
     }
 
         .bar {
             color: #fff;
             display: block;
-            right: 0;
-            position: fixed;
             margin-right: 10px;
             img {
-                width: 60px
+                width: 32px;
             }
         }
 
@@ -114,7 +113,7 @@
 }
 
 /* just for decoupleing small size from large */
-@media only screen and (min-width: 1200px) {
+@media only screen and (min-width: 1201px) {
     .right {
         position: relative;
         display: flex;
@@ -150,12 +149,12 @@
     left: 0;
     right: 0;
     height: 3em;
+    padding: 0 10px;
     background-color: #7489ff;
     color: #fff;
     display: flex;
     align-items: center;
     justify-content: center;
-    z-index: 150;
     a {
         color: #fff;
     }
