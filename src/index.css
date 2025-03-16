@@ -7,3 +7,8 @@
   font-family: 'montserrat';
   src: url('./assets/webfontkit-20200720-012313/montserrat-regular-webfont.woff') format("truetype");
 }
+
+
+:root {
+  --top-adjust: 53px;
+}

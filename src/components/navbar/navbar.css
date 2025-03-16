@@ -144,3 +144,16 @@
             }
 }
 
+.announcement {
+    position: fixed; /* Keep it in place */
+    top: 6em; /* Make sure it sits right below the navbar */
+    width: 100%;
+    background-color: #7489ff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 150;
+    a {
+        margin-left: 5px;
+    }
+}

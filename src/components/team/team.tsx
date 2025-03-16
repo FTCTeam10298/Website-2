@@ -17,7 +17,7 @@ const team = [
         role: "Hardware / Drive",
         hobbies: "Marvel Rivals, Eating, and Manwha",
         food: "Everything",
-        photo: "src/components/team/team-pictures/albert.jpeg"
+        photo: "src/components/team/team-pictures/albert.png"
     },
 
     {
@@ -110,7 +110,7 @@ const team = [
         role: "Software / Drive",
         hobbies: "Coding",
         food: "Pho",
-        photo: "src/components/team/team-pictures/kevin.png"
+        photo: "src/components/team/team-pictures/kevin.jpeg"
     },  
     {
         name: "Micah Chi",
@@ -119,7 +119,7 @@ const team = [
         role: "Software",
         hobbies: "Rubiks Cube, volleyball, track/field",
         food: "Sichuan Spicy Fish Soup",
-        photo: "src/components/team/team-pictures/micah.png"
+        photo: "src/components/team/team-pictures/micah.jpeg"
     },
 ]
 
@@ -129,7 +129,7 @@ const mentors = [
         role: "Big Boss",
         hobbies: "Aura Farming",
         food: "Korean Food",
-        photo: "src/components/team/team-pictures/sung.png"
+        photo: "src/components/team/team-pictures/sung.jpeg"
     },
     {
         name: "Telly Chi", 

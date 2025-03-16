@@ -5,7 +5,7 @@
         align-items: center;
         justify-content: center;
         font-family: 'montserrat';
-        margin-top: 6em;
+        margin-top: calc(6em + var(--top-adjust));
         padding: 0;
         top: 0;
         background-image: url("./home_assets/teamAtPit.jpg");
