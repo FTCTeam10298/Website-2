@@ -1,14 +1,15 @@
 .footer {
     margin: 0;
     padding: 0;
-    background: #3300FF;
+    background: #1334f0;
     padding: 0.5em 0 0.5em 0;
     bottom: 0;
     width: 100%;
     /* position: absolute; */
     display: block;
-    font-size: 14pt;
-    font-family: "Caslon";
+    font-size: 18pt;
+    font-family: "Robotech GP";
+    letter-spacing: .05em;
 }
 
     .footer .copyright {
@@ -33,18 +34,20 @@
             max-width: 1px;
         }
     }
-    .icon {
-        max-width: 1em;
+    .icon, .icon a, .icon a img {
+        width: 32px;
+        height: 32px;
+        aspect-ratio: 1;
     }
 
-        .footer .copyright li {
-            display: inline-block;
-            list-style: none;
-            margin-left: 1em;
-        }
+    .footer .copyright li {
+        display: inline-block;
+        list-style: none;
+        margin-left: 1em;
+    }
 
-            .footer .copyright li:first-child {
-                border-left: 0;
-                margin-left: 0;
-                padding-left: 0;
-        }
+    .footer .copyright li:first-child {
+            border-left: 0;
+            margin-left: 0;
+            padding-left: 0;
+    }

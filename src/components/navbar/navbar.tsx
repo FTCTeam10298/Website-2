@@ -94,7 +94,7 @@ function NavBar() {
               
           </div>
           <div className='announcement'>
-              <p className='announcement-text'>We are going to Worlds! If you want to support our journey, please </p> <a href='/donations'>Click Here!</a>
+              <p className='announcement-text'>🎉 We are going to Worlds! If you want to support our journey, please <a href='/donations'>click here!</a></p>
           </div>
         </>
     )

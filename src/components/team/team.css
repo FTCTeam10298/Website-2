@@ -1,15 +1,9 @@
 .team-content {
-    
-    background-color: rgb(255, 255, 255);
-    width: 100%;
-    margin-top: calc(6em + var(--top-adjust));
-    min-height: calc(100vh - 6em);
     text-align: center;
-
 
     .team-intro {
         padding-top: 10px;
-        font-family: "Inter";
+        /* font-family: "Inter"; */
         width: 100%;
         font-size: larger;
         font-weight: bold;
@@ -19,7 +13,8 @@
 }
 
 .team-list {
-    font-family: "Robotech";
+    font-family: "Robotech GP";
+    letter-spacing: .05em;
 
     display: flex;
     padding-bottom: 50px;

@@ -15,35 +15,21 @@ function App() {
   return (
     <>
       <NavBar/>
-      <Router>
-        <Routes>
-          <Route path="/" element={<div>
-          <Home/>
-          </div>} />
-          <Route path="/team" element={<div>
-            <Team/>
-          </div>} />
-          <Route path="/about" element={<div>
-            <About/>
-          </div>} />
-          <Route path="/seasons" element={<div>
-            <Seasons/>
-          </div>} />
-          <Route path="/sponsors" element={<div>
-            <Sponsors/>
-          </div>} />
-          <Route path="/awards" element={<div>
-            <Awards/>
-          </div>} />
-          <Route path="/donations" element={<div>
-            <Donations/>
-          </div>} />
-          
-        </Routes>
-      </Router>
+      <div className="content">
+        <Router>
+          <Routes>
+            <Route path="/" element={<Home/>} />
+            <Route path="/team" element={<Team/>} />
+            <Route path="/about" element={<About/>} />
+            <Route path="/seasons" element={<Seasons/>} />
+            <Route path="/sponsors" element={<Sponsors/>} />
+            <Route path="/awards" element={<Awards/>} />
+            <Route path="/donations" element={<Donations/>} />
+          </Routes>
+        </Router>
+      </div>
       <Footer/>
     </>
-  
   )
 }
 

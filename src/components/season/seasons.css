@@ -1,11 +1,4 @@
 .season-content {
-    background-color: rgb(255, 255, 255);
-    width: 100%;
-    margin-top: calc(6em + var(--top-adjust));
-    min-height: calc(100vh - 6em);
-    font-family: 'montserrat';
-
-
     h2 {
             padding-top: 20px;
             font-size: xx-large;
