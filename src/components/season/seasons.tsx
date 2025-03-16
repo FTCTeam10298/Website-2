@@ -15,7 +15,7 @@ const seasons = [
 ];
 
 function Seasons() {
-    const [selectedSeason, setSelectedSeason] = useState<string>("2024-2025 Into the Deep");
+    const [selectedSeason, setSelectedSeason] = useState<string>("2023-2024 Centerstage");
     const [toggleSelect, setToggleSelect] = useState<boolean>(false);
     const [markdownContent, setMarkdownContent] = useState("");
     const dropdownRef = useRef<HTMLDivElement>(null);

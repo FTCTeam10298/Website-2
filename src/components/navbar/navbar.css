@@ -1,19 +1,19 @@
 .navBar {
     list-style-type: none;
     background-color: #1334f0;
-    position: fixed;
+    position: sticky;
     top: 0;
-    width: 100%;
+    left: 0;
+    right: 0;
     margin: 0;
     height: 4em;
-    left: 0;
     padding: 1em;
     z-index: 200;
 }
 
 .navItem {
-    font-family: "Robotech";
-    font-weight:700;
+    font-family: "Robotech GP";
+    letter-spacing: .05em;
     color: white;
     font-size: 1.5em;
     z-index: 4000;
@@ -144,3 +144,19 @@
             }
 }
 
+.announcement {
+    position: sticky; /* Keep it in place */
+    top: 6em; /* Make sure it sits right below the navbar */
+    left: 0;
+    right: 0;
+    height: 3em;
+    background-color: #7489ff;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 150;
+    a {
+        color: #fff;
+    }
+}

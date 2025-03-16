@@ -73,24 +73,30 @@ function NavBar() {
     
 
     return (
-        <div className="navBar">
-            <a href="/" className="left"><img src="src/components/navbar/navbar_assets/logoWebsite.svg"/></a>
-            <div className="right">
-                <a id="bar" onClick={showMenu} className="bar"><img src="src/components/navbar/navbar_assets/hamburgerMenu.svg"/></a>
-                <div id="menu" className="menu" style={{display: menuDisplay}}>
-                    <div className='dropdown'>
-                        <a className='navItem'></a>
-                    </div>
-                    {pages.map((item) => (
-                        <div key={item.name} >
-                          <a className='navItem' href={item.link}>                          
-                            {item.name}  
-                          </a>
-                        </div>
-                    ))}
-                </div>
-            </div>
-        </div>
+        <>
+          <div className="navBar">
+              <a href="/" className="left"><img src="src/components/navbar/navbar_assets/logoWebsite.svg"/></a>
+              <div className="right">
+                  <a id="bar" onClick={showMenu} className="bar"><img src="src/components/navbar/navbar_assets/hamburgerMenu.svg"/></a>
+                  <div id="menu" className="menu" style={{display: menuDisplay}}>
+                      <div className='dropdown'>
+                          <a className='navItem'></a>
+                      </div>
+                      {pages.map((item) => (
+                          <div key={item.name} >
+                            <a className='navItem' href={item.link}>                          
+                              {item.name}  
+                            </a>
+                          </div>
+                      ))}
+                  </div>
+              </div>
+              
+          </div>
+          <div className='announcement'>
+              <p className='announcement-text'>🎉 We are going to Worlds! If you want to support our journey, please <a href='/donations'>click here!</a></p>
+          </div>
+        </>
     )
 }
 

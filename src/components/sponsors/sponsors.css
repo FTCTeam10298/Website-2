@@ -1,9 +1,4 @@
 .sponsor-content {
-    background-color: rgb(255, 255, 255);
-    width: 100%;
-    margin-top: 6em;
-    min-height: calc(100vh - 6em);
-
     h2 {
         text-align: center;
         padding: 30px;

@@ -1,10 +1,4 @@
 .about-content {
-    background-color: rgb(255, 255, 255);
-    width: 100%;
-    margin-top: 6em;
-    min-height: calc(100vh - 6em);
-    font-family: 'montserrat';
-
     .top-bar {
         padding-top: 20px;
         font-size: xx-large;
