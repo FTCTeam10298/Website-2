@@ -4,7 +4,7 @@
     margin-top: 6em;
     min-height: calc(100vh - 6em);
     font-family: 'montserrat';
-
+   
 
     h2 {
             padding-top: 20px;
@@ -12,6 +12,8 @@
             font-weight:800;
             margin: 20px;
       }
+
+    
 
     .dropdown {
         position: relative;
@@ -53,7 +55,8 @@
         align-items: center;
         width: 100%;
         .season-info {
-            text-align: center;
+            font-size: x-large;
+            text-align: left;
             margin-left: 50px;
             margin-right: 50px;
             padding-bottom: 25px;
