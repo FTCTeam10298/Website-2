@@ -1,0 +1,7 @@
+.content {
+    background-color: rgb(255, 255, 255);
+    width: 100%;
+    min-height: 100vh;
+    display: inline-block; /* https://stackoverflow.com/a/20545313/4901968 */
+    font-family: 'montserrat';
+}
