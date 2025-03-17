@@ -1,7 +1,8 @@
-import { useEffect, useState, useRef } from 'react';
+import { useEffect, useState } from 'react';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 import './seasons.css';
+import { useSearchParams } from 'react-router-dom';
 
 const seasons = [
     { name: "2024-2025 Into the Deep"},
@@ -15,28 +16,22 @@ const seasons = [
 ];
 
 function Seasons() {
-    const [selectedSeason, setSelectedSeason] = useState<string>("2024-2025 Into the Deep");
-    const [toggleSelect, setToggleSelect] = useState<boolean>(false);
+    const [searchParams] = useSearchParams();
+    const seasonParam = searchParams.get('season');
+    
+    const [selectedSeason, setSelectedSeason] = useState<string>(
+        seasonParam || "2024-2025 Into the Deep"
+    );
     const [markdownContent, setMarkdownContent] = useState("");
-    const dropdownRef = useRef<HTMLDivElement>(null);
-
-    const toggleSeason = (name: string) => {
-        setSelectedSeason(name);
-        setToggleSelect(false); // Close dropdown after selection
-    };
-
-    const handleClickOutside = (event: MouseEvent) => {
-        if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
-            setToggleSelect(false); // Close dropdown when clicking outside
-        }
-    };
 
     useEffect(() => {
-        document.addEventListener("click", handleClickOutside);
-        return () => {
-            document.removeEventListener("click", handleClickOutside);
-        };
-    }, []);
+        // Update selected season when URL parameter changes
+        if (seasonParam && seasons.some(season => season.name === seasonParam)) {
+            setSelectedSeason(seasonParam);
+        } else {
+            setSelectedSeason("2024-2025 Into the Deep"); // Default season
+        }
+    }, [seasonParam]);
 
     useEffect(() => {
         // Fetch the Markdown file for the selected season
@@ -48,26 +43,7 @@ function Seasons() {
 
     return (
         <div className="season-content">
-            <h2>Seasons</h2>
-            <div
-                ref={dropdownRef}
-                className={`dropdown ${toggleSelect ? "selected" : "unselected"}`}
-                onClick={() => setToggleSelect(!toggleSelect)}
-            >
-                <span>Selected Season: {selectedSeason}</span>
-                {toggleSelect && (
-                    <div className="dropdown-content">
-                        {seasons.map((season) => (
-                            <div
-                                key={season.name}
-                                onClick={() => toggleSeason(season.name)}
-                            >
-                                {season.name}
-                            </div>
-                        ))}
-                    </div>
-                )}
-            </div>
+            <h2>{selectedSeason}</h2>
             <div className="season">
                 <div className="season-info">
                     <ReactMarkdown

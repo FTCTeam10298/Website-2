@@ -1,4 +1,3 @@
-# 2024-2025 Into the Deep Season:
 This season was a complete new generation of Brainstormz.
 Over half of our previous team graduated and we have many new members.
 
