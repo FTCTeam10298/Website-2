@@ -1,21 +1,45 @@
 .donations-content {
+
+   
+    /* background-image: url("./donationsAssets/itdregionals.jpg"); */
+    background-size: cover;
+    background-position: top center;
+    background-repeat: no-repeat;
+    font-size: x-large;
+    color: rgb(0, 0, 0);
+    .text {
+        font-size: x-large;
+        margin: 0 0 5vw 0;
+        background: #33333360;
+        backdrop-filter: blur(10px);
+        display: inline-block;
+        border-radius: 20px;
+        padding: 1em;
+        opacity: 1.0;
+    }
     .title {
+        color: black;
+        opacity: 1.0;
         text-align: center;
         padding-top: 20px;
-        font-size: xx-large;
+        font-size: x-large;
         font-weight:800;
         margin: 20px;
   }
 
     img {
-        max-width: 1000px;
+       
+
+        max-width: 1500px;
         margin:auto;
         display: flex;
     }
     .main {
+        color: red;
         max-width: 200px;
         margin:auto;
         display: flex;
+        
     }
 
     div {
