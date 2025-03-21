@@ -3,8 +3,6 @@ import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 import './seasons.css';
 import { useSearchParams } from 'react-router-dom';
-// const seasonsFiles: Record<string, { default: string }> = 
-//   import.meta.glob('./seasons/*.md', { eager: true }) as Record<string, { default: string }>;
 
 const seasons = [
     { name: "2024-2025 Into the Deep"},
@@ -37,19 +35,12 @@ function Seasons() {
 
     useEffect(() => {
         // Fetch the Markdown file for the selected season
-        const seasonPath = `/seasons/${selectedSeason}.md?raw`;
+        const seasonPath = `/markdown/seasons/${selectedSeason}.md?raw`;
 
-        // if (seasonPath in seasonsFiles) {
-        //     // If using eager: true, the content might already be available
-        //     const content = seasonsFiles[seasonPath].default;
-        //     setMarkdownContent(content);
-        // } else {
-            // Otherwise fetch it manually
-            fetch(seasonPath)
-                .then((response) => response.text())
-                .then((text) => setMarkdownContent(text))
-                .catch((error) => console.error("Error fetching Markdown:", error));
-    //    }
+        fetch(seasonPath)
+            .then((response) => response.text())
+            .then((text) => setMarkdownContent(text))
+            .catch((error) => console.error("Error fetching Markdown:", error));
     }, [selectedSeason]);
 
     return (
