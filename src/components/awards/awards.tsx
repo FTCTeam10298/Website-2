@@ -9,7 +9,7 @@ function Awards() {
 
     useEffect(() => {
         // Fetch the Markxown file for the selected season
-        fetch(`/awards.md`)
+        fetch(`/awards_page.md`)
             .then((response) => response.text())
             .then((text) => setMarkdownContent(text))
             .catch((error) => console.error("Error fetching Markdown:", error));
