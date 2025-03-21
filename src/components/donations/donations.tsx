@@ -9,7 +9,7 @@ function Donations() {
 
     useEffect(() => {
             // Fetch the Markxown file for the selected season
-        fetch(`src/components/donations/donations.md`)
+        fetch(`/donations.md`)
             .then((response) => response.text())
             .then((text) => setMarkdownContent(text))
             .catch((error) => console.error("Error fetching Markdown:", error));

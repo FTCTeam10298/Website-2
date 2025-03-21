@@ -4,13 +4,13 @@ This season, our approach to designing our robot has changed. Last season, we no
 
 With our strategy decided upon, we shifted towards prototyping three key scoring elements: a glyph delivery system, a glyph collector, and a stable drive train.
 
-![](src/components/season/season-assets/chassis1.jpg)
+![](/season_assets/chassis1.jpg)
 
 Our initial drive train was a 6-wheel tank drive utilizing Rev's extrusion mounting system, which gave us a lightweight and customizable base for our robot.
 
 After brainstoming couple ideas for a delivery mechanism, we decided on a conveyor system that could extend to deliver glyphs from a distance, giving us a significant time advantage when compared to a claw delivery system.
 
-![](src/components/season/season-assets/conveyor1.jpg)
+![](/season_assets/conveyor1.jpg)
 
 
 # Our Story - 2017-18 Relic Recovery Season:

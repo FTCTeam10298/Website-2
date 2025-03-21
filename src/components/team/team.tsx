@@ -8,7 +8,7 @@ const team = [
         role: "Hardware / Drive",
         hobbies: "Valorant, Anime, and Golf",
         food: "Sushi",
-        photo: "src/components/team/team-pictures/hansen.png"
+        photo: "/team_assets/hansen.png"
     },
     {
         name: "Albert Ruan", 
@@ -17,7 +17,7 @@ const team = [
         role: "Hardware / Drive",
         hobbies: "Marvel Rivals, Eating, and Manwha",
         food: "Everything",
-        photo: "src/components/team/team-pictures/albert.png"
+        photo: "/team_assets/albert.png"
     },
 
     {
@@ -27,7 +27,7 @@ const team = [
         role: "Hardware / Drive",
         hobbies: "Racing, robotics, mock trial",
         food: "Chicken Picatta",
-        photo: "src/components/team/team-pictures/aaden.png"
+        photo: "/team_assets/aaden.png"
     },
     {
         name: "John Bryson",
@@ -36,7 +36,7 @@ const team = [
         role: "Hardware",
         hobbies: "Touching grass",
         food: "None",
-        photo: "src/components/team/team-pictures/john.png",
+        photo: "/team_assets/john.png",
      },
      {
         name: "Ethan Xu",
@@ -45,7 +45,7 @@ const team = [
         role: "Hardware",
         hobbies: "Robotics, piano, volleyball",
         food: "Chicken",
-        photo: "src/components/team/team-pictures/ethan.png"
+        photo: "/team_assets/ethan.png"
     }, 
     
     {
@@ -55,7 +55,7 @@ const team = [
         role: "Hardware",
         hobbies: "N/A",
         food: "Wood Ranch BBQ",
-        photo: "src/components/team/team-pictures/cooper.png",
+        photo: "/team_assets/cooper.png",
      },
      {
         name: "Henry Gasich",
@@ -64,7 +64,7 @@ const team = [
         role: "Hardware",
         hobbies: "N/A",
         food: "N/A",
-        photo: "src/components/team/team-pictures/henry.jpg",
+        photo: "/team_assets/henry.jpg",
      },
     {
         name: "Gavven Scalise",
@@ -73,7 +73,7 @@ const team = [
         role: "Hardware",
         hobbies: "Racecars",
         food: "Melasenessa, chimichurri",
-        photo: "src/components/team/team-pictures/gavven.png",
+        photo: "/team_assets/gavven.png",
      },  
      {
         name: "Nathan Bancroft",
@@ -82,7 +82,7 @@ const team = [
         role: "Hardware",
         hobbies: "N/A",
         food: "N/A",
-        photo: "src/components/team/team-pictures/nathan.jpg",
+        photo: "/team_assets/nathan.jpg",
     },
     {
         name: "Livi Richert",
@@ -91,7 +91,7 @@ const team = [
         role: "Outreach / Hardware",
         hobbies: "life",
         food: "Salami",
-        photo: "src/components/team/team-pictures/livi.png"
+        photo: "/team_assets/livi.png"
     },
     {
         name: "Therelene Penrose",
@@ -100,7 +100,7 @@ const team = [
         role: "Outreach",
         hobbies: "Playing musical instruments, reading good books",
         food: "Soup",
-        photo: "src/components/team/team-pictures/therelene.png",
+        photo: "/team_assets/therelene.png",
     },
     
     {
@@ -110,7 +110,7 @@ const team = [
         role: "Software / Drive",
         hobbies: "Coding",
         food: "Pho",
-        photo: "src/components/team/team-pictures/kevin.jpeg"
+        photo: "/team_assets/kevin.jpeg"
     },  
     {
         name: "Micah Chi",
@@ -119,7 +119,7 @@ const team = [
         role: "Software",
         hobbies: "Rubiks Cube, volleyball, track/field",
         food: "Sichuan Spicy Fish Soup",
-        photo: "src/components/team/team-pictures/micah.jpeg"
+        photo: "/team_assets/micah.jpeg"
     },
 ]
 
@@ -129,42 +129,42 @@ const mentors = [
         role: "Big Boss",
         hobbies: "Aura Farming",
         food: "Korean Food",
-        photo: "src/components/team/team-pictures/sung.jpeg"
+        photo: "/team_assets/sung.jpeg"
     },
     {
         name: "Telly Chi", 
         role: "Big Boss",
         hobbies: "Going around and fixing things",
         food: "Tofu",
-        photo: "src/components/team/team-pictures/telly.png"
+        photo: "/team_assets/telly.png"
     },
     {
         name: "Stu Penrose", 
         role: "Big Boss",
         hobbies: "Guitar",
         food: "N/A",
-        photo: "src/components/team/team-pictures/stu.png"
+        photo: "/team_assets/stu.png"
     },
     {
         name: "Garret Smalley", 
         role: "Hardware",
         hobbies: "Robot",
         food: "None",
-        photo: "src/components/team/team-pictures/garret.png"
+        photo: "/team_assets/garret.png"
     },
     {
         name: "Jacob Newman", 
         role: "Software / Hardware",
         hobbies: "Robots",
         food: "Coca Cola",
-        photo: "src/components/team/team-pictures/jacob.png"
+        photo: "/team_assets/jacob.png"
     },
     {
         name: "Alon Belkin", 
         role: "Hardware",
         hobbies: "Battle Bots",
         food: "Shwarma",
-        photo: "src/components/team/team-pictures/alon.png"
+        photo: "/team_assets/alon.png"
     },
     
     {
@@ -172,21 +172,21 @@ const mentors = [
         role: "Hardware",
         hobbies: "Mogging",
         food: "In-n-out",
-        photo: "src/components/team/team-pictures/teague.png"
+        photo: "/team_assets/teague.png"
     },
     {
         name: "James Gasich", 
         role: "Hardware",
         hobbies: "N/A",
         food: "N/A",
-        photo: "src/components/team/team-pictures/jg.png"
+        photo: "/team_assets/jg.png"
     },
     {
         name: "James Penrose", 
         role: "Hardware / Software",
         hobbies: "N/A",
         food: "N/A",
-        photo: "src/components/team/team-pictures/james.png"
+        photo: "/team_assets/james.png"
     },
 ]
 

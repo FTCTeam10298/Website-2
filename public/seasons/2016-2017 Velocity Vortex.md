@@ -4,77 +4,77 @@ Our robot has gone through many different software changes, designs, and redesig
 
 Once we had a good strategy, it was time to build. Our robot mechanisms have gone through many complete redesigns including our shooting mechanism, collection mechanism and even our chassis.
 
-![](src/components/season/season-assets/robotPic1.png)
+![](/season_assets/robotPic1.png)
 
 In October, we brainstormed different ideas for how to launch the balls into the center vortex, and how to collect them. We started building a launching mechanism similar in design to a baseball pitching machine.
 
 We then tried adding a barrel to the end to direct the ball and make it more accurate.   This design was kept till early November when we began work on a new catapult idea. At this time our team also began work on the chassis.
 
-![](src/components/season/season-assets/baseballPichingLauncher.jpg)
+![](/season_assets/baseballPichingLauncher.jpg)
 
-![](src/components/season/season-assets/uShapedChassis.png)
+![](/season_assets/uShapedChassis.png)
 
 For the chassis we attempted a "U" shaped design in order to make it easier to collect the balls later on. However this design proved to be flimsy and unstable so we added a cross beam to the front to secure the chassis.
 
 We continued to work and improve on our original ball launcher idea, but a prototype of a catapult kind of launcher was also worked on.
 
-![](src/components/season/season-assets/workingOnCatapult.png)
+![](/season_assets/workingOnCatapult.png)
 
-![](src/components/season/season-assets/fibbonacciCam.png)
+![](/season_assets/fibbonacciCam.png)
 
 Between the pitching machine launcher and the catapult launcher, we concluded that the catapult was the more efficient and consistent option. We decided to try a Fibonacci curve, which looks like a snail shell, as the shape for the cam.  Then, when we had calculated the proportions needed, we copied it out on wood, drilled a hole in the middle, and sawed it out.  Finally, we mounted a hub to it, mounted it to the robot, and tested it using the battery from Jacob's drill.  It worked perfectly!
 
 The finished project.
 
-![](src/components/season/season-assets/finishedCatapult.png)
+![](/season_assets/finishedCatapult.png)
 
-![](src/components/season/season-assets/modifyingChassisForMecanum.png)
+![](/season_assets/modifyingChassisForMecanum.png)
 
 The chassis went through many changes, but we kept the same basic design. We decided to go with mecanum wheels for more mobility. However the mecanum wheels had a different shape than our old wheels so we had to change our chassis a bit to adjust for them.
 
 Our first collection mechanism was a claw with two painter's tape rolls on the sides to clamp down on the ball. This collector was extremely inefficient, but it got us through Meet 0 and Meet 1.
 
-![](src/components/season/season-assets/inefficientCollector.png)
+![](/season_assets/inefficientCollector.png)
 
-![](src/components/season/season-assets/sharpEdgedPusher.png)
+![](/season_assets/sharpEdgedPusher.png)
 
 This was our first beacon pusher. It wasn't very effective, and it also caused us issues in robot inspection for its "Exposed sharp edges".
 
 The robot finally all came together, and we began testing.
 
-![](src/components/season/season-assets/inefficientCollector.png)
+![](/season_assets/inefficientCollector.png)
 
-![](src/components/season/season-assets/fixingMecanumChassis.png)
+![](/season_assets/fixingMecanumChassis.png)
 
 We deconstructed our robot, because we saw that our mecanum wheels weren't working. At first we thought that it was a weight distribution problem, but after testing it we saw it made little to no difference. We concluded that the problem wasn't the weight distribution, but it may be a problem with the cleanliness and/or design of our wheels. We cleaned our wheels, but after testing, again, we saw that there was little to no difference. We finally concluded we need to purchase a gyro sensor, in order to be able to move sideways with the mecanum wheels and do that correctly.
 
 We built a new beacon pusher that was much easier for driver to hit the beacon, due to its large surface area.
 
-![](src/components/season/season-assets/largeBeaconPusher.png)
+![](/season_assets/largeBeaconPusher.png)
 
-![](src/components/season/season-assets/prototypeCollector.png)
+![](/season_assets/prototypeCollector.png)
 
 We saw during competition that our claw collection mechanism had some flaws. It could not hold more than two balls at a time, it took too long to collect, and it was very challenging for the driver to line up with the ball just right. We made a prototype of a new collector that could hold 3 balls and could collect them with ease. We debated on whether the collector should be run on friction or should have flaps to help the ball go into the shooter.
 
  The collection mechanism is completed and put on the robot. Only minor changes have to be done to compensate for the new collector.
 
-![](src/components/season/season-assets/newCollector.png)
+![](/season_assets/newCollector.png)
 
-![](src/components/season/season-assets/corkedBeaconPusher.png)
+![](/season_assets/corkedBeaconPusher.png)
 
 This is the beacon pusher for autonomous.  It has cork on it and is connected to a servo. Above that is a color sensor to see what button it has to hit, corresponding to the given alliance. 
 
 This is the finished robot at this point in time.
 
-![](src/components/season/season-assets/robotFirstDraft.png)
+![](/season_assets/robotFirstDraft.png)
 
-![](src/components/season/season-assets/pistonShooterCAD.JPG)
+![](/season_assets/pistonShooterCAD.JPG)
 
 Some work has been done on a new shooter design. This design would shoot the ball by using a piston powered by a spring contained in a cylinder.  The ball would ideally be launched at an almost vertical angle. This would allow the drivers to align themselves with the center vortex much more easily. In theory this design should also improve consistency as well as speed. This would allow us to score more points during the driver control period.
 
 We also plan to have a cap ball mechanism.  At first, we put this off because it seemed too hard to do for only 40 points, but now, after working on other parts of the game, and seeing how other robots went about raising the cap ball, as well as seeing its effects on the competition points, we started to plan our own.  We bought drawer sliders to use because they are the only mechanism that is sturdy and small enough to fit and function on our robot.  After the Inter-League Tournament, we will add it to our robot.
 
-![](src/components/season/season-assets/capBallPlans.png)
+![](/season_assets/capBallPlans.png)
 
 # Our Story - 2016-17 Velocity Vortex Season:
 

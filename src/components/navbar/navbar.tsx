@@ -95,9 +95,9 @@ function NavBar() {
         return (
           <>
             <div className="navBar">
-                <a href="/" className="left"><img src="src/components/navbar/navbar_assets/logoWebsite.svg" alt="Logo"/></a>
+                <a href="/" className="left"><img src="/navbar_assets/logoWebsite.svg" alt="Logo"/></a>
                 <div className="right">
-                    <a id="bar" onClick={showMenu} className="bar"><img src="src/components/navbar/navbar_assets/hamburgerMenu.svg" alt="Menu"/></a>
+                    <a id="bar" onClick={showMenu} className="bar"><img src="/navbar_assets/hamburgerMenu.svg" alt="Menu"/></a>
                     <div id="menu" className="menu" style={{display: menuDisplay}}>
                         {pages.map((item) => (
                             <div key={item.name} className={item.isDropdown ? 'dropdown' : ''}>
@@ -129,9 +129,9 @@ function NavBar() {
     return (
         <>
           <div className="navBar">
-              <a href="/" className="left"><img src="src/components/navbar/navbar_assets/logoWebsite.svg" alt="Logo"/></a>
+              <a href="/" className="left"><img src="/navbar_assets/logoWebsite.svg" alt="Logo"/></a>
               <div className="right">
-                  <a id="bar" onClick={showMenu} className="bar"><img src="src/components/navbar/navbar_assets/hamburgerMenu.svg" alt="Menu"/></a>
+                  <a id="bar" onClick={showMenu} className="bar"><img src="/navbar_assets/hamburgerMenu.svg" alt="Menu"/></a>
                   <div id="menu" className="menu" style={{display: menuDisplay}}>
                       {pages.map((item) => (
                           <div key={item.name} className={item.isDropdown ? 'dropdown' : ''}>
