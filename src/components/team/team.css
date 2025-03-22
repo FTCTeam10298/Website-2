@@ -99,4 +99,18 @@
     .Big {
         background-color: rgb(217, 217, 217);
     }
+
+.BIG {
+    animation: rainbowChange 8s linear infinite;
+  }
+}
+@keyframes rainbowChange {
+    0% { background-color: red; }
+    14% { background-color: orange; }
+    28% { background-color: yellow; }
+    42% { background-color: green; }
+    56% { background-color: blue; }
+    70% { background-color: indigo; }
+    84% { background-color: violet; }
+    100% { background-color: red; }
 }

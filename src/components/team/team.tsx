@@ -154,7 +154,8 @@ const mentors = [
     },
     {
         name: "Jacob Newman", 
-        role: "Software / Hardware",
+        role: "BIG BOSS / Software / Hardware",
+        aura: "MultiTalented",
         hobbies: "Robots",
         food: "Coca Cola",
         photo: "/team_assets/jacob.png"
@@ -188,6 +189,40 @@ const mentors = [
         food: "N/A",
         photo: "/team_assets/james.png"
     },
+]
+const alumni = [
+    {
+        name: "A", 
+        numYears: "Big Boss",
+        photo: "/team_assets/sung.jpeg"
+    },
+    {
+        name: "B", 
+        numYears: "Big Boss",
+        photo: "/team_assets/sung.jpeg"
+    },
+    {
+        name: "C", 
+        numYears: "Big Boss",
+        photo: "/team_assets/sung.jpeg"
+    },
+    {
+        name: "D", 
+        numYears: "Big Boss",
+        photo: "/team_assets/sung.jpeg"
+    },
+    {
+        name: "E", 
+        numYears: "Big Boss",
+        photo: "/team_assets/sung.jpeg"
+    },
+    {
+        name: "F", 
+        numYears: "Big Boss",
+        photo: "/team_assets/sung.jpeg"
+    },
+    
+   
 ]
 
 function Team() {
@@ -254,7 +289,31 @@ function Team() {
                     </div>
                 </div>
             ))}
+            
             </div>
+            <h1>Alumni</h1>
+            <div className='team-list'>
+            {alumni.map((member) => (
+                <div key={member.name} className="team-card alumni">
+                    <div className="team-main-card">
+                        <h2 className='team-name'>
+                            {member.name}
+                        </h2>
+                    
+                        <div className='team-photo-frame'>
+                            <img src={member.photo}/>
+                        </div>
+                    </div>
+                    <div className='team-expand-card'>
+                        <div>
+                            numYears: {member.numYears}
+                        </div>
+                      
+                    </div>
+                </div>
+            ))}
+            </div>
+            
         </div>
     )
 }
