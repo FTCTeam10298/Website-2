@@ -190,40 +190,40 @@ const mentors = [
         photo: "/team_assets/james.png"
     },
 ]
-const alumni = [
-    {
-        name: "A", 
-        numYears: "Big Boss",
-        photo: "/team_assets/sung.jpeg"
-    },
-    {
-        name: "B", 
-        numYears: "Big Boss",
-        photo: "/team_assets/sung.jpeg"
-    },
-    {
-        name: "C", 
-        numYears: "Big Boss",
-        photo: "/team_assets/sung.jpeg"
-    },
-    {
-        name: "D", 
-        numYears: "Big Boss",
-        photo: "/team_assets/sung.jpeg"
-    },
-    {
-        name: "E", 
-        numYears: "Big Boss",
-        photo: "/team_assets/sung.jpeg"
-    },
-    {
-        name: "F", 
-        numYears: "Big Boss",
-        photo: "/team_assets/sung.jpeg"
-    },
+// const alumni = [
+//     {
+//         name: "A", 
+//         numYears: "Big Boss",
+//         photo: "/team_assets/sung.jpeg"
+//     },
+//     {
+//         name: "B", 
+//         numYears: "Big Boss",
+//         photo: "/team_assets/sung.jpeg"
+//     },
+//     {
+//         name: "C", 
+//         numYears: "Big Boss",
+//         photo: "/team_assets/sung.jpeg"
+//     },
+//     {
+//         name: "D", 
+//         numYears: "Big Boss",
+//         photo: "/team_assets/sung.jpeg"
+//     },
+//     {
+//         name: "E", 
+//         numYears: "Big Boss",
+//         photo: "/team_assets/sung.jpeg"
+//     },
+//     {
+//         name: "F", 
+//         numYears: "Big Boss",
+//         photo: "/team_assets/sung.jpeg"
+//     },
     
    
-]
+// ]
 
 function Team() {
     
@@ -291,9 +291,9 @@ function Team() {
             ))}
             
             </div>
-            <h1>Alumni</h1>
+            <h1> </h1>
             <div className='team-list'>
-            {alumni.map((member) => (
+            {/* {alumni.map((member) => (
                 <div key={member.name} className="team-card alumni">
                     <div className="team-main-card">
                         <h2 className='team-name'>
@@ -311,7 +311,7 @@ function Team() {
                       
                     </div>
                 </div>
-            ))}
+            ))} */}
             </div>
             
         </div>
