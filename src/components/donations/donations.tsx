@@ -18,7 +18,6 @@ function Donations() {
 
     return (
         <div className='donations-content'>
-            <h2 className='title'>Donations</h2>
             <div>
                 <ReactMarkdown className='markdown' remarkPlugins={[remarkGfm]}>{markdownContent}</ReactMarkdown>
             </div>

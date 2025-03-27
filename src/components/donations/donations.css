@@ -27,11 +27,28 @@
         margin: 20px;
   }
 
-    img {
-       
+  h1 {
+    color: black;
+    opacity: 1.0;
+    padding-top: 20px;
+    font-size: x-large;
+    font-weight:1500;
+    margin: 20px;
+  }
+  p {
+    color: black;
+    opacity: 1.0;
+    padding-top: 20px;
+    font-size: x-large;
+    font-weight:1500;
+    margin: 20px;
+  }
+  
 
+    img {
+        
         max-width: 1500px;
-        margin:auto;
+        margin-top: 50px;
         display: flex;
     }
     .main {
