@@ -190,40 +190,171 @@ const mentors = [
         photo: "/team_assets/james.png"
     },
 ]
-// const alumni = [
-//     {
-//         name: "A", 
-//         numYears: "Big Boss",
-//         photo: "/team_assets/sung.jpeg"
-//     },
-//     {
-//         name: "B", 
-//         numYears: "Big Boss",
-//         photo: "/team_assets/sung.jpeg"
-//     },
-//     {
-//         name: "C", 
-//         numYears: "Big Boss",
-//         photo: "/team_assets/sung.jpeg"
-//     },
-//     {
-//         name: "D", 
-//         numYears: "Big Boss",
-//         photo: "/team_assets/sung.jpeg"
-//     },
-//     {
-//         name: "E", 
-//         numYears: "Big Boss",
-//         photo: "/team_assets/sung.jpeg"
-//     },
-//     {
-//         name: "F", 
-//         numYears: "Big Boss",
-//         photo: "/team_assets/sung.jpeg"
-//     },
-    
-   
-// ]
+const alumni = [
+    {
+        name: "AJ", 
+        numYears: "Skystone",
+        photo: "/team_assets/AJ.JPG",
+        role: "Alumni"
+    },
+    {
+        name: "Ben", 
+        numYears: "Skystone",
+        photo: "/team_assets/Ben.jpg",
+        role: "Alumni"
+    },
+    {
+        name: "Brody", 
+        numYears: "Freight Frenzy, Power Play, Centerstage",
+        photo: "/team_assets/Brody.png",
+        role: "Alumni"
+    },
+    {
+        name: "Daniel", 
+        numYears: "Res-Q, Velocity Vortex, Relic Recovery",
+        photo: "/team_assets/Daniel.JPG",
+        role: "Alumni"
+    },
+    {
+        name: "David", 
+        numYears: "Velocity Vortex, Relic Recovery",
+        photo: "/team_assets/David.jpg",
+        role: "Alumni"
+    },
+    {
+        name: "Destin", 
+        numYears: "Skystone",
+        photo: "/team_assets/Destin.JPG",
+        role: "Alumni"
+    },
+    {
+        name: "Gabe", 
+        numYears: "Ultimate Goal, Freight Frenzy, Power Play, Centerstage",
+        photo: "/team_assets/Gabe.jpeg",
+        role: "Alumni"
+    },
+    {
+        name: "Hunter", 
+        numYears: "Ultimate Goal, Freight Frenzy",
+        photo: "/team_assets/Hunter.jpeg",
+        role: "Alumni"
+    },
+    {
+        name: "Ian", 
+        numYears: "Rover Ruckus",
+        photo: "/team_assets/Ian.JPG",
+        role: "Alumni"
+    },
+    {
+        name: "Jacob", 
+        numYears: "Velocity Vortex, Relic Recovery, Rover Ruckus",
+        photo: "/team_assets/Jacob.JPG",
+        role: "Alumni"
+    },
+    {
+        name: "James", 
+        numYears: "Skystone, Ultimate Goal, Freight Frenzy, Power Play, Centerstage",
+        photo: "/team_assets/James.jpeg",
+        role: "Alumni"
+    },
+    {
+        name: "JG", 
+        numYears: "Centerstage",
+        photo: "/team_assets/JG.JPG",
+        role: "Alumni"
+    },
+    {
+        name: "Joshua", 
+        numYears: "Velocity Vortex, Relic Recovery",
+        photo: "/team_assets/Joshua.jpg",
+        role: "Alumni"
+    },
+    {
+        name: "Kimberly", 
+        numYears: "Velocity Vortex, Relic Recovery",
+        photo: "/team_assets/Kimberly.JPG",
+        role: "Alumni"
+    },
+    {
+        name: "Luke", 
+        numYears: "Ultimate Goal, Frieght Frenzy",
+        photo: "/team_assets/Luke.jpeg",
+        role: "Alumni"
+    },
+    {
+        name: "Nathan C.", 
+        numYears: "Res-Q, Velocity Vortex, Relic Recovery, Rover Ruckus, Skystone",
+        photo: "/team_assets/Nathan C.JPG",
+        role: "Alumni"
+    },
+    {
+        name: "Noah", 
+        numYears: "Res-Q, Velocity Vortex, Relic Recovery, Rover Ruckus, Skystone",
+        photo: "/team_assets/Noah.JPG",
+        role: "Alumni"
+    },
+    {
+        name: "Olivia C.", 
+        numYears: "Relic Recovery",
+        photo: "/team_assets/Olivac.jpeg",
+        role: "Alumni"
+    },
+    {
+        name: "Oliva O.", 
+        numYears: "Rover Ruckus",
+        photo: "/team_assets/Livo.png",
+        role: "Alumni"
+
+    },
+    {
+        name: "Patrick", 
+        numYears: "Ulitmate Goal, Freight Frenzy, Power Play",
+        photo: "/team_assets/Patrick.jpeg",
+        role: "Alumni"
+    },
+    {
+        name: "Peter", 
+        numYears: "Ulitmate Goal, Frieght Frenzy, Power Play, Centerstage",
+        photo: "/team_assets/Peter.jpeg",
+        role: "Alumni"
+    },
+    {
+        name: "Skyler", 
+        numYears: "Res-Q",
+        photo: "/team_assets/Skyler.jpg",
+        role: "Alumni"
+    },
+    {
+        name: "Stephanie", 
+        numYears: "Rover Ruckus",
+        photo: "/team_assets/Stephanie.JPG",
+        role: "Alumni"
+    },
+    {
+        name: "TC", 
+        numYears: "Centerstage",
+        photo: "/team_assets/TC.JPG",
+        role: "Alumni"
+    },
+    {
+        name: "Teague", 
+        numYears: "Ultimate Goal, Freight Frenzy, Power Play, Centerstage",
+        photo: "/team_assets/Teague.JPG",
+        role: "Alumni"
+    },
+    {
+        name: "TJ", 
+        numYears: "Ultimate Goal, Freight Frenzy, Power Play, Centerstage",
+        photo: "/team_assets/TJ.JPG",
+        role: "Alumni"
+    },
+    {
+        name: "Tobey", 
+        numYears: "Power Play, Centerstage",
+        photo: "/team_assets/Tobey.JPG",
+        role: "Alumni"
+    },
+]
 
 function Team() {
     
@@ -291,11 +422,11 @@ function Team() {
             ))}
             
             </div>
-            <h1> </h1>
+            <h1> Alumni </h1>
             <div className='team-list'>
-            {/* {alumni.map((member) => (
+            {alumni.map((member) => (
                 <div key={member.name} className="team-card alumni">
-                    <div className="team-main-card">
+                    <div className={`team-main-card ${member.role}`}>
                         <h2 className='team-name'>
                             {member.name}
                         </h2>
@@ -306,12 +437,12 @@ function Team() {
                     </div>
                     <div className='team-expand-card'>
                         <div>
-                            numYears: {member.numYears}
+                            Season(S) Participated in: {member.numYears}
                         </div>
                       
                     </div>
                 </div>
-            ))} */}
+            ))}
             </div>
             
         </div>

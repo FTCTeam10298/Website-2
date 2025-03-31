@@ -56,8 +56,17 @@ function Seasons() {
                     </ReactMarkdown>
                 </div>
             </div>
+            <a href="https://www.youtube.com/watch?v=KOKwruo5WU8" target="_blank" rel="noopener noreferrer">
+                <img 
+                    src="/season_assets/sRecord.avif" 
+                    alt="Season Record" 
+                   style={{ width: '450px', height: '300px' }} 
+                />
+            </a>
         </div>
     );
+    
+    
 }
 
-export default Seasons;
+export default Seasons; 

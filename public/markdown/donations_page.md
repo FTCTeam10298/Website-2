@@ -4,5 +4,6 @@ We are Brain Stormz, a dedicated FIRST Tech Challenge (FTC) robotics team from V
 Your donation will help cover travel, lodging, and competition expenses, allowing us to showcase our hard work and continue pushing the boundaries of STEM excellence.
 Every contribution, big or small, brings us closer to our goal. Thank you for believing in us and supporting the future of robotics!
 Donate today and help us make it to Worlds!
-Email brainstormzparentorg@gmail.com to inquire about donations.
+Use our Go Fund Me page at https://gofund.me/96bdfb1d or email brainstormzparentorg@gmail.com to inquire about more ways to donate.
 ![](/donations_assets/itdregionals.jpg)
+
