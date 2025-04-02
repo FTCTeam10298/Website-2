@@ -300,7 +300,7 @@ const alumni = [
         role: "Alumni"
     },
     {
-        name: "Oliva O.", 
+        name: "Olivia O.", 
         numYears: "Rover Ruckus",
         photo: "/team_assets/Livo.png",
         role: "Alumni"
