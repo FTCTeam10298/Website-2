@@ -19,7 +19,6 @@ const team = [
         food: "Everything",
         photo: "/team_assets/albert.png"
     },
-
     {
         name: "Aaden Scalise",
         age: 16,
@@ -47,7 +46,6 @@ const team = [
         food: "Chicken",
         photo: "/team_assets/ethan.png"
     }, 
-    
     {
         name: "Cooper Paulec",
         age: 15,
@@ -102,7 +100,6 @@ const team = [
         food: "Soup",
         photo: "/team_assets/therelene.png",
     },
-    
     {
         name: "Kevin Fei", 
         age: 16,
@@ -167,7 +164,6 @@ const mentors = [
         food: "Shwarma",
         photo: "/team_assets/alon.png"
     },
-    
     {
         name: "Teague Shepard", 
         role: "Hardware",
@@ -190,167 +186,167 @@ const mentors = [
         photo: "/team_assets/james.png"
     },
 ]
+
 const alumni = [
     {
         name: "AJ", 
-        numYears: "Skystone",
+        numYears: ["Skystone"],
         photo: "/team_assets/AJ.JPG",
         role: "Alumni"
     },
     {
         name: "Ben", 
-        numYears: "Skystone",
+        numYears: ["Skystone"],
         photo: "/team_assets/Ben.jpg",
         role: "Alumni"
     },
     {
         name: "Brody", 
-        numYears: "Freight Frenzy, Power Play, Centerstage",
+        numYears: ["Freight Frenzy", "Power Play", "Centerstage"],
         photo: "/team_assets/Brody.png",
         role: "Alumni"
     },
     {
         name: "Daniel", 
-        numYears: "Res-Q, Velocity Vortex, Relic Recovery",
+        numYears: ["Res-Q", "Velocity Vortex", "Relic Recovery"],
         photo: "/team_assets/Daniel.JPG",
         role: "Alumni"
     },
     {
         name: "David", 
-        numYears: "Velocity Vortex, Relic Recovery",
+        numYears: ["Velocity Vortex", "Relic Recovery"],
         photo: "/team_assets/David.jpg",
         role: "Alumni"
     },
     {
         name: "Destin", 
-        numYears: "Skystone",
+        numYears: ["Skystone"],
         photo: "/team_assets/Destin.JPG",
         role: "Alumni"
     },
     {
         name: "Gabe", 
-        numYears: "Ultimate Goal, Freight Frenzy, Power Play, Centerstage",
+        numYears: ["Ultimate Goal", "Freight Frenzy", "Power Play", "Centerstage"],
         photo: "/team_assets/Gabe.jpeg",
         role: "Alumni"
     },
     {
         name: "Hunter", 
-        numYears: "Ultimate Goal, Freight Frenzy",
+        numYears: ["Ultimate Goal", "Freight Frenzy"],
         photo: "/team_assets/Hunter.jpeg",
         role: "Alumni"
     },
     {
         name: "Ian", 
-        numYears: "Rover Ruckus",
+        numYears: ["Rover Ruckus"],
         photo: "/team_assets/Ian.JPG",
         role: "Alumni"
     },
     {
         name: "Jacob", 
-        numYears: "Velocity Vortex, Relic Recovery, Rover Ruckus",
+        numYears: ["Velocity Vortex", "Relic Recovery", "Rover Ruckus"],
         photo: "/team_assets/Jacob.JPG",
         role: "Alumni"
     },
     {
         name: "James", 
-        numYears: "Skystone, Ultimate Goal, Freight Frenzy, Power Play, Centerstage",
+        numYears: ["Skystone", "Ultimate Goal", "Freight Frenzy", "Power Play", "Centerstage"],
         photo: "/team_assets/James.jpeg",
         role: "Alumni"
     },
     {
         name: "JG", 
-        numYears: "Centerstage",
+        numYears: ["Centerstage"],
         photo: "/team_assets/JG.JPG",
         role: "Alumni"
     },
     {
         name: "Joshua", 
-        numYears: "Velocity Vortex, Relic Recovery",
+        numYears: ["Velocity Vortex", "Relic Recovery"],
         photo: "/team_assets/Joshua.jpg",
         role: "Alumni"
     },
     {
         name: "Kimberly", 
-        numYears: "Velocity Vortex, Relic Recovery",
+        numYears: ["Velocity Vortex", "Relic Recovery"],
         photo: "/team_assets/Kimberly.JPG",
         role: "Alumni"
     },
     {
         name: "Luke", 
-        numYears: "Ultimate Goal, Frieght Frenzy",
+        numYears: ["Ultimate Goal", "Frieght Frenzy"],
         photo: "/team_assets/Luke.jpeg",
         role: "Alumni"
     },
     {
         name: "Nathan C.", 
-        numYears: "Res-Q, Velocity Vortex, Relic Recovery, Rover Ruckus, Skystone",
+        numYears: ["Res-Q", "Velocity Vortex", "Relic Recovery", "Rover Ruckus", "Skystone"],
         photo: "/team_assets/Nathan C.JPG",
         role: "Alumni"
     },
     {
         name: "Noah", 
-        numYears: "Res-Q, Velocity Vortex, Relic Recovery, Rover Ruckus, Skystone",
+        numYears: ["Res-Q", "Velocity Vortex", "Relic Recovery", "Rover Ruckus", "Skystone"],
         photo: "/team_assets/Noah.JPG",
         role: "Alumni"
     },
     {
         name: "Olivia C.", 
-        numYears: "Relic Recovery",
+        numYears: ["Relic Recovery"],
         photo: "/team_assets/Olivac.jpeg",
         role: "Alumni"
     },
     {
         name: "Olivia O.", 
-        numYears: "Rover Ruckus",
+        numYears: ["Rover Ruckus"],
         photo: "/team_assets/Livo.png",
         role: "Alumni"
-
     },
     {
         name: "Patrick", 
-        numYears: "Ulitmate Goal, Freight Frenzy, Power Play",
+        numYears: ["Ulitmate Goal", "Freight Frenzy", "Power Play"],
         photo: "/team_assets/Patrick.jpeg",
         role: "Alumni"
     },
     {
         name: "Peter", 
-        numYears: "Ulitmate Goal, Frieght Frenzy, Power Play, Centerstage",
+        numYears: ["Ulitmate Goal", "Frieght Frenzy", "Power Play", "Centerstage"],
         photo: "/team_assets/Peter.jpeg",
         role: "Alumni"
     },
     {
         name: "Skyler", 
-        numYears: "Res-Q",
+        numYears: ["Res-Q"],
         photo: "/team_assets/Skyler.jpg",
         role: "Alumni"
     },
     {
         name: "Stephanie", 
-        numYears: "Rover Ruckus",
+        numYears: ["Rover Ruckus"],
         photo: "/team_assets/Stephanie.JPG",
         role: "Alumni"
     },
     {
         name: "TC", 
-        numYears: "Centerstage",
+        numYears: ["Centerstage"],
         photo: "/team_assets/TC.JPG",
         role: "Alumni"
     },
     {
         name: "Teague", 
-        numYears: "Ultimate Goal, Freight Frenzy, Power Play, Centerstage",
+        numYears: ["Ultimate Goal", "Freight Frenzy", "Power Play", "Centerstage"],
         photo: "/team_assets/Teague.JPG",
         role: "Alumni"
     },
     {
         name: "TJ", 
-        numYears: "Ultimate Goal, Freight Frenzy, Power Play, Centerstage",
+        numYears: ["Ultimate Goal", "Freight Frenzy", "Power Play", "Centerstage"],
         photo: "/team_assets/TJ.JPG",
         role: "Alumni"
     },
     {
         name: "Tobey", 
-        numYears: "Power Play, Centerstage",
+        numYears: ["Power Play", "Centerstage"],
         photo: "/team_assets/Tobey.JPG",
         role: "Alumni"
     },
@@ -437,9 +433,10 @@ function Team() {
                     </div>
                     <div className='team-expand-card'>
                         <div>
-                            Season(S) Participated in: {member.numYears}
+                            {member.numYears.map((season, index) => (
+                                <div key={index}>{season}</div>
+                            ))}
                         </div>
-                      
                     </div>
                 </div>
             ))}
