@@ -10,7 +10,6 @@ import Team from './components/team/team';
 import Seasons from './components/season/seasons';
 import Sponsors from './components/sponsors/sponsors';
 import Awards from './components/awards/awards';
-import Donations from './components/donations/donations';
 function App() {
   return (
     <>
