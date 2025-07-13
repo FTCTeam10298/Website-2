@@ -27,7 +27,7 @@ const pages = [
   {name: "Awards", link: "/awards"},
   {name: "Team", link: "/team"},
   {name: "Sponsors", link: "/sponsors"},    
-  {name: "Donate Now!", link: "/donations"},  
+  // {name: "Donate Now!", link: "/donations"},  
 ]
 
 function NavBar() { 
@@ -118,9 +118,7 @@ function NavBar() {
                     </div>
                 </div>
             </div>
-            <div className='announcement'>
-                <p className='announcement-text'>🎉 We are going to Worlds! If you want to support our journey, please <a href='/donations'>click here!</a></p>
-            </div>
+           
           </>
       )
     
