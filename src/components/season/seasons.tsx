@@ -44,25 +44,21 @@ function Seasons() {
     }, [selectedSeason]);
 
     return (
-        <div className="season-content">
-            <h2>{selectedSeason}</h2>
-            <div className="season">
-                <div className="season-info">
-                    <ReactMarkdown
-                        className="markdown"
-                        remarkPlugins={[remarkGfm]}
-                    >
-                        {markdownContent}
-                    </ReactMarkdown>
-                </div>
-            </div>
-            <a href="https://www.youtube.com/watch?v=KOKwruo5WU8" target="_blank" rel="noopener noreferrer">
+        <div className="content">
+            <h2 className='title toppage'>{selectedSeason}</h2>
+            <ReactMarkdown
+                className="markdown"
+                remarkPlugins={[remarkGfm]}
+            >
+                {markdownContent}
+            </ReactMarkdown>
+            {/* <a href="https://www.youtube.com/watch?v=KOKwruo5WU8" target="_blank" rel="noopener noreferrer">
                 <img 
                     src="/season_assets/sRecord.avif" 
                     alt="Season Record" 
                    style={{ width: '450px', height: '300px' }} 
                 />
-            </a>
+            </a> */}
         </div>
     );
     
