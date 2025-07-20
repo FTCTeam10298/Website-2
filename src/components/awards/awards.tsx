@@ -17,11 +17,9 @@ function Awards() {
     });
 
     return (
-        <div className='awards-content'>
-            <h2 className='title'>Awards</h2>
-            <div>
-                <ReactMarkdown className='markdown' remarkPlugins={[remarkGfm]}>{markdownContent}</ReactMarkdown>
-            </div>
+        <div className='content'>
+            <h2 className='title toppage'>Awards</h2>
+            <ReactMarkdown className='markdown' remarkPlugins={[remarkGfm]}>{markdownContent}</ReactMarkdown>
         </div>
     )
 }

@@ -1,8 +1,5 @@
-.sponsor-content {
-    h2 {
-        text-align: center;
-        padding: 30px;
-    }
+.content {
+    
 
     .bg {
         background-color: black;
@@ -12,11 +9,19 @@
         display: flex;
         align-items: center;
         flex-wrap: wrap;
-        gap: 50px;
+        justify-content: center;
+        gap: 20px;
 
-    img {
-        max-width: 300px;
+        img {
+            max-width: 250px;
+            transition: all 0.3s ease-in-out;
+
+        }
+        img:hover {
+            transform: scale(1.1);
+        }
     }
-    }
+        
+    
 
 }

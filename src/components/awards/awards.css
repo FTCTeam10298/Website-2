@@ -1,17 +1,15 @@
-.awards-content {
-    .title {
-        padding-top: 20px;
-        font-size: xx-large;
-        font-weight:800;
-        margin: 20px;
-  }
-
+.content {
+    
     img {
         max-width: 500px;
     }
 
-    div {
-        margin-left: 10px;
-        padding-bottom: 20px;
+    .markdown {
+        display: block;
+
+        h2 {
+            padding: 0;
+            margin: 0;
+        }
     }
 }

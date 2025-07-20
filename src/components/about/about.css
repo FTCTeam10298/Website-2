@@ -1,25 +1,29 @@
-.about-content {
-    .top-bar {
-        padding-top: 20px;
-        font-size: xx-large;
-        font-weight:800;
-        margin: 20px;
-    }
+.content {
+    text-align: center;
+
     
     .info-container {
         display: block;
-        div {
-            margin: 20px;
-        }
     }
 
     .memoriam {
-        margin: 20px;
         height: fit-content;
-        padding: 10px;
        
+        h2 {
+            margin: 0;
+        }
         img {
+            margin-top: 2%;
             max-width: 300px;
         }
     }
+
+
+   
+
+    p {
+        margin: 1% auto 3% auto;
+        line-height: 1.5em;
+    }
+
 }

@@ -1,5 +1,5 @@
 
-.content {
+
     .welcome {
         display: flex;
         align-items: center;
@@ -15,6 +15,7 @@
         text-align: center;
         position: relative;
         height: calc(100vh);
+
         .text {
             font-size: x-large;
             margin: 0 0 5vw 0;
@@ -25,5 +26,5 @@
             padding: 1em;
         }
     }
-}
+
 
