@@ -356,12 +356,10 @@ function Team() {
     
     return (
         <div className="team-content">
-            <div className='team-intro'>
-                <h1>BRAINSTORMZ 2024-2025 INTO THE DEEP TEAM</h1>
-                
-            </div>
-            <div className='team-list'>
+            <h2 className='toppage title'>Team</h2>
+            <ul className='team-list'>
             {team.map((member) => (
+                
                 <div key={member.name} className="team-card">
                     <div className={`team-main-card ${member.role}`}>
                         <h2 className='team-name'>
@@ -388,9 +386,9 @@ function Team() {
                     </div>
                 </div>
             ))}
-            </div>  
+            </ul>  
 
-            <h1>Coaches & Mentors</h1>
+            <h2 className='title'>Coaches & Mentors</h2>
             
 
             <div className='team-list'>
@@ -418,7 +416,7 @@ function Team() {
             ))}
             
             </div>
-            <h1> Alumni </h1>
+            <h2 className='title'> Alumni </h2>
             <div className='team-list'>
             {alumni.map((member) => (
                 <div key={member.name} className="team-card alumni">

@@ -2,27 +2,27 @@ import './about.css'
 
 function About() {
     return (
-        <div className="content">
+        <div className="content about">
             <h2 className='toppage title'>
                 About Us
             </h2>
             <div className='info-container'>
             <div className='about'>
             
-                <h3 className='title'>Who are we?</h3>
+                <h3 className='subtitle'>Who are we?</h3>
                 <p>
                 Brain Stormz is a private, non-profit robotics team competing in FIRST Tech Challenge (FTC). 
                 </p>
             </div>
             <div className='core'>
-                <h3 className='title'>Core Values</h3>
+                <h3 className='subtitle'>Core Values</h3>
                 <p>
                 As a team, we strive to uphold FIRST’s core values. One of the values that we place the most focus on is “Gracious Professionalism”. With Gracious Professionalism, fierce competition and mutual gain are not separate notions. We allow our competition to drive us to do our best, but never so far as to degrade others. Another core value that we embrace is cooperation. When we talk about cooperation, we are not only referring to cooperation between team members and mentors, but it must include other FTC teams and our community. In past years, the emphasis we have placed on these values has earned us many awards and, most importantly, it has taught us how to become well-rounded, gracious professionals who are excited about our futures.
                 </p>
             </div>
             
             <div className='first'>
-                <h3 className='title'>
+                <h3 className='subtitle'>
                     What is FIRST?
                 </h3>
                 <p>
@@ -30,7 +30,7 @@ function About() {
                 </p> 
             </div>
             <div className='ftc'>
-                <h3 className='title'>
+                <h3 className='subtitle'>
                     What is FTC?
                 </h3>
                 <p>
@@ -39,7 +39,7 @@ function About() {
                 </p>
             </div>
             <div className='memoriam'>
-                <h2>In Memory of Noah DeVico</h2>
+                <h3 className='subtitle'>In Memory of Noah DeVico</h3>
                 <h3>
                     September 12, 2001 - October 13, 2020
                 </h3>
