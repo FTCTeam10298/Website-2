@@ -14,7 +14,7 @@ function Contact() {
                     maxWidth: "50%",
                     height: "auto",
                 }
-            }src="src/components/contact/tem.jpeg" alt="Contact Us Illustration" className="contact-image"/>
+            }src="/contact_assets/tem.jpeg" alt="Contact Us Illustration" className="contact-image"/>
             
         </div>
     )
