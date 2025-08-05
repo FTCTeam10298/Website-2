@@ -10,6 +10,7 @@ import Team from './components/team/team';
 import Seasons from './components/season/seasons';
 import Sponsors from './components/sponsors/sponsors';
 import Awards from './components/awards/awards';
+import Contact from './components/contact/contact';
 function App() {
   return (
     <>
@@ -23,6 +24,8 @@ function App() {
             <Route path="/seasons" element={<Seasons/>} />
             <Route path="/sponsors" element={<Sponsors/>} />
             <Route path="/awards" element={<Awards/>} />
+            <Route path="/contact" element={<Contact/>} />
+
             {/* <Route path="/donations" element={<Donations/>} /> */}
           </Routes>
         </Router>

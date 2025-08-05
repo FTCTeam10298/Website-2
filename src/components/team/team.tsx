@@ -107,7 +107,7 @@ const team = [
         role: "Software / Drive",
         hobbies: "Coding",
         food: "Pho",
-        photo: "/team_assets/kevin.jpeg"
+        photo: "/team_assets/kevin.png"
     },  
     {
         name: "Micah Chi",

@@ -27,6 +27,7 @@ const pages = [
   {name: "Awards", link: "/awards"},
   {name: "Team", link: "/team"},
   {name: "Sponsors", link: "/sponsors"},    
+  {name: "Contact Us", link: "/contact"},   
   // {name: "Donate Now!", link: "/donations"},  
 ]
 
