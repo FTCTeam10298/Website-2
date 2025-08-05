@@ -10,7 +10,11 @@ Our version 2 robot is a huge step forward from our last robot. This robot took 
 ![](/season_assets/ratATony.jpeg)
 
 Features:
-- Small enough to go around the barriers
-- Deposits from the side for the shared hub
-- Two collectors to avoid turning around
-- Custom 3D printed components on the lift assembly
+
+Small enough to go around the barriers
+
+Deposits from the side for the shared hub
+
+Two collectors to avoid turning around
+
+Custom 3D printed components on the lift assembly
