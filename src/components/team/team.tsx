@@ -1,10 +1,11 @@
+import { useState } from 'react'
 import './team.css'
 
-const team = [
+const team1 = [
     {
         name: "Hansen Chen", 
-        age: 15,
-        grade: "Sophomore @ FTHS Technology High",
+        age: 16,
+        grade: "Junior @ FTHS Technology High",
         role: "Hardware / Drive",
         hobbies: "Valorant, Anime, and Golf",
         food: "Sushi",
@@ -12,8 +13,8 @@ const team = [
     },
     {
         name: "Albert Ruan", 
-        age: 15,
-        grade: "Sophomore @ Oak Park High",
+        age: 16,
+        grade: "Junior @ Oak Park High",
         role: "Hardware / Drive",
         hobbies: "Marvel Rivals, Eating, and Manwha",
         food: "Everything",
@@ -21,8 +22,8 @@ const team = [
     },
     {
         name: "Aaden Scalise",
-        age: 16,
-        grade: "Junior @ Trinity Pacific Christian",
+        age: 17,
+        grade: "Senior @ Trinity Pacific Christian",
         role: "Hardware / Drive",
         hobbies: "Racing, robotics, mock trial",
         food: "Chicken Picatta",
@@ -30,14 +31,71 @@ const team = [
     },
     {
         name: "John Bryson",
-        age: 16,
-        grade: "11th Grade @ Trinity Pacific Christian",
+        age: 17,
+        grade: "Senior @ Trinity Pacific Christian",
         role: "Hardware",
         hobbies: "Touching grass",
         food: "None",
         photo: "/team_assets/john.png",
      },
-     {
+     
+    {
+        name: "Kevin Fei", 
+        age: 17,
+        grade: "Junior @ Westlake High School",
+        role: "Software / Drive",
+        hobbies: "Coding",
+        food: "Pho",
+        photo: "/team_assets/kevin.png"
+    },  
+    {
+        name: "Boyi Zheng", 
+        age: 14,
+        grade: "Freshman @ Oaks Christian High School",
+        role: "Hardware / Outreach",
+        hobbies: "Robotics",
+        food: "Everything",
+        photo: "/team_assets/boyi.png"
+    },  
+    {
+        name: "Zoe Eisenstein", 
+        age: 14,
+        grade: "Sophomore @ De Toledo High School",
+        role: "Outreach",
+        hobbies: "Dancing idk",
+        food: "smth",
+        photo: "/team_assets/zoe.png"
+    },  
+    {
+        name: "Sarah Chen", 
+        age: 14,
+        grade: "Freshman @ Oaks Park High School",
+        role: "Outreach",
+        hobbies: "idk",
+        food: "idk",
+        photo: "/team_assets/sarah.png"
+    },  
+    {
+        name: "Joshua dude", 
+        age: 14,
+        grade: "Freshman @ Indiana High School in Indiana",
+        role: "Hardware",
+        hobbies: "idk",
+        food: "idk",
+        photo: "/team_assets/joshua.png"
+    },  
+]
+const team2 = [
+{
+        name: "Micah Chi",
+        age: 14,
+        grade: "9th Grade @ Trinity Pacific Christian",
+        role: "Software",
+        hobbies: "Rubiks Cube, volleyball, track/field",
+        food: "Sichuan Spicy Fish Soup",
+        photo: "/team_assets/micah.jpeg"
+    },
+    {
         name: "Ethan Xu",
         age: 14,
         grade: "8th Grade @ Medea Creek Middle School",
@@ -46,24 +104,6 @@ const team = [
         food: "Chicken",
         photo: "/team_assets/ethan.png"
     }, 
-    {
-        name: "Cooper Paulec",
-        age: 15,
-        grade: "9th Grade @ Home",
-        role: "Hardware",
-        hobbies: "N/A",
-        food: "Wood Ranch BBQ",
-        photo: "/team_assets/cooper.png",
-     },
-     {
-        name: "Henry Gasich",
-        age: 15,
-        grade: "9th Grade @ Home",
-        role: "Hardware",
-        hobbies: "N/A",
-        food: "N/A",
-        photo: "/team_assets/henry.jpg",
-     },
     {
         name: "Gavven Scalise",
         age: 14,
@@ -74,50 +114,23 @@ const team = [
         photo: "/team_assets/gavven.png",
      },  
      {
-        name: "Nathan Bancroft",
-        age: 16,
-        grade: "12th Grade @ Trinity Pacific Christian",
-        role: "Hardware",
-        hobbies: "N/A",
-        food: "N/A",
-        photo: "/team_assets/nathan.jpg",
-    },
-    {
-        name: "Livi Richert",
-        age: 16,
-        grade: "11th Grade @ Moorpark College",
-        role: "Outreach / Hardware",
-        hobbies: "life",
-        food: "Salami",
-        photo: "/team_assets/livi.png"
-    },
-    {
-        name: "Therelene Penrose",
-        age: 17,
-        grade: "11th Grade @ Trinity Pacific Christian",
-        role: "Outreach",
-        hobbies: "Playing musical instruments, reading good books",
-        food: "Soup",
-        photo: "/team_assets/therelene.png",
-    },
-    {
-        name: "Kevin Fei", 
-        age: 16,
-        grade: "Sophomore @ Westlake High School",
-        role: "Software / Drive",
-        hobbies: "Coding",
-        food: "Pho",
-        photo: "/team_assets/kevin.png"
-    },  
-    {
-        name: "Micah Chi",
+        name: "Connor idk",
         age: 14,
-        grade: "9th Grade @ Trinity Pacific Christian",
-        role: "Software",
-        hobbies: "Rubiks Cube, volleyball, track/field",
-        food: "Sichuan Spicy Fish Soup",
-        photo: "/team_assets/micah.jpeg"
-    },
+        grade: "8th Grade @ Trinity Pacific Christian",
+        role: "Hardware",
+        hobbies: "Racecars",
+        food: "Melasenessa, chimichurri",
+        photo: "/team_assets/connor.png",
+     },  
+      {
+        name: "Lior Belkin",
+        age: 15,
+        grade: "th Grade @ VAAS",
+        role: "Hardware",
+        hobbies: "Swearing cuz he thinks its cool",
+        food: "Melasenessa, chimichurri",
+        photo: "/team_assets/lior.png",
+     },  
 ]
 
 const mentors = [
@@ -352,42 +365,50 @@ const alumni = [
     },
 ]
 
+
+
 function Team() {
-    
+    const [activeTeam, setActiveTeam] = useState('team1')
+
+    const currentTeam = activeTeam === 'team1' ? team1 : team2
+
     return (
         <div className="team-content">
             <h2 className='toppage title'>Team</h2>
-            <ul className='team-list'>
-            {team.map((member) => (
-                
-                <div key={member.name} className="team-card">
-                    <div className={`team-main-card ${member.role}`}>
-                        <h2 className='team-name'>
-                            {member.name}
-                        </h2>
-                        <div className='team-role'>{member.role}</div>
-                        <div className='team-photo-frame'>
-                            <img src={member.photo}/>
-                        </div>
-                    </div>
-                    <div className='team-expand-card'>
-                        <div>
-                            Age: {member.age}
-                        </div>
-                        <div>
-                            School: {member.grade}
-                        </div>
-                        <div>
-                            Hobbies: {member.hobbies}
-                        </div>
-                        <div>
-                            Favorite Food: {member.food}
-                        </div>
-                    </div>
+            <div className="team-toggle">
+                <div
+                    className={activeTeam === 'team1' ? 'toggle-btn active team1' : 'toggle-btn'}
+                    onClick={() => setActiveTeam('team1')}
+                >
+                    Team 1
                 </div>
-            ))}
-            </ul>  
+                <div
+                    className={activeTeam === 'team2' ? 'toggle-btn active team2' : 'toggle-btn'}
+                    onClick={() => setActiveTeam('team2')}
+                >
+                    Team 2
+                </div>
+            </div>
 
+            <div className='team-list'>
+                {currentTeam.map((member) => (
+                    <div key={member.name} className="team-card">
+                        <div className={`team-main-card ${member.role}`}>
+                            <h2 className='team-name'>{member.name}</h2>
+                            <div className='team-role'>{member.role}</div>
+                            <div className='team-photo-frame'>
+                                <img src={member.photo} alt={member.name} />
+                            </div>
+                        </div>
+                        <div className='team-expand-card'>
+                            <div>Age: {member.age}</div>
+                            <div>School: {member.grade}</div>
+                            <div>Hobbies: {member.hobbies}</div>
+                            <div>Favorite Food: {member.food}</div>
+                        </div>
+                    </div>
+                ))}
+            </div>
             <h2 className='title'>Coaches & Mentors</h2>
             
 

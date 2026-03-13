@@ -2,12 +2,11 @@
 
     .welcome {
         display: flex;
-        align-items: center;
         justify-content: center;
         font-family: 'montserrat';
         padding: 0;
         top: 0;
-        background-image: url("/home_assets/IMG_5489.JPG");
+        background-image: url("/Users/kevinfei/projects/ftcteam10298/brainstormz-website/public/home_assets/brainstormzteam.jpeg");
         background-size: cover;
         background-position: top center;
         background-repeat: no-repeat;
@@ -18,12 +17,13 @@
 
         .text {
             font-size: x-large;
-            margin: 0 0 5vw 0;
+            margin: 3vw 0 5vw 0;
             background: #33333360;
             backdrop-filter: blur(10px);
             display: inline-block;
             border-radius: 20px;
             padding: 1em;
+            height: fit-content
         }
     }
 

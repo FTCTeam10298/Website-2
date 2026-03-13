@@ -12,6 +12,45 @@
     }
 }
 
+.team-toggle {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    margin: auto;
+    background-color: #cdcdcd;
+    width: fit-content;
+    padding: 0.5rem;
+    border-radius: 30px;
+    border: 1px solid black;
+
+}
+
+.toggle-btn {
+    border: none;
+    padding: 0.7rem 1.3rem;
+    border-radius: 999px;
+    background: #dadada20;
+    color: rgb(0, 0, 0);
+    backdrop-filter: blur(10px);
+    cursor: pointer;
+    font-size: 1rem;
+    transition: 0.2s ease;
+}
+
+.toggle-btn:hover {
+    background: #aaaaaa35;
+}
+
+.team1.active {
+    background: #002fff;
+    color: rgb(255, 255, 255);
+}
+.team2.active {
+    background: #ff0000;
+    color: rgb(255, 255, 255);
+}
+
+
 .team-list {
     font-family: "Robotech GP";
     letter-spacing: .05em;
