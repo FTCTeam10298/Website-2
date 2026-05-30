@@ -33,6 +33,7 @@
 
 html {
   scroll-behavior: smooth;
+  background: var(--brand-blue);
 }
 
 body {

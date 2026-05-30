@@ -409,7 +409,7 @@ function Team() {
                     </div>
                 ))}
             </div>
-            <h2 className='title'>Coaches & Mentors</h2>
+            <h2 className='title team-section-title'>Coaches & Mentors</h2>
             
 
             <div className='team-list'>
@@ -437,7 +437,7 @@ function Team() {
             ))}
             
             </div>
-            <h2 className='title'> Alumni </h2>
+            <h2 className='title team-section-title'> Alumni </h2>
             <div className='team-list'>
             {alumni.map((member) => (
                 <div key={member.name} className="team-card alumni">

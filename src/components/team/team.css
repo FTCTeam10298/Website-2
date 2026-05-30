@@ -29,6 +29,11 @@
 
 }
 
+.team-section-title {
+    margin-top: 2.5rem;
+    margin-bottom: 2rem;
+}
+
 .toggle-btn {
     border: none;
     padding: 0.72rem 1.25rem;
