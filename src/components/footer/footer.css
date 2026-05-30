@@ -1,13 +1,11 @@
 .footer {
     margin: 0;
-    padding: 0;
-    background: #1334f0;
-    padding: 0.5em 0 0.5em 0;
+    background: var(--brand-blue);
+    padding: 1.35rem 1rem;
     bottom: 0;
     width: 100%;
-    /* position: absolute; */
     display: block;
-    font-size: 18pt;
+    font-size: clamp(0.9rem, 0.76rem + 0.45vw, 1.15rem);
     font-family: "Robotech GP";
     letter-spacing: .05em;
 }
@@ -16,18 +14,27 @@
         display: flex;
         justify-content: center;
         align-items: center;
+        flex-wrap: wrap;
+        gap: 0.8rem 1rem;
         color: #fff;
-        
         text-align: center;
+        margin: 0;
+        padding: 0;
     }
 
     .footer a {
         color: inherit;
+        text-decoration: none;
+        transition: opacity 0.2s ease, transform 0.2s ease;
+    }
+
+    .footer a:hover {
+        opacity: 0.75;
     }
 
     .border {
-        border-right: solid 1px #ffffff; 
-        padding-right: 1em;
+        border-right: solid 1px rgba(255, 255, 255, 0.32); 
+        padding-right: 1rem;
     }
     .git {
         img {
@@ -35,15 +42,16 @@
         }
     }
     .icon, .icon a, .icon a img {
-        width: 32px;
-        height: 32px;
+        width: 30px;
+        height: 30px;
         aspect-ratio: 1;
+        display: inline-block;
     }
 
     .footer .copyright li {
         display: inline-block;
         list-style: none;
-        margin-left: 1em;
+        margin-left: 0;
     }
 
     .footer .copyright li:first-child {
@@ -51,3 +59,10 @@
             margin-left: 0;
             padding-left: 0;
     }
+
+@media (max-width: 650px) {
+    .border {
+        border-right: 0;
+        padding-right: 0;
+    }
+}

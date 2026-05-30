@@ -1,15 +1,109 @@
-.content {
-    
-    img {
-        max-width: 500px;
+.awards-content {
+    .awards-timeline {
+        display: grid;
+        gap: 2.5rem;
     }
 
-    .markdown {
-        display: block;
+    .award-season {
+        display: grid;
+        gap: 1rem;
+    }
 
-        h2 {
-            padding: 0;
-            margin: 0;
+    .award-season h3 {
+        margin: 0;
+        color: var(--brand-blue-dark);
+        font-family: "Robotech GP", montserrat, sans-serif;
+        font-size: clamp(1.5rem, 1.15rem + 1.2vw, 2.25rem);
+        letter-spacing: 0.04em;
+        text-align: center;
+    }
+
+    .award-event-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 1.1rem;
+    }
+
+    .award-event-card {
+        overflow: hidden;
+        background: var(--surface);
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        box-shadow: 0 14px 34px rgba(17, 34, 76, 0.1);
+    }
+
+    .award-event-card img {
+        width: 100%;
+        height: 220px;
+        object-fit: cover;
+        display: block;
+    }
+
+    .award-event-body {
+        padding: 1rem;
+    }
+
+    .award-event-body h4 {
+        margin: 0 0 0.85rem;
+        color: var(--ink);
+        font-size: 1.05rem;
+        line-height: 1.3;
+    }
+
+    .award-chip-list {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+    }
+
+    .award-chip {
+        display: inline-flex;
+        align-items: center;
+        min-height: 32px;
+        padding: 0.38rem 0.65rem;
+        border-radius: 999px;
+        background: #eef2f8;
+        color: #233047;
+        font-size: 0.9rem;
+        font-weight: 800;
+        line-height: 1.2;
+    }
+
+    .award-chip.winning,
+    .award-chip.inspire {
+        background: #dce6ff;
+        color: var(--brand-blue-dark);
+    }
+
+    .award-chip.finalist,
+    .award-chip.qualified {
+        background: #ffe3df;
+        color: #9c1f27;
+    }
+
+    .award-chip.control,
+    .award-chip.connect {
+        background: #dcf7ef;
+        color: #17664e;
+    }
+
+    .award-chip.motivate,
+    .award-chip.innovate,
+    .award-chip.design,
+    .award-chip.think {
+        background: #f3e7ff;
+        color: #5b2c86;
+    }
+}
+
+@media (max-width: 640px) {
+    .awards-content {
+        .award-event-grid {
+            grid-template-columns: 1fr;
+        }
+
+        .award-event-card img {
+            height: 190px;
         }
     }
 }

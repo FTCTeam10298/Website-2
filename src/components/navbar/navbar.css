@@ -1,33 +1,38 @@
 .navBar {
-    list-style-type: none;
-    background-color: #1334f0;
+    background: rgba(19, 52, 240, 0.96);
+    backdrop-filter: blur(14px);
     position: sticky;
     top: 0;
     left: 0;
     right: 0;
     margin: 0;
-    height: 4em;
-    padding: 1em;
+    height: 72px;
+    padding: 0.75rem clamp(1rem, 3vw, 2.5rem);
     z-index: 200;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.14);
+    box-shadow: 0 12px 30px rgba(10, 25, 92, 0.18);
 }
 
 .navItem {
     font-family: "Robotech GP";
-    letter-spacing: .05em;
+    letter-spacing: 0.05em;
     color: white;
-    font-size: 1.5em;
+    font-size: clamp(1rem, 0.7rem + 0.65vw, 1.45rem);
     z-index: 4000;
     cursor: pointer;
     text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    min-height: 42px;
+    padding: 0 0.1rem;
+    border-bottom: 2px solid transparent;
+    white-space: nowrap;
 }
 
 .navItem:hover {
-    transition: color .2s ease-in-out;
-    color: rgb(155, 155, 155);
-}
-.navItem:not(hover) {
-    transition: color .2s ease-in-out;
-    color: white;
+    transition: color .2s ease-in-out, border-color .2s ease-in-out;
+    color: #dfe6ff;
+    border-color: var(--brand-red);
 }
 
 
@@ -37,15 +42,12 @@
     float: left;
     img {
         height: 100%;
+        display: block;
     }
     
     img:hover {
         transition: filter .4s ease-in-out;
-        filter: brightness(0.6);
-    }
-    img:not(hover) {
-        transition: filter .4s ease-in-out;
-        filter: brightness(1);
+        filter: brightness(1.08);
     }
 }
 
@@ -54,8 +56,9 @@
 
     .menu {
         display: flex;
-        gap: 40px;
+        gap: clamp(18px, 2.4vw, 36px);
         justify-content: center;
+        align-items: center;
     }
 }
 
@@ -74,22 +77,26 @@
             color: #fff;
             display: block;
             margin-right: 10px;
+            cursor: pointer;
             img {
                 width: 32px;
+                display: block;
             }
         }
 
         .menu {            
             flex-direction: column;
             z-index: 3000;
-            top: 3.3em;
+            top: 56px;
             display: none;
             position: absolute;
-            right: 0em;
-            background-color: #3300FF;
-            padding: 0 1em 1em;
-            border-bottom-left-radius: 1em;
-            padding-top: 1em;
+            right: 0;
+            min-width: min(86vw, 340px);
+            background: rgba(19, 52, 240, 0.98);
+            padding: 1rem;
+            border-radius: 0 0 8px 8px;
+            box-shadow: var(--shadow);
+            gap: 0.35rem;
         }
     
             .menu > li {
@@ -98,7 +105,9 @@
             }
 
             .navItem {
-                size: 50%;
+                width: 100%;
+                justify-content: flex-start;
+                font-size: 1.15rem;
             }
 
                 .dropdownContent {
@@ -114,14 +123,13 @@
 
 /* just for decoupleing small size from large */
 @media only screen and (min-width: 1201px) {
-    .right {
-        position: relative;
-        display: flex;
-        align-items: center;
-        float: right;
-        padding: 0 2em 0 0;
-        height: 100%;
-    }
+        .right {
+            position: relative;
+            display: flex;
+            align-items: center;
+            float: right;
+            height: 100%;
+        }
 
         .bar {
             display: none;
@@ -144,19 +152,23 @@
 }
 
 .announcement {
-    position: sticky; /* Keep it in place */
-    top: 6em; /* Make sure it sits right below the navbar */
+    position: sticky;
+    top: 72px;
     left: 0;
     right: 0;
-    height: 3em;
-    padding: 0 10px;
-    background-color: #7489ff;
+    min-height: 42px;
+    padding: 0.45rem 16px;
+    background: linear-gradient(90deg, var(--brand-red), #ff7a59);
     color: #fff;
     display: flex;
     align-items: center;
     justify-content: center;
+    z-index: 190;
+    text-align: center;
+    font-size: 0.95rem;
     a {
         color: #fff;
+        font-weight: 800;
     }
 }
 .dropbtn {
@@ -175,24 +187,26 @@
   .dropdown-content {
     display: none;
     position: absolute;
-    background-color: #3300FF;
-    min-width: 160px;
-    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-    z-index: 1;
-    border-radius: 0 0 1em 1em;
+    background-color: #1334f0;
+    min-width: 230px;
+    box-shadow: var(--shadow);
+    z-index: 3000;
+    border-radius: 0 0 8px 8px;
+    overflow: hidden;
   }
   
   .dropdown-content a {
     font-family: "Robotech GP";
     letter-spacing: .05em;
     color: white;
-    padding: 12px 16px;
+    padding: 13px 16px;
     text-decoration: none;
     display: block;
+    line-height: 1.2;
   }
   
   .dropdown-content a:hover {
-    background-color: #4d24ff;
+    background-color: rgba(255, 255, 255, 0.12);
   }
   
   .dropdown:hover .dropdown-content {
@@ -200,3 +214,15 @@
   }
   /* Change the background color of the dropdown button when the dropdown content is shown */
   .dropdown:hover .dropbtn {background-color: #3e8e41;}
+
+@media only screen and (max-width: 700px) {
+    .navBar {
+        height: 64px;
+        padding: 0.7rem 1rem;
+    }
+
+    .announcement {
+        top: 64px;
+        font-size: 0.88rem;
+    }
+}

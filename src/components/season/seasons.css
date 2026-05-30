@@ -1,87 +1,166 @@
-.season-content {
-    text-align: center;
-    h2 {
-            padding-top: 20px;
-            font-size: xx-large;
-            font-weight:800;
-            margin: 20px;
-      }
-
-    
-      line-height: 1.6;
-    .dropdown {
-        position: relative;
-        display: inline-block;
-        
-        background-color: rgb(214, 214, 214);
-        padding: 10px;
-        border: 2px solid black;
-        margin-left: 20px;
-        border-radius: 5px;
+.season-page {
+    .season-picker {
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 0.55rem;
+        margin: -0.75rem auto 2rem;
     }
-    .dropdown-content {
-        position: absolute;
-        background-color: #f9f9f9;
-        box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-        z-index: 1;
-        overflow: hidden;
 
-        div {
-            min-width: 300px;
-            padding-top: 5px;
-            padding-bottom: 5px;
-            padding-left: 10px;
+    .season-picker-btn {
+        border: 1px solid var(--line);
+        border-radius: 999px;
+        background: var(--surface);
+        color: var(--brand-blue-dark);
+        min-height: 38px;
+        padding: 0.45rem 0.85rem;
+        font-size: 0.95rem;
+        font-weight: 800;
+        cursor: pointer;
+        box-shadow: 0 8px 20px rgba(17, 34, 76, 0.07);
+        transition: background 0.2s ease, color 0.2s ease, transform 0.2s ease, border-color 0.2s ease;
+    }
 
-            width: 200px;
-            cursor: pointer;
-        }
-        div:hover { 
-            background-color: rgb(165, 165, 165);
-        }
+    .season-picker-btn:hover {
+        transform: translateY(-2px);
+        border-color: rgba(19, 52, 240, 0.35);
+    }
 
-      }
-      
-      .selected .dropdown-content {
-        animation: dropdown-scroll-in 0.2s ease-in;
-        
-      }
-    .season {
-        align-items: center;
+    .season-picker-btn.active {
+        background: var(--brand-blue);
+        color: #fff;
+        border-color: var(--brand-blue);
+    }
+
+    .season-markdown {
+        display: grid;
+        gap: 1rem;
+    }
+
+    .season-markdown > * {
+        margin-top: 0;
+        margin-bottom: 0;
+    }
+
+    .season-markdown p {
+        max-width: 840px;
+        margin-left: auto;
+        margin-right: auto;
+        color: #2f3a4f;
+    }
+
+    .season-md-heading {
+        width: fit-content;
+        margin: 2rem auto 0.4rem;
+        color: var(--brand-blue-dark);
+        font-family: "Robotech GP", montserrat, sans-serif;
+        font-size: clamp(1.55rem, 1.2rem + 1.25vw, 2.35rem);
+        letter-spacing: 0.04em;
+        line-height: 1.1;
+        text-align: center;
+        border-bottom: 3px solid var(--brand-red);
+    }
+
+    .season-md-subheading {
+        margin: 1.3rem auto 0.1rem;
+        color: var(--ink);
+        font-size: clamp(1.1rem, 1rem + 0.4vw, 1.35rem);
+        text-align: center;
+    }
+
+    .season-figure {
+        width: min(780px, 100%);
+        margin: 0.35rem auto 1rem;
+    }
+
+    .season-figure img {
         width: 100%;
-        .season-info {
-            font-size: x-large;
-            text-align: left;
-            margin-left: 50px;
-            margin-right: 50px;
-            padding-bottom: 25px;
-         
-            .markdown {
-                font-family: "Caslon";
-
-                img {
-                    max-width: 80%;
-                    margin: 10px;
-                }
-               ul {
-                list-style-position: inside;
-               }
-            }
-        }
+        max-height: 560px;
+        object-fit: contain;
+        display: block;
+        background: #e6e8ee;
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        box-shadow: var(--shadow);
     }
 
-    
-    
+    .season-figure figcaption {
+        margin-top: 0.45rem;
+        color: var(--muted);
+        font-size: 0.92rem;
+        text-align: center;
+    }
+
+    .season-divider {
+        width: min(720px, 80%);
+        height: 1px;
+        border: 0;
+        margin: 0.75rem auto 1.2rem;
+        background: linear-gradient(90deg, transparent, var(--line), transparent);
+    }
+
+    .season-video-link {
+        width: fit-content;
+        min-height: 42px;
+        margin: 0.5rem auto;
+        padding: 0.6rem 1rem;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 999px;
+        background: var(--brand-blue);
+        color: #fff;
+        text-decoration: none;
+        font-weight: 800;
+        box-shadow: 0 12px 28px rgba(19, 52, 240, 0.22);
+    }
+
+    .season-table-wrap {
+        width: 100%;
+        overflow-x: auto;
+        margin: 0.5rem auto 1rem;
+        border-radius: 8px;
+        box-shadow: var(--shadow);
+    }
+
+    .season-table-wrap table {
+        min-width: min(760px, 100%);
+        margin: 0;
+        box-shadow: none;
+        background: var(--surface);
+    }
+
+    .season-table-wrap td,
+    .season-table-wrap th {
+        vertical-align: top;
+        text-align: center;
+        border-color: var(--line);
+    }
+
+    .season-table-wrap img {
+        width: min(320px, 100%);
+        max-height: 240px;
+        object-fit: cover;
+        border-radius: 8px;
+        box-shadow: 0 8px 22px rgba(17, 34, 76, 0.1);
+    }
 }
 
+@media (max-width: 700px) {
+    .season-page {
+        .season-picker {
+            justify-content: flex-start;
+            flex-wrap: nowrap;
+            overflow-x: auto;
+            padding-bottom: 0.35rem;
+        }
 
-@keyframes dropdown-scroll-in {
-    from {
-        display: none;
-        height: 0px;
-        
-    }
-    to {
-        display: block;
-        height: 200px;
+        .season-picker-btn {
+            flex: 0 0 auto;
+        }
+
+        .season-figure img {
+            max-height: 420px;
+        }
     }
 }

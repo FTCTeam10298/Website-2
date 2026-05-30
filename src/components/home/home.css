@@ -1,30 +1,63 @@
+.welcome {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: calc(100vh - 96px);
+    padding: clamp(3rem, 8vw, 7rem) 24px;
+    background:
+        linear-gradient(90deg, rgba(5, 12, 42, 0.74) 0%, rgba(8, 18, 58, 0.54) 42%, rgba(8, 18, 58, 0.2) 100%),
+        url("/home_assets/brainstormzteam.png");
+    background-size: cover;
+    background-position: center 28%;
+    background-repeat: no-repeat;
+    color: #ffffff;
+    position: relative;
+}
 
+.welcome::after {
+    content: "";
+    position: absolute;
+    inset: auto 0 0;
+    height: 34%;
+    background: linear-gradient(180deg, transparent, rgba(244, 247, 251, 0.98));
+    pointer-events: none;
+}
 
+.welcome .text {
+    width: min(900px, 100%);
+    margin: 0 auto;
+    position: relative;
+    z-index: 1;
+    text-align: left;
+}
+
+.welcome h2 {
+    max-width: 780px;
+    margin: 0;
+    font-family: "Robotech GP", montserrat, sans-serif;
+    font-size: clamp(2.4rem, 6.5vw, 6.4rem);
+    line-height: 0.97;
+    letter-spacing: 0.04em;
+    text-wrap: balance;
+    text-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+}
+
+.welcome p {
+    max-width: 620px;
+    margin: 1.2rem 0 0;
+    font-size: clamp(1.05rem, 1rem + 0.6vw, 1.45rem);
+    line-height: 1.55;
+    color: rgba(255, 255, 255, 0.92);
+}
+
+@media (max-width: 700px) {
     .welcome {
-        display: flex;
-        justify-content: center;
-        font-family: 'montserrat';
-        padding: 0;
-        top: 0;
-        background-image: url("/home_assets/brainstormzteam.png");
-        background-size: cover;
-        background-position: top center;
-        background-repeat: no-repeat;
-        color: #ffffff;
-        text-align: center;
-        position: relative;
-        height: calc(100vh);
-
-        .text {
-            font-size: x-large;
-            margin: 3vw 0 5vw 0;
-            background: #33333360;
-            backdrop-filter: blur(10px);
-            display: inline-block;
-            border-radius: 20px;
-            padding: 1em;
-            height: fit-content
-        }
+        min-height: calc(100vh - 76px);
+        align-items: flex-end;
+        background-position: 52% center;
     }
 
-
+    .welcome .text {
+        text-align: center;
+    }
+}

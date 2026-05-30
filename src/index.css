@@ -10,4 +10,51 @@
   src: url('./assets/fonts/webfontkit-20200720-012313/montserrat-regular-webfont.woff') format("truetype");
 }
 
+:root {
+  font-family: montserrat, Inter, system-ui, sans-serif;
+  color: #172033;
+  background: #f4f7fb;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  --brand-blue: #1334f0;
+  --brand-blue-dark: #1029bf;
+  --brand-red: #f2323f;
+  --ink: #172033;
+  --muted: #637083;
+  --line: #dbe3ef;
+  --surface: #ffffff;
+  --surface-soft: #eef4ff;
+  --shadow: 0 18px 50px rgba(17, 34, 76, 0.13);
+}
 
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  background:
+    radial-gradient(circle at top left, rgba(22, 56, 243, 0.08), transparent 34rem),
+    linear-gradient(180deg, #ffffff 0%, #f4f7fb 42%, #eef3fb 100%);
+}
+
+a {
+  color: var(--brand-blue);
+  text-underline-offset: 0.18em;
+}
+
+img {
+  max-width: 100%;
+}
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
+}

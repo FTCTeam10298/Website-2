@@ -3,18 +3,27 @@
 
     
     .info-container {
-        display: block;
+        display: grid;
+        gap: 1.2rem;
     }
 
     .memoriam {
         height: fit-content;
+        margin-top: 1rem;
+        padding: clamp(1.2rem, 3vw, 2rem);
+        background: var(--surface);
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        box-shadow: var(--shadow);
        
         h2 {
             margin: 0;
         }
         img {
-            margin-top: 2%;
-            max-width: 300px;
+            margin-top: 1rem;
+            width: min(300px, 100%);
+            border-radius: 8px;
+            box-shadow: 0 12px 34px rgba(17, 34, 76, 0.16);
         }
     }
 
@@ -25,6 +34,8 @@
 
 }
 .about p {
-    margin: 1% auto 3% auto;
-    line-height: 1.5em;
+    max-width: 900px;
+    margin: 0.65rem auto 1rem;
+    line-height: 1.75;
+    color: #2f3a4f;
 }
