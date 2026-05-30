@@ -1,5 +1,5 @@
 .navBar {
-    background: rgba(19, 52, 240, 0.96);
+    background:#1334f0;
     backdrop-filter: blur(14px);
     position: sticky;
     top: 0;
@@ -92,7 +92,7 @@
             position: absolute;
             right: 0;
             min-width: min(86vw, 340px);
-            background: rgba(19, 52, 240, 0.98);
+            background: #1334f0;
             padding: 1rem;
             border-radius: 0 0 8px 8px;
             box-shadow: var(--shadow);
