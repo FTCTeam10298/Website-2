@@ -1,4 +1,20 @@
 ## 2025-26 Decode
+### FIRST World Championship - Ross Division (April 2025)
+![](/awards_assets/dcworlds.jpg)
+
+3rd Place Alliance 1st Pick
+
+### SoCal Regional Championship (March 2025)
+![](/awards_assets/dc.jpg)
+
+Inspire Award Winner
+
+### SoCal ILT3 - Monrovia Saturday (January 2025)
+![](/awards_assets/dc.jpg)
+
+Winning Alliance 1st Pick
+
+Inspire Award Winner
 
 ## 2024-25 Into The Deep
 
