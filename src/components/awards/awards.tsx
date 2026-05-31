@@ -86,25 +86,29 @@ function Awards() {
                 {awardSeasons.map((season) => (
                     <section className="award-season" key={season.title}>
                         <h3>{season.title}</h3>
-                        <div className="award-event-grid">
-                            {season.events.map((event) => (
-                                <article className="award-event-card" key={`${season.title}-${event.title}`}>
-                                    {event.image && (
-                                        <img src={event.image} alt={`${event.title} awards`} />
-                                    )}
-                                    <div className="award-event-body">
-                                        <h4>{event.title}</h4>
-                                        <div className="award-chip-list">
-                                            {event.awards.map((award) => (
-                                                <span className={`award-chip ${getAwardType(award)}`} key={award}>
-                                                    {award}
-                                                </span>
-                                            ))}
+                        {season.events.length > 0 ? (
+                            <div className="award-event-grid">
+                                {season.events.map((event) => (
+                                    <article className="award-event-card" key={`${season.title}-${event.title}`}>
+                                        {event.image && (
+                                            <img src={event.image} alt={`${event.title} awards`} />
+                                        )}
+                                        <div className="award-event-body">
+                                            <h4>{event.title}</h4>
+                                            <div className="award-chip-list">
+                                                {event.awards.map((award) => (
+                                                    <span className={`award-chip ${getAwardType(award)}`} key={award}>
+                                                        {award}
+                                                    </span>
+                                                ))}
+                                            </div>
                                         </div>
-                                    </div>
-                                </article>
-                            ))}
-                        </div>
+                                    </article>
+                                ))}
+                            </div>
+                        ) : (
+                            <p className="award-empty">Awards will be added as the season progresses.</p>
+                        )}
                     </section>
                 ))}
             </div>

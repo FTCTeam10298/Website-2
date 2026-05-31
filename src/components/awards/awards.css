@@ -24,6 +24,18 @@
         gap: 1.1rem;
     }
 
+    .award-empty {
+        width: fit-content;
+        margin: 0 auto;
+        padding: 0.85rem 1rem;
+        background: #e6e8ee;
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        color: var(--muted);
+        font-weight: 800;
+        text-align: center;
+    }
+
     .award-event-card {
         overflow: hidden;
         background: var(--surface);

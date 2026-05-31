@@ -1,3 +1,5 @@
+## 2025-26 Decode
+
 ## 2024-25 Into The Deep
 
 ### SoCal Regional Championship (March 2025)

@@ -415,22 +415,24 @@ function Team() {
             <div className='team-list'>
 
             {mentors.map((member) => (
-                <div key={member.name} className="team-card">
+                <div key={member.name} className="team-card mentor-card">
                     <div className={`team-main-card ${member.role}`}>
                         <h2 className='team-name'>
                             {member.name}
                         </h2>
                         <div className='team-role'>{member.role}</div>
                         <div className='team-photo-frame'>
-                            <img src={member.photo}/>
+                            <img src={member.photo} alt={member.name}/>
                         </div>
                     </div>
-                    <div className='team-expand-card'>
-                        <div>
-                            Hobbies: {member.hobbies}
+                    <div className='team-expand-card mentor-details-card'>
+                        <div className="mentor-detail">
+                            <span>Hobbies</span>
+                            {member.hobbies}
                         </div>
-                        <div>
-                            Favorite Food: {member.food}
+                        <div className="mentor-detail">
+                            <span>Favorite Food</span>
+                            {member.food}
                         </div>
                     </div>
                 </div>
@@ -447,13 +449,15 @@ function Team() {
                         </h2>
                     
                         <div className='team-photo-frame'>
-                            <img src={member.photo}/>
+                            <img src={member.photo} alt={member.name}/>
                         </div>
                     </div>
-                    <div className='team-expand-card'>
-                        <div>
+                    <div className='team-expand-card alumni-seasons-card'>
+                        <div className="alumni-season-list">
                             {member.numYears.map((season, index) => (
-                                <div key={index}>{season}</div>
+                                <span className="alumni-season-chip" key={`${member.name}-${season}-${index}`}>
+                                    {season}
+                                </span>
                             ))}
                         </div>
                     </div>
