@@ -7,7 +7,7 @@ Finalist Alliance 1st Pick
 
 Inspire Award Winner
 
-### FIRST World Championship - Ross Division (April 2025)
+### *FIRST* World Championship - Ross Division (April 2025)
 ![](/awards_assets/dcworlds.jpg)
 
 3rd Place Alliance 1st Pick
@@ -28,7 +28,7 @@ Inspire Award Winner
 
 ## 2024-25 Into The Deep
 
-### FIRST World Championship - Jemison Division (April 2025)
+### *FIRST* World Championship - Jemison Division (April 2025)
 ![](/awards_assets/itdworlds.jpg)
 
 6th Seed Alliance 2nd Pick
@@ -49,7 +49,7 @@ Control Award Winner
 
 ## 2023-24 Centerstage
 
-### FIRST World Championship - Ochoa Division (April 2024)
+### *FIRST* World Championship - Ochoa Division (April 2024)
 ![](/awards_assets/csworlds.jpg)
 
 Finalist Alliance 2nd Pick
@@ -150,7 +150,7 @@ Think Award 3rd Place
 
 ## 2018-19 Rover Ruckus
 
-### FIRST Championship - Houston - Franklin Division
+### *FIRST* Championship - Houston - Franklin Division
 ![](/awards_assets/rr2-worlds.jpg)
 
 Semi-Finalist Alliance <!-- 2nd pick? -->
@@ -229,7 +229,7 @@ Control Award 2nd Place
 
 ## 2016-17 Velocity Vortex
 
-### FIRST World Championship - Franklin Division (April 2017)
+### *FIRST* Championship - Houston - Franklin Division (April 2017)
 ![](/awards_assets/worlds2017.jpg)
 
 Qualification Rank 7th (Franklin Division)
