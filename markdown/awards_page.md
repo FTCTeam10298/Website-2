@@ -1,25 +1,25 @@
 ## 2025-26 Decode
 
-### Lobster Cup International - World Invitational in Silicon Valley
+### Lobster Cup International - World Invitational in Silicon Valley (August 2026)
 ![](/awards_assets/dclobster.jpg)
 
 Finalist Alliance 1st Pick
 
 Inspire Award Winner
 
-### *FIRST* World Championship - Ross Division (April 2025)
+### *FIRST* World Championship - Ross Division (April 2026)
 ![](/awards_assets/dcworlds.jpg)
 
 3rd Place Alliance 1st Pick
 
 6th Highest Match Score in Division
 
-### SoCal Regional Championship (March 2025)
+### SoCal Regional Championship (March 2026)
 ![](/awards_assets/dc.jpg)
 
 Inspire Award Winner
 
-### SoCal ILT3 - Monrovia Saturday (January 2025)
+### SoCal ILT3 - Monrovia Saturday (January 2026)
 ![](/awards_assets/dc.jpg)
 
 Winning Alliance 1st Pick
