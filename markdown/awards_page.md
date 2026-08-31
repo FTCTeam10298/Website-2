@@ -15,7 +15,7 @@ Inspire Award Winner
 6th Highest Match Score in Division
 
 ### SoCal Regional Championship (March 2026)
-![](/awards_assets/dc.jpg)
+![](/awards_assets/dcregionals.jpg)
 
 Inspire Award Winner
 
