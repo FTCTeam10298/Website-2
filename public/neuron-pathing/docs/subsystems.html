@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Subsystems & Public Methods — Neuron Pathing</title>
+<title>Subsystems & Public Methods: Neuron Pathing</title>
 <style>
   @font-face { font-family:'Robotech GP';
     src:url('https://brainstormz.us/assets/robotech_gp-webfont-D0hnl6R8.woff2') format('woff2'),
@@ -61,11 +61,11 @@
   </div>
   <div class="doc">
 <p>Neuron Pathing only knows about driving and following paths. Everything else on your
-robot -- an intake, a shooter, an arm, a claw -- is a <strong>subsystem</strong>: a small class that
+robot (an intake, a shooter, an arm, a claw) is a <strong>subsystem</strong>: a small class that
 owns one mechanism's hardware, and a handful of methods you call from your OpModes. This
 page is the pattern for writing those, and for calling their public methods directly from
 both TeleOp and Autonomous alongside <code>NeuronDrive</code>.</p>
-<p>This repo doesn't use a command-scheduler framework (like FTCLib's <code>CommandScheduler</code>) --
+<p>This repo doesn't use a command-scheduler framework (like FTCLib's <code>CommandScheduler</code>);
 you just call a subsystem's public methods directly, in whatever order your OpMode needs.
 That's simpler to reason about for a first robot, and it's exactly the pattern
 <code>NeuronDrive</code> itself already follows. If your robot grows complex enough that manual
@@ -88,19 +88,19 @@ start here.</p>
     public void close() { servo.setPosition(CLOSED_POS); state = State.CLOSED; }
     public void toggle() { if (state == State.OPEN) close(); else open(); }
 
-    public void update() { /* PID, timed sequence, telemetry -- see below */ }
+    public void update() { /* PID, timed sequence, telemetry (see below) */ }
 }
 </code></pre>
 <p>The rules that make this pattern work:</p>
 <ul>
 <li><strong>The subsystem owns its hardware.</strong> Only <code>ExampleClaw</code> ever calls
   <code>hardwareMap.get(Servo.class, ...)</code> for that servo. Nothing else reaches in and touches
-  it directly -- if you need a new capability, add a method, don't bypass the class.</li>
+  it directly. If you need a new capability, add a method, don't bypass the class.</li>
 <li><strong>Public methods are what your OpModes call.</strong> Name them as verbs (<code>open()</code>, <code>shoot()</code>,
   <code>setPosition(...)</code>). Keep them non-blocking where possible (set a target/state and
   return immediately) so they don't stall your main loop.</li>
 <li><strong><code>update()</code> is for anything that has to happen every loop cycle</strong>, even when nothing
-  just changed -- running a PID toward a target position, advancing a timed sequence,
+  just changed: running a PID toward a target position, advancing a timed sequence,
   reporting telemetry. A one-servo claw doesn't need real work here, but a motor-driven
   arm holding position against gravity does. Call every subsystem's <code>update()</code> once per
   loop, right alongside <code>drive.update()</code>.</li>
@@ -145,14 +145,14 @@ claw.close();
 </code></pre>
 <p><code>driveToTarget()</code> and <code>waitMs()</code> are small private helper methods defined at the bottom of
 the OpMode (loop calling <code>drive.update()</code>/<code>claw.update()</code> until the move finishes or the
-timer's up) -- this is exactly what the Neuron Path Planner's "Full OpMode" output
+timer's up). This is exactly what the Neuron Path Planner's "Full OpMode" output
 generates for you automatically. If you're pasting planner output into your own OpMode,
 copy these two helpers over once and every generated auto will compile against them.</p>
 <h2 id="wiring-your-subsystem-into-the-planner">Wiring your subsystem into the planner</h2>
 <p>The planner's shooter-pipeline actions (shoot/intake/gate/turret) are just this pattern,
 generated as text. To add your own subsystem as a quick-add action in the planner, open
 <code>tools/neuron-path-planner.html</code> and add an entry to <code>const ACTIONS</code> near the top of the
-<code>&lt;script&gt;</code> block, following the same shape as the existing entries -- see the comment
+<code>&lt;script&gt;</code> block, following the same shape as the existing entries; see the comment
 directly above it for the exact format.</p>
   </div>
   <div class="nextprev">
