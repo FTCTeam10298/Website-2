@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Installation — Neuron Pathing</title>
+<title>Installation: Neuron Pathing</title>
 <style>
   @font-face { font-family:'Robotech GP';
     src:url('https://brainstormz.us/assets/robotech_gp-webfont-D0hnl6R8.woff2') format('woff2'),
@@ -68,7 +68,7 @@
 <li>A <a href="https://www.gobilda.com/pinpoint-odometry-computer/">goBILDA Pinpoint</a> odometry
   computer, wired per goBILDA's instructions, named <code>pinpoint</code> in your robot configuration
   (or pass your own device name to <code>NeuronLocalizer</code>).</li>
-<li>Android Studio (Ladybug 2024.2 or later) -- Neuron Pathing is a plain Java library, so it
+<li>Android Studio (Ladybug 2024.2 or later). Neuron Pathing is a plain Java library, so it
   does not work from Blocks or OnBot Java.</li>
 </ul>
 <p>The Pinpoint driver ships inside the stock FTC SDK itself, so this quickstart needs <strong>no
@@ -90,10 +90,10 @@ docs/                         this documentation
 <ol>
 <li>In the Driver Station / Driver Hub, create a robot configuration with:</li>
 <li>Four <code>DcMotorEx</code> entries named <code>frontLeft</code>, <code>frontRight</code>, <code>backLeft</code>, <code>backRight</code>
-     (or your own names -- see below).</li>
+     (or your own names; see below).</li>
 <li>A goBILDA Pinpoint entry named <code>pinpoint</code> (I2C).</li>
 <li>Measure your Pinpoint's offset from the robot's center of rotation, in millimeters
-   (X = forward/back offset, Y = left/right offset -- see goBILDA's docs for sign
+   (X = forward/back offset, Y = left/right offset; see goBILDA's docs for sign
    conventions). You'll need these numbers next.</li>
 <li>In your OpMode, construct the library:</li>
 </ol>
@@ -102,7 +102,7 @@ docs/                         this documentation
            /*xOffsetMm=*/ -78.74, /*yOffsetMm=*/ -184.15);
    NeuronDrive drive = new NeuronDrive(hardwareMap, localizer, /*trackWidthIn=*/ 14);</code></p>
 <p><code>trackWidthIn</code> is the distance between your left and right wheel contact points, in
-   inches -- measure your actual robot, don't guess.</p>
+   inches; measure your actual robot, don't guess.</p>
 <p>If your hardware config uses different motor names than the default four, use the
    longer constructor instead:</p>
 <p><code>java
@@ -115,11 +115,11 @@ docs/                         this documentation
    localizer.setPosition(new Pose2D(0, 0, 0)); // wherever your robot actually starts
    localizer.calibrate(true);</code></p>
 <ol>
-<li>Call <code>drive.update()</code> every loop. That's it -- <code>drive.pose</code> now tracks the robot's
+<li>Call <code>drive.update()</code> every loop. That's it: <code>drive.pose</code> now tracks the robot's
    field position, and <code>drive.goToPoint()</code> / <code>drive.splineToPoint()</code> will drive there.</li>
 </ol>
-<p>None of this will behave correctly yet on a fresh robot -- the offsets, motor directions,
-and PID gains above are all starting points. Follow <strong><a href="tuning.md">Tuning</a></strong> next before
+<p>None of this will behave correctly yet on a fresh robot: the offsets, motor directions,
+and PID gains above are all starting points. Follow <strong><a href="tuning.html">Tuning</a></strong> next before
 trusting any of it in a match.</p>
   </div>
   <div class="nextprev">

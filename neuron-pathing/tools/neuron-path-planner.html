@@ -4,7 +4,7 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-<title>Neuron Path Planner — Neuron Pathing by Brain Stormz 10298</title>
+<title>Neuron Path Planner: Neuron Pathing by Brain Stormz 10298</title>
 <style>
   /* Brand fonts pulled straight from the Brain Stormz team site (brainstormz.us) */
   @font-face { font-family:'Robotech GP';
@@ -166,7 +166,7 @@
         <span class="mini" id="simReadout">Press Play to simulate the active auto.</span>
       </div>
       <div class="row" style="margin-top:6px">
-        <span class="mini">Rough estimate from a trapezoidal speed profile (top speed, accel, per-move power) plus settle/shoot dwell — set speeds in <b>Settings</b>.</span>
+        <span class="mini">Rough estimate from a trapezoidal speed profile (top speed, accel, per-move power) plus settle/shoot dwell; set speeds in <b>Settings</b>.</span>
       </div>
     </div>
 
@@ -407,7 +407,7 @@
             Neuron Pathing library directly (<code>drive</code>/<code>localizer</code>). The
             shoot/intake/gate/turret actions are this season's DECODE shooter pipeline and still
             call into this year's <code>Robot</code> facade (<code>robot.gate</code>,
-            <code>robot.intake</code>, <code>Turret.TurretState</code>, ...) -- generate code
+            <code>robot.intake</code>, <code>Turret.TurretState</code>, ...): generate code
             without them (or replace the action catalog, see the comment above
             <code>const ACTIONS</code>) for a different game.<br>
             <b>Method</b> mode: paste the method into an OpMode in your season repo that has
@@ -415,12 +415,12 @@
             (see <code>NeuronSplineAuto.java</code>) and, if you used any shooter actions,
             <code>robot</code>/<code>alliance</code> + <code>shoot()</code>/<code>farShoot()</code>/
             <code>pulseOuttake()</code> helpers too.<br>
-            <b>Full OpMode</b> mode: save as its own <code>.java</code> file — it bundles
+            <b>Full OpMode</b> mode: save as its own <code>.java</code> file; it bundles
             <i>every</i> auto in the Autos card into one self-contained, selectable OpMode
             (DPAD up/down to pick, X = Blue, B = Red) with all of the above scaffolding included,
             ready to drop into your season's <code>TeamCode/.../opmodes/</code>.<br>
             <b>Import opmode (.java)</b> (Autos card): load a previously generated OpMode back
-            into the planner — each <code>case → method()</code> becomes an editable auto, its
+            into the planner: each <code>case → method()</code> becomes an editable auto, its
             <code>setPosition</code> becomes the start pose, and <code>goToPoint</code>/
             <code>splineToPoint</code> calls become steps. <code>for</code> loops become
             <b>🔁 Repeat</b> blocks and <code>if/else</code> become <b>❓ If/Else</b> blocks; the
@@ -459,7 +459,7 @@ const ROBOT_IN = 22;            // robot footprint, inches
 // ---- action catalog: drives the dropdowns + code generation -------------------
 // `sleep` and `raw` are library-level (work against just NeuronDrive/NeuronLocalizer).
 // shoot/farShoot/pulseOuttake/intake/gate/shooter/turret are this season's DECODE
-// shooter-pipeline actions -- they emit the same robot.X / shoot() calls as the
+// shooter-pipeline actions—they emit the same robot.X / shoot() calls as the
 // team's real auto.java, since they're meant to be pasted into (or generated
 // alongside) that season repo, which already has Robot/Turret/Gate/Intake/Shooter.
 // Swap these out for your own game's subsystems by following the same shape.
@@ -918,7 +918,15 @@ function splineSamples(p1, p2, reversed, factor) {
   const dx=x1, cx=v*Math.cos(h1), bx=3*x2 - v*Math.cos(h2) - 2*cx - 3*dx, ax=x2-bx-cx-dx;
   const dy=y1, cy=v*Math.sin(h1), by=3*y2 - v*Math.sin(h2) - 2*cy - 3*dy, ay=y2-by-cy-dy;
   const pts = [];
-  for (let t=0; t<=1.0001; t+=0.02) pts.push({ x:dx+cx*t+bx*t*t+ax*t*t*t, y:dy+cy*t+by*t*t+ay*t*t*t });
+  // tangent heading at each point (atan2 of the curve's derivative), matching what
+  // Spline.java stores per-point and what NeuronDrive actually steers toward, not
+  // just a straight-line blend of the move's start/end heading.
+  for (let t=0; t<=1.0001; t+=0.02) {
+    const x = dx+cx*t+bx*t*t+ax*t*t*t, y = dy+cy*t+by*t*t+ay*t*t*t;
+    const dxdt = cx + 2*bx*t + 3*ax*t*t, dydt = cy + 2*by*t + 3*ay*t*t;
+    const h = (Math.atan2(dydt, dxdt) + (reversed ? Math.PI : 0)) * 180 / Math.PI;
+    pts.push({ x, y, h });
+  }
   return pts;
 }
 // reversed is derived, not chosen: true when the target lies behind the robot's
@@ -975,12 +983,15 @@ function polyMeta(poly) {
 }
 function posAlong(seg, frac) {
   const { poly, cum, len } = seg;
-  if (!poly.length) return { x:0, y:0 };
-  if (len < 1e-6 || poly.length < 2) return { x:poly[0].x, y:poly[0].y };
+  if (!poly.length) return { x:0, y:0, h:null };
+  if (len < 1e-6 || poly.length < 2) return { x:poly[0].x, y:poly[0].y, h:poly[0].h };
   const d = Math.max(0, Math.min(len, frac * len));
   let k = 1; while (k < cum.length - 1 && cum[k] < d) k++;
   const segLen = (cum[k] - cum[k-1]) || 1, u = (d - cum[k-1]) / segLen;
-  return { x:poly[k-1].x + (poly[k].x-poly[k-1].x)*u, y:poly[k-1].y + (poly[k].y-poly[k-1].y)*u };
+  const h = (poly[k-1].h != null && poly[k].h != null)
+    ? poly[k-1].h + angDiff(poly[k].h, poly[k-1].h) * u
+    : null;
+  return { x:poly[k-1].x + (poly[k].x-poly[k-1].x)*u, y:poly[k-1].y + (poly[k].y-poly[k-1].y)*u, h };
 }
 // Build a tree of blocks from the flat marker list: repeat{body}, if{then,else}, leaf.
 function parseBlocks(steps) {
@@ -1074,7 +1085,8 @@ function poseAt(t) {
       if (seg.kind === 'action') return { fx:seg.pose.fx, fy:seg.pose.fy, hdeg:seg.pose.hdeg, seg:s };
       const frac = seg.moveDur > 0 ? Math.min(1, local / seg.moveDur) : 1;
       const p = posAlong(seg, frac);
-      return { fx:p.x, fy:p.y, hdeg: seg.fromH + angDiff(seg.toH, seg.fromH) * frac, seg:s };
+      const hdeg = p.h != null ? p.h : seg.fromH + angDiff(seg.toH, seg.fromH) * frac;
+      return { fx:p.x, fy:p.y, hdeg, seg:s };
     }
     acc += seg.dur;
   }
@@ -1483,7 +1495,7 @@ function renderSteps() {
     stepsList.appendChild(el);
   });
   if (!state.steps.length)
-    stepsList.innerHTML = '<div class="mini" style="padding:6px">No steps yet — click the field to drop a waypoint, or use the buttons below.</div>';
+    stepsList.innerHTML = '<div class="mini" style="padding:6px">No steps yet: click the field to drop a waypoint, or use the buttons below.</div>';
   document.getElementById('stepCount').textContent =
     `${state.steps.length} step${state.steps.length===1?'':'s'}`;
 }
@@ -1693,7 +1705,7 @@ function genOpMode() {
   const cls = sanitize(state.opModeName) || 'auto';
   const autos = state.autos;
   // Each auto becomes: a selectable name, an init-loop start pose (by index), a
-  // run-time switch case, and its own method -- mirroring NeuronSplineAuto.java.
+  // run-time switch case, and its own method—mirroring NeuronSplineAuto.java.
   const namesArr = autos.map(a => `            "${(a.label || a.name).replace(/"/g,'\\"')}",`).join('\n');
   const initCases = autos.map((a, i) =>
 `                case ${i}:
@@ -1727,14 +1739,14 @@ genBodyFor(a, '        ', false),
 `// TODO set the Pinpoint offsets (xOffsetMm/yOffsetMm) and NeuronDrive trackWidthIn`,
 `// below for your own robot (Installation/Tuning docs). Movement runs on the Neuron`,
 `// Pathing library directly (drive/localizer); shoot/intake/gate/turret actions still`,
-`// go through this season's Robot facade -- drop the Robot/Turret/CONSTANTS imports`,
+`// go through this season's Robot facade—drop the Robot/Turret/CONSTANTS imports`,
 `// above (and the action calls below) if your OpMode doesn't need them.`,
 `@Autonomous(name = "${cls}")`,
 `public class ${cls} extends LinearOpMode {`,
 `    Robot robot;`,
 `    NeuronLocalizer localizer;`,
 `    NeuronDrive drive;`,
-`    int alliance = -1; // -1 = Blue, +1 = Red -- mirrors X across the field`,
+`    int alliance = -1; // -1 = Blue, +1 = Red—mirrors X across the field`,
 `    int autoIndex = 0;`,
 `    String[] autoNames = {`,
 namesArr,
