@@ -56,7 +56,7 @@
 <body>
 <div class="wrap">
   <div class="topbar">
-    <a class="home" href="../index.html">&larr; Neuron Pathing</a>
+    <a class="home" href="../">&larr; Neuron Pathing</a>
     <h1>Subsystems & Public Methods</h1>
   </div>
   <div class="doc">
@@ -148,12 +148,6 @@ the OpMode (loop calling <code>drive.update()</code>/<code>claw.update()</code> 
 timer's up). This is exactly what the Neuron Path Planner's "Full OpMode" output
 generates for you automatically. If you're pasting planner output into your own OpMode,
 copy these two helpers over once and every generated auto will compile against them.</p>
-<h2 id="wiring-your-subsystem-into-the-planner">Wiring your subsystem into the planner</h2>
-<p>The planner's shooter-pipeline actions (shoot/intake/gate/turret) are just this pattern,
-generated as text. To add your own subsystem as a quick-add action in the planner, open
-<code>tools/neuron-path-planner.html</code> and add an entry to <code>const ACTIONS</code> near the top of the
-<code>&lt;script&gt;</code> block, following the same shape as the existing entries; see the comment
-directly above it for the exact format.</p>
   </div>
   <div class="nextprev">
 <a href="tuning.html">&larr; Tuning</a>
