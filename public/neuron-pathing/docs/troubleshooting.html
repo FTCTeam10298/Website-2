@@ -80,7 +80,7 @@ This is almost always Stage 1 of tuning (localizer sign conventions), not the dr
 math -- see <a href="tuning.html#stage-1----localizer-sign-conventions">Tuning</a>. Fix the localizer,
 don't try to compensate by negating things in <code>NeuronDrive</code>.</p>
 <p><strong>Robot strafes when it should drive straight, or vice versa.</strong>
-Motor directions/wiring, not software -- confirm all four drive motors are wired and
+Motor directions/wiring, not software. Confirm all four drive motors are wired and
 configured with the standard mecanum roller orientation, and that <code>frontLeft</code>/<code>backLeft</code>
 are the two reversed motors (the constructor already reverses them, assuming standard
 goBILDA/REV wiring; if yours differs, adjust the direction calls in <code>NeuronDrive</code>'s
@@ -110,11 +110,11 @@ compile fine against just <code>NeuronDrive</code>/<code>NeuronLocalizer</code>)
 <p><strong>Importing an existing OpMode back into the planner finds "No autos found."</strong>
 The importer looks for <code>public class X extends LinearOpMode</code> plus a <code>case N: method();</code>
 switch structure matching what the planner itself generates in "Full OpMode" mode. Autos
-written by hand in a different structure won't parse -- but any unrecognized line is kept
+written by hand in a different structure won't parse, but any unrecognized line is kept
 as a raw custom line if it appears <em>inside</em> a method the importer does recognize.</p>
 <p><strong>The field background/video overlay doesn't line up with real match footage.</strong>
 Use the rotate/flip controls on the field image, and the perspective/scale/offset sliders
-under the video overlay -- these are separate from the path's actual coordinates and only
+under the video overlay. These are separate from the path's actual coordinates and only
 affect what you see while planning, not the generated code.</p>
   </div>
   <div class="nextprev">
