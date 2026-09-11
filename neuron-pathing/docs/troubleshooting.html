@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Troubleshooting: Neuron Pathing</title>
+<title>Troubleshooting — Neuron Pathing</title>
 <style>
   @font-face { font-family:'Robotech GP';
     src:url('https://brainstormz.us/assets/robotech_gp-webfont-D0hnl6R8.woff2') format('woff2'),
@@ -56,7 +56,7 @@
 <body>
 <div class="wrap">
   <div class="topbar">
-    <a class="home" href="../index.html">&larr; Neuron Pathing</a>
+    <a class="home" href="../">&larr; Neuron Pathing</a>
     <h1>Troubleshooting</h1>
   </div>
   <div class="doc">
@@ -68,19 +68,19 @@ repo's root folder (the one with <code>settings.gradle</code> in it), not the <c
 <code>FtcRobotController</code> subfolder directly.</p>
 <p><strong>Can't find <code>GoBildaPinpointDriver</code>.</strong>
 It ships inside the FTC SDK's <code>Hardware</code> module, which <code>build.dependencies.gradle</code>
-already includes. If this still fails, you likely edited that file or are on a much
+already includes -- if this still fails, you likely edited that file or are on a much
 older SDK version. No separate Pinpoint dependency should be needed.</p>
 <h2 id="robot-wont-drive-drives-the-wrong-way">Robot won't drive / drives the wrong way</h2>
 <p><strong>Robot does nothing when a goToPoint/splineToPoint runs.</strong>
-<code>NeuronDrive.update()</code> has to be called every loop for anything to move; check your
+<code>NeuronDrive.update()</code> has to be called every loop for anything to move -- check your
 OpMode has a loop calling <code>drive.update()</code> (see <code>driveToTarget()</code> in the generated/example
 code). A one-shot call to <code>goToPoint()</code> by itself does nothing.</p>
 <p><strong>Robot drives away from the target instead of toward it, or spins the wrong way.</strong>
 This is almost always Stage 1 of tuning (localizer sign conventions), not the drive
-math; see <a href="tuning.html#stage-1-localizer-sign-conventions">Tuning</a>. Fix the localizer,
+math -- see <a href="tuning.html#stage-1----localizer-sign-conventions">Tuning</a>. Fix the localizer,
 don't try to compensate by negating things in <code>NeuronDrive</code>.</p>
 <p><strong>Robot strafes when it should drive straight, or vice versa.</strong>
-Motor directions/wiring, not software: confirm all four drive motors are wired and
+Motor directions/wiring, not software -- confirm all four drive motors are wired and
 configured with the standard mecanum roller orientation, and that <code>frontLeft</code>/<code>backLeft</code>
 are the two reversed motors (the constructor already reverses them, assuming standard
 goBILDA/REV wiring; if yours differs, adjust the direction calls in <code>NeuronDrive</code>'s
@@ -93,28 +93,28 @@ correction. Re-check Stage 3 before touching spline tunables.</p>
 <p><strong>Robot cuts corners / drifts to the inside of curves.</strong>
 Raise <code>centripetalGain</code>, or increase <code>lookaheadIn</code> slightly.</p>
 <p><strong>Robot overshoots past the end of a path, or the final heading is off.</strong>
-<code>splineEndRadiusIn</code> is handing off to the point-holding PID too late (or too early);
+<code>splineEndRadiusIn</code> is handing off to the point-holding PID too late (or too early),
 see Stage 4. Also confirm the path's final waypoint has the heading you actually want;
 <code>Pose2D</code>'s <code>h</code> is in radians, and a common mistake is passing degrees by accident.</p>
 <p><strong>Everything is fine at slow speed but falls apart at higher <code>maxSpeed</code>.</strong>
-Expected to a degree: centripetal/cross-track correction needs to work harder at speed.
+Centripetal/cross-track correction needs to work harder at speed.
 Re-tune Stage 3/4 at the actual speed you intend to run in a match, not at a conservative
 test speed.</p>
 <h2 id="path-planner-specific">Path Planner-specific</h2>
 <p><strong>Generated code references <code>robot.something</code> and won't compile.</strong>
 The shooter-pipeline actions (shoot/farShoot/intake/gate/turret) intentionally generate
 calls into <em>your season's</em> <code>Robot</code>/<code>Turret</code>/<code>Gate</code>/<code>Intake</code>/<code>Shooter</code> classes, not the
-pathing library; they're meant for your real season repo, not a bare Neuron Pathing
+pathing library. They're meant for your real season repo, not a bare Neuron Pathing
 checkout. Either add those classes, or don't use those actions (movement-only autos
 compile fine against just <code>NeuronDrive</code>/<code>NeuronLocalizer</code>).</p>
 <p><strong>Importing an existing OpMode back into the planner finds "No autos found."</strong>
 The importer looks for <code>public class X extends LinearOpMode</code> plus a <code>case N: method();</code>
 switch structure matching what the planner itself generates in "Full OpMode" mode. Autos
-written by hand in a different structure won't parse, but any unrecognized line is kept
+written by hand in a different structure won't parse -- but any unrecognized line is kept
 as a raw custom line if it appears <em>inside</em> a method the importer does recognize.</p>
 <p><strong>The field background/video overlay doesn't line up with real match footage.</strong>
 Use the rotate/flip controls on the field image, and the perspective/scale/offset sliders
-under the video overlay. These are separate from the path's actual coordinates and only
+under the video overlay -- these are separate from the path's actual coordinates and only
 affect what you see while planning, not the generated code.</p>
   </div>
   <div class="nextprev">
