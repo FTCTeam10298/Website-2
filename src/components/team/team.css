@@ -20,12 +20,12 @@
     gap: 0.4rem;
     justify-content: center;
     margin: 0 auto 2rem;
-    background-color: #e6ecf7;
+    background-color: var(--surface);
     width: fit-content;
     padding: 0.35rem;
-    border-radius: 999px;
-    border: 1px solid var(--line);
-    box-shadow: 0 10px 30px rgba(17, 34, 76, 0.08);
+    border-radius: 0;
+    border: var(--border-w) solid var(--ink);
+    box-shadow: var(--shadow-sm);
 
 }
 
@@ -35,67 +35,68 @@
 }
 
 .toggle-btn {
-    border: none;
-    padding: 0.72rem 1.25rem;
-    border-radius: 999px;
+    border: 2px solid transparent;
+    padding: 0.65rem 1.25rem;
+    border-radius: 0;
     background: transparent;
     color: var(--ink);
     cursor: pointer;
-    font-size: 1rem;
-    transition: color 0.2s ease, background 0.2s ease, transform 0.2s ease;
+    font-family: "Outfit", sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
+    font-size: 0.95rem;
+    transition: none;
     font-weight: 800;
 }
 
 .toggle-btn:hover {
-    background: rgba(255, 255, 255, 0.7);
+    border-color: var(--ink);
 }
 
 .team1.active {
-    background: var(--brand-blue);
+    background: var(--blue-dark);
+    border-color: var(--ink);
     color: rgb(255, 255, 255);
 }
 .team2.active {
     background: var(--brand-red);
+    border-color: var(--ink);
     color: rgb(255, 255, 255);
 }
 
 
 .team-list {
-    font-family: "Robotech GP";
-    letter-spacing: .05em;
+    font-family: 'Inter', system-ui, sans-serif;
+    letter-spacing: 0;
 
     display: flex;
     padding-bottom: 50px;
     flex-wrap: wrap;
     justify-content: center;
-    gap: 22px;
+    gap: 26px;
 
     .team-card {
         display: flex;
         margin: 0;
         min-height: 306px;
-        filter: drop-shadow(0 16px 30px rgba(17, 34, 76, 0.12));
-        transition: transform 0.2s ease, filter 0.2s ease;
+        border: var(--border-w) solid var(--ink);
+        box-shadow: var(--shadow);
+        transition: transform 0.15s ease, box-shadow 0.15s ease;
 
         &:hover {
-            transform: translateY(-4px);
-            filter: drop-shadow(0 22px 38px rgba(17, 34, 76, 0.16));
+            transform: translate(-3px, -3px);
+            box-shadow: 11px 11px 0 var(--ink);
         }
 
         .team-expand-card {
-            background-color: #15203a;
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            border-left:  none;
+            background-color: var(--blue-dark);
+            border-left: var(--border-w) solid var(--ink);
             padding: 18px;
             width: 250px;
 
-            border-top-right-radius: 8px;
-            border-bottom-right-radius: 8px;
-
-            
-            color: rgba(255, 255, 255, 0.9);
+            color: rgba(255, 255, 255, 0.92);
             min-height: 306px;
-            font-size: 1rem;
+            font-size: 0.92rem;
             line-height: 1.45;
             display: flex;
             flex-direction: column;
@@ -103,7 +104,7 @@
             gap: 0.6rem;
             text-align: left;
 
-            
+
         }
 
         &.mentor-card,
@@ -115,9 +116,8 @@
             .team-main-card {
                 width: 100%;
                 min-height: 250px;
-                border-right: 1px solid rgba(17, 34, 76, 0.16);
+                border-right: var(--border-w) solid var(--ink);
                 border-bottom: 0;
-                border-radius: 8px 8px 0 0;
             }
 
             .team-main-card .team-photo-frame {
@@ -130,8 +130,8 @@
                 min-width: 0;
                 max-width: none;
                 min-height: auto;
-                border-left: 1px solid rgba(255, 255, 255, 0.08);
-                border-radius: 0 0 8px 8px;
+                border-left: var(--border-w) solid var(--ink);
+                border-top: var(--border-w) solid var(--ink);
             }
         }
 
@@ -146,7 +146,7 @@
                 display: grid;
                 gap: 0.2rem;
                 color: rgba(255, 255, 255, 0.92);
-                font-family: montserrat, Inter, system-ui, sans-serif;
+                font-family: 'Inter', system-ui, sans-serif;
                 font-size: 0.9rem;
                 font-weight: 700;
                 letter-spacing: 0;
@@ -183,24 +183,23 @@
                 justify-content: center;
                 min-height: 30px;
                 padding: 0.34rem 0.58rem;
-                border-radius: 999px;
-                background: rgba(255, 255, 255, 0.12);
-                border: 1px solid rgba(255, 255, 255, 0.18);
-                color: rgba(255, 255, 255, 0.94);
-                font-family: montserrat, Inter, system-ui, sans-serif;
+                border-radius: 0;
+                background: var(--blue);
+                border: 2px solid rgba(255, 255, 255, 0.5);
+                color: #fff;
+                font-family: 'Inter', system-ui, sans-serif;
                 font-size: 0.78rem;
                 font-weight: 800;
                 letter-spacing: 0;
                 line-height: 1.15;
             }
         }
-        
+
     }
 
     .team-main-card {
 
-        border: 1px solid rgba(17, 34, 76, 0.16);
-        border-right: 0;
+        border-right: var(--border-w) solid var(--ink);
         padding: 14px;
         width: 200px;
         min-height: 306px;
@@ -208,22 +207,24 @@
         flex-direction: column;
         align-items: center;
         justify-content: flex-start;
+        background: var(--surface);
 
-        border-top-left-radius: 8px;
-        border-bottom-left-radius: 8px;
         .team-name {
             margin: 0 0 6px;
-            font-size: 1.35rem;
-            line-height: 1.08;
+            font-family: "Outfit", sans-serif;
+            font-size: 1.4rem;
+            line-height: 1.05;
+            letter-spacing: 0.01em;
             text-wrap: balance;
         }
 
         .team-role {
             min-height: 2.4em;
-            font-family: montserrat, Inter, system-ui, sans-serif;
+            font-family: 'Inter', system-ui, sans-serif;
             letter-spacing: 0;
-            font-size: 0.92rem;
-            font-weight: 800;
+            font-size: 0.85rem;
+            font-weight: 700;
+            text-transform: uppercase;
         }
 
         .team-photo-frame {
@@ -231,10 +232,8 @@
             width: 175px;
             margin-top: 10px;
             height: 175px;
-            border: 3px solid rgba(255, 255, 255, 0.7);
-            border-radius: 8px;
+            border: var(--border-w) solid var(--ink);
             background-color: rgb(0, 0, 0);
-            box-shadow: 0 12px 22px rgba(17, 34, 76, 0.16);
 
             img {
                 object-fit: cover;
@@ -249,24 +248,24 @@
     }
     
     .Drive {
-        background-color: #4edec9;
-    }  
+        background-color: var(--grey-300);
+    }
     .Hardware {
-        background-color: #8eb0ff;
-    }  
+        background-color: var(--grey-100);
+    }
     .Software {
-        background-color: #2474ff;
+        background-color: var(--blue);
         color: #fff;
     }
     .Outreach {
-        background-color: #9f7aea;
+        background-color: var(--blue-dark);
         color: #fff;
     }
     .Big {
-        background-color: #e7edf5;
+        background-color: var(--grey-100);
     }
     .Alumni{
-        background-color: #1029bf;
+        background-color: var(--blue-dark);
         color: #fff;
     }
 
@@ -305,26 +304,20 @@
         width: 100%;
         min-height: auto;
         border-radius: 0;
-        border: 1px solid rgba(17, 34, 76, 0.16);
+        border: var(--border-w) solid var(--ink);
     }
 
     .team-list .team-main-card {
-        border-radius: 8px 8px 0 0;
         border-bottom: 0;
     }
 
     .team-list .team-card .team-expand-card {
-        border-radius: 0 0 8px 8px;
+        border-top: 0;
         text-align: center;
-    }
-
-    .team-list .team-card.alumni .team-expand-card {
-        border-left: 1px solid var(--line);
     }
 
     .team-list .team-card.mentor-card .team-expand-card,
     .team-list .team-card.alumni .team-expand-card {
         max-width: 100%;
-        border-left: 1px solid rgba(255, 255, 255, 0.08);
     }
 }

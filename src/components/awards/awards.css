@@ -10,28 +10,31 @@
     }
 
     .award-season h3 {
-        margin: 0;
-        color: var(--brand-blue-dark);
-        font-family: "Robotech GP", montserrat, sans-serif;
-        font-size: clamp(1.5rem, 1.15rem + 1.2vw, 2.25rem);
-        letter-spacing: 0.04em;
+        margin: 0 auto;
+        width: fit-content;
+        background: var(--grey-300);
+        border: 2px solid var(--ink);
+        padding: 0.3rem 0.9rem;
+        color: var(--ink);
+        font-family: "Outfit", sans-serif;
+        font-size: clamp(1.3rem, 1.05rem + 1vw, 1.9rem);
+        letter-spacing: 0.02em;
         text-align: center;
     }
 
     .award-event-grid {
         display: grid;
         grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-        gap: 1.1rem;
+        gap: 1.25rem;
     }
 
     .award-empty {
         width: fit-content;
         margin: 0 auto;
         padding: 0.85rem 1rem;
-        background: #e6e8ee;
-        border: 1px solid var(--line);
-        border-radius: 8px;
-        color: var(--muted);
+        background: var(--grey-300);
+        border: 2px solid var(--ink);
+        color: var(--grey-800);
         font-weight: 800;
         text-align: center;
     }
@@ -39,9 +42,14 @@
     .award-event-card {
         overflow: hidden;
         background: var(--surface);
-        border: 1px solid var(--line);
-        border-radius: 8px;
-        box-shadow: 0 14px 34px rgba(17, 34, 76, 0.1);
+        border: var(--border-w) solid var(--ink);
+        box-shadow: var(--shadow-sm);
+        transition: transform 0.15s ease, box-shadow 0.15s ease;
+    }
+
+    .award-event-card:hover {
+        transform: translate(-3px, -3px);
+        box-shadow: 8px 8px 0 var(--ink);
     }
 
     .award-event-card img {
@@ -49,6 +57,8 @@
         height: 220px;
         object-fit: cover;
         display: block;
+        border-bottom: var(--border-w) solid var(--ink);
+        filter: grayscale(0.15);
     }
 
     .award-event-body {
@@ -71,40 +81,39 @@
     .award-chip {
         display: inline-flex;
         align-items: center;
-        min-height: 32px;
-        padding: 0.38rem 0.65rem;
-        border-radius: 999px;
-        background: #eef2f8;
-        color: #233047;
-        font-size: 0.9rem;
+        min-height: 30px;
+        padding: 0.35rem 0.65rem;
+        border-radius: 0;
+        border: 2px solid var(--ink);
+        background: var(--grey-100);
+        color: var(--ink);
+        font-size: 0.85rem;
         font-weight: 800;
+        text-transform: uppercase;
         line-height: 1.2;
     }
 
     .award-chip.winning,
     .award-chip.inspire {
-        background: #dce6ff;
-        color: var(--brand-blue-dark);
+        background: var(--blue);
+        border-color: var(--ink);
+        color: #fff;
     }
 
     .award-chip.finalist,
     .award-chip.qualified {
-        background: #ffe3df;
-        color: #9c1f27;
+        background: var(--blue-dark);
+        color: #fff;
     }
 
     .award-chip.control,
-    .award-chip.connect {
-        background: #dcf7ef;
-        color: #17664e;
-    }
-
+    .award-chip.connect,
     .award-chip.motivate,
     .award-chip.innovate,
     .award-chip.design,
     .award-chip.think {
-        background: #f3e7ff;
-        color: #5b2c86;
+        background: var(--grey-300);
+        color: var(--ink);
     }
 }
 

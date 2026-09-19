@@ -1,6 +1,5 @@
 .navBar {
-    background:#1334f0;
-    backdrop-filter: blur(14px);
+    background: var(--blue-dark);
     position: sticky;
     top: 0;
     left: 0;
@@ -9,30 +8,32 @@
     height: 72px;
     padding: 0.75rem clamp(1rem, 3vw, 2.5rem);
     z-index: 200;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.14);
-    box-shadow: 0 12px 30px rgba(10, 25, 92, 0.18);
+    border-bottom: var(--border-w) solid var(--ink);
 }
 
 .navItem {
-    font-family: "Robotech GP";
-    letter-spacing: 0.05em;
+    font-family: "Outfit", sans-serif;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
     color: white;
-    font-size: clamp(1rem, 0.7rem + 0.65vw, 1.45rem);
+    font-weight: 700;
+    font-size: clamp(0.85rem, 0.7rem + 0.4vw, 1.05rem);
     z-index: 4000;
     cursor: pointer;
     text-decoration: none;
     display: inline-flex;
     align-items: center;
     min-height: 42px;
-    padding: 0 0.1rem;
-    border-bottom: 2px solid transparent;
+    padding: 0.3rem 0.7rem;
+    border: 2px solid transparent;
     white-space: nowrap;
 }
 
 .navItem:hover {
-    transition: color .2s ease-in-out, border-color .2s ease-in-out;
-    color: #dfe6ff;
-    border-color: var(--brand-red);
+    transition: none;
+    color: var(--blue-dark);
+    background: #fff;
+    border-color: var(--ink);
 }
 
 
@@ -44,7 +45,7 @@
         height: 100%;
         display: block;
     }
-    
+
     img:hover {
         transition: filter .4s ease-in-out;
         filter: brightness(1.08);
@@ -56,7 +57,7 @@
 
     .menu {
         display: flex;
-        gap: clamp(18px, 2.4vw, 36px);
+        gap: clamp(14px, 2vw, 28px);
         justify-content: center;
         align-items: center;
     }
@@ -84,7 +85,7 @@
             }
         }
 
-        .menu {            
+        .menu {
             flex-direction: column;
             z-index: 3000;
             top: 56px;
@@ -92,13 +93,14 @@
             position: absolute;
             right: 0;
             min-width: min(86vw, 340px);
-            background: #1334f0;
+            background: var(--blue-dark);
             padding: 1rem;
-            border-radius: 0 0 8px 8px;
+            border: var(--border-w) solid var(--ink);
+            border-top: 0;
             box-shadow: var(--shadow);
             gap: 0.35rem;
         }
-    
+
             .menu > li {
                 padding-top: 1em;
                 size: 100px;
@@ -107,7 +109,7 @@
             .navItem {
                 width: 100%;
                 justify-content: flex-start;
-                font-size: 1.15rem;
+                font-size: 1.05rem;
             }
 
                 .dropdownContent {
@@ -158,62 +160,65 @@
     right: 0;
     min-height: 42px;
     padding: 0.45rem 16px;
-    background: linear-gradient(90deg, var(--brand-red), #ff7a59);
+    background: var(--brand-red);
+    border-bottom: var(--border-w) solid var(--ink);
     color: #fff;
     display: flex;
     align-items: center;
     justify-content: center;
     z-index: 190;
     text-align: center;
-    font-size: 0.95rem;
+    font-size: 0.9rem;
+    font-weight: 700;
     a {
         color: #fff;
-        font-weight: 800;
+        font-weight: 900;
+        text-decoration: underline;
     }
 }
-.dropbtn {
-    background-color: #04AA6D;
-    color: white;
-    padding: 16px;
-    font-size: 16px;
-    border: none;
-  }
-  
-  .dropdown {
+
+.dropdown {
     position: relative;
     display: inline-block;
-  }
-  
-  .dropdown-content {
+}
+
+.dropdown-content {
     display: none;
     position: absolute;
-    background-color: #1334f0;
+    background-color: var(--surface);
+    border: var(--border-w) solid var(--ink);
     min-width: 230px;
     box-shadow: var(--shadow);
     z-index: 3000;
-    border-radius: 0 0 8px 8px;
-    overflow: hidden;
-  }
-  
-  .dropdown-content a {
-    font-family: "Robotech GP";
-    letter-spacing: .05em;
-    color: white;
+    border-radius: 0;
+}
+
+.dropdown-content a {
+    font-family: "Outfit", sans-serif;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+    font-weight: 700;
+    font-size: 0.85rem;
+    color: var(--ink);
     padding: 13px 16px;
     text-decoration: none;
     display: block;
     line-height: 1.2;
-  }
-  
-  .dropdown-content a:hover {
-    background-color: rgba(255, 255, 255, 0.12);
-  }
-  
-  .dropdown:hover .dropdown-content {
+    border-bottom: 2px solid var(--grey-300);
+}
+
+.dropdown-content a:last-child {
+    border-bottom: none;
+}
+
+.dropdown-content a:hover {
+    background-color: var(--blue);
+    color: #fff;
+}
+
+.dropdown:hover .dropdown-content {
     display: block;
-  }
-  /* Change the background color of the dropdown button when the dropdown content is shown */
-  .dropdown:hover .dropbtn {background-color: #3e8e41;}
+}
 
 .site-switcher {
     height: 100%;
@@ -224,15 +229,17 @@
 }
 
 .site-switcher-btn {
-    background: transparent;
-    border: solid 1px white;
+    background: #fff;
+    border: 2px solid var(--ink);
     cursor: pointer;
     display: flex;
     align-items: center;
     justify-content: center;
     padding: 6px 8px;
-    border-radius: 6px;
-    color: white;
+    border-radius: 0;
+    color: var(--blue-dark);
+    box-shadow: 3px 3px 0 var(--ink);
+    transition: transform 0.12s ease, box-shadow 0.12s ease;
 }
 
 .site-switcher-btn svg {
@@ -243,7 +250,8 @@
 }
 
 .site-switcher-btn:hover {
-    background: rgba(255, 255, 255, 0.12);
+    transform: translate(-1px, -1px);
+    box-shadow: 4px 4px 0 var(--ink);
 }
 
 .site-switcher .dropdown-content {
@@ -259,6 +267,6 @@
 
     .announcement {
         top: 64px;
-        font-size: 0.88rem;
+        font-size: 0.85rem;
     }
 }

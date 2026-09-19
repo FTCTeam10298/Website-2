@@ -2,10 +2,8 @@
     width: 100%;
     min-height: 100vh;
     display: flow-root;
-    font-family: montserrat, Inter, system-ui, sans-serif;
-    background:
-        radial-gradient(circle at top left, rgba(22, 56, 243, 0.08), transparent 34rem),
-        linear-gradient(180deg, #ffffff 0%, #f4f7fb 42%, #eef3fb 100%);
+    font-family: 'Inter', system-ui, sans-serif;
+    background: var(--grey-100);
 }
 
 .content {
@@ -16,45 +14,94 @@
     font-size: clamp(1rem, 0.95rem + 0.25vw, 1.12rem);
     line-height: 1.7;
 }
-    
+
 
 .roundbox {
     max-width: fit-content;
     margin:auto;
     padding: 1rem;
-    border-radius: 8px;
+    border-radius: 0;
     background-color: var(--surface);
-    border: 1px solid var(--line);
+    border: var(--border-w) solid var(--ink);
     box-shadow: var(--shadow);
 }
 
  .title {
     width: fit-content;
     margin: 0 auto;
-    border-bottom: 4px solid var(--brand-red);
     cursor: default;
-    color: var(--brand-blue-dark);
-    font-family: "Robotech GP", montserrat, sans-serif;
-    letter-spacing: 0.04em;
-    font-size: clamp(2rem, 1.45rem + 2vw, 3.25rem);
+    background: var(--blue-dark);
+    color: #fff;
+    border: var(--border-w) solid var(--ink);
+    box-shadow: var(--shadow);
+    font-family: "Outfit", sans-serif;
+    letter-spacing: 0.02em;
+    font-size: clamp(1.75rem, 1.3rem + 1.7vw, 2.9rem);
     line-height: 1.05;
     text-align: center;
-    font-weight: 700;
+    font-weight: 800;
+    padding: 0.5rem 1.5rem;
 
 }
 
 .subtitle {
     width: fit-content;
     margin: 2.4rem auto 0.65rem;
-    color: var(--brand-blue-dark);
+    color: var(--ink);
     cursor: default;
-    font-size: clamp(1.25rem, 1.1rem + 0.5vw, 1.7rem);
+    background: var(--grey-300);
+    border: 2px solid var(--ink);
+    padding: 0.3rem 0.85rem;
+    font-family: "Outfit", sans-serif;
+    text-transform: uppercase;
+    font-size: clamp(1.1rem, 1rem + 0.5vw, 1.4rem);
     font-weight: 800;
 }
 
 .toppage {
     margin: 0 auto 34px;
     text-align: center;
+}
+
+.btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.85rem 1.6rem;
+    border: var(--border-w) solid var(--ink);
+    border-radius: 0;
+    background: var(--surface);
+    color: var(--ink);
+    font-family: "Outfit", sans-serif;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
+    font-size: 0.95rem;
+    cursor: pointer;
+    text-decoration: none;
+    white-space: nowrap;
+    box-shadow: var(--shadow-sm);
+    transition: transform 0.12s ease, box-shadow 0.12s ease;
+}
+
+.btn:hover {
+    transform: translate(-2px, -2px);
+    box-shadow: 7px 7px 0 var(--ink);
+}
+
+.btn:active {
+    transform: translate(2px, 2px);
+    box-shadow: 2px 2px 0 var(--ink);
+}
+
+.btn-primary {
+    background: var(--blue);
+    color: #fff;
+}
+
+.btn-ghost {
+    background: var(--surface);
+    color: var(--ink);
 }
 
 .markdown {
@@ -64,14 +111,15 @@
 
 .markdown img,
 .content > img {
-    border-radius: 8px;
+    border-radius: 0;
+    border: var(--border-w) solid var(--ink);
     box-shadow: var(--shadow);
 }
 
 .markdown h1,
 .markdown h2,
 .markdown h3 {
-    color: var(--brand-blue-dark);
+    color: var(--blue-dark);
     line-height: 1.2;
 }
 
@@ -89,9 +137,10 @@ table, th, td {
 table {
     width: 100%;
     overflow: hidden;
-    border-radius: 8px;
+    border-radius: 0;
+    border: var(--border-w) solid var(--ink);
     background: var(--surface);
-    box-shadow: 0 10px 30px rgba(17, 34, 76, 0.08);
+    box-shadow: var(--shadow);
 }
 
 @media (max-width: 700px) {

@@ -1,49 +1,82 @@
 .content {
-    
-
-    .bg {
-        background-color: #111827;
-    }
 
     .sponsor-img {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 28px;
+        margin-top: 2.5rem;
+    }
+
+    .sponsor-tile {
+        flex: 1 1 240px;
+        max-width: 270px;
+        min-height: 190px;
+        padding: 1.9rem 1.5rem 1.5rem;
+        display: flex;
+        flex-direction: column;
         align-items: center;
         justify-content: center;
-        gap: 18px;
-        margin-top: 2rem;
-
-        a {
-            min-height: 150px;
-            padding: 1.4rem;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: #e6e8ee;
-            border: 1px solid var(--line);
-            border-radius: 8px;
-            box-shadow: 0 12px 34px rgba(17, 34, 76, 0.08);
-            transition: transform 0.22s ease, box-shadow 0.22s ease, border-color 0.22s ease;
-        }
-
-        a:hover {
-            transform: translateY(-4px);
-            border-color: rgba(22, 56, 243, 0.24);
-            box-shadow: var(--shadow);
-        }
-
-        img {
-            max-width: 210px;
-            max-height: 96px;
-            object-fit: contain;
-            transition: transform 0.3s ease-in-out;
-
-        }
-        img:hover {
-            transform: scale(1.04);
-        }
+        gap: 1.1rem;
+        background: var(--surface);
+        border: var(--border-w) solid var(--ink);
+        border-radius: 0;
+        box-shadow: var(--shadow-sm);
+        text-decoration: none;
+        color: inherit;
+        transition: transform 0.12s ease, box-shadow 0.12s ease;
     }
-        
-    
 
+    .sponsor-tile:hover {
+        transform: translate(-3px, -3px);
+        box-shadow: 8px 8px 0 var(--ink);
+    }
+
+    .sponsor-tile.bg {
+        background-color: var(--blue-dark);
+    }
+
+    .sponsor-tile img {
+        max-width: 200px;
+        max-height: 104px;
+        width: 100%;
+        object-fit: contain;
+        filter: grayscale(1);
+        transition: filter 0.15s ease;
+    }
+
+    .sponsor-tile:hover img {
+        filter: grayscale(0);
+    }
+
+    .sponsor-tile.bg img {
+        filter: none;
+    }
+
+    .sponsor-name {
+        font-family: "Outfit", sans-serif;
+        text-transform: uppercase;
+        font-size: 0.8rem;
+        font-weight: 700;
+        letter-spacing: 0.02em;
+        color: var(--grey-800);
+        text-align: center;
+        line-height: 1.3;
+    }
+
+    .sponsor-tile.bg .sponsor-name {
+        color: rgba(255, 255, 255, 0.85);
+    }
+}
+
+@media (max-width: 640px) {
+    .content .sponsor-img {
+        gap: 20px;
+    }
+
+    .content .sponsor-tile {
+        flex-basis: 45%;
+        min-height: 160px;
+        padding: 1.4rem 1.1rem 1.2rem;
+    }
 }
