@@ -215,6 +215,42 @@
   /* Change the background color of the dropdown button when the dropdown content is shown */
   .dropdown:hover .dropbtn {background-color: #3e8e41;}
 
+.site-switcher {
+    height: 100%;
+    float: left;
+    display: flex;
+    align-items: center;
+    margin-left: 14px;
+}
+
+.site-switcher-btn {
+    background: transparent;
+    border: solid 1px white;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 6px 8px;
+    border-radius: 6px;
+    color: white;
+}
+
+.site-switcher-btn svg {
+    width: 22px;
+    height: 22px;
+    display: block;
+    fill: currentColor;
+}
+
+.site-switcher-btn:hover {
+    background: rgba(255, 255, 255, 0.12);
+}
+
+.site-switcher .dropdown-content {
+    top: 100%;
+    left: 0;
+}
+
 @media only screen and (max-width: 700px) {
     .navBar {
         height: 64px;

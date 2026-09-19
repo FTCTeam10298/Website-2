@@ -1,0 +1,47 @@
+[
+    {
+        "name": "Micah Chi",
+        "age": 14,
+        "grade": "9th Grade @ Trinity Pacific Christian",
+        "role": "Software",
+        "hobbies": "Rubiks Cube, volleyball, track/field",
+        "food": "Sichuan Spicy Fish Soup",
+        "photo": "/team_assets/micah.jpeg"
+    },
+    {
+        "name": "Ethan Xu",
+        "age": 14,
+        "grade": "8th Grade @ Medea Creek Middle School",
+        "role": "Hardware",
+        "hobbies": "Robotics, piano, volleyball",
+        "food": "Chicken",
+        "photo": "/team_assets/ethan.png"
+    },
+    {
+        "name": "Gavven Scalise",
+        "age": 14,
+        "grade": "8th Grade @ Trinity Pacific Christian",
+        "role": "Hardware",
+        "hobbies": "Racecars",
+        "food": "Melasenessa, chimichurri",
+        "photo": "/team_assets/gavven.png"
+    },
+    {
+        "name": "Connor idk",
+        "age": 14,
+        "grade": "8th Grade @ Trinity Pacific Christian",
+        "role": "Hardware",
+        "hobbies": "Racecars",
+        "food": "Melasenessa, chimichurri",
+        "photo": "/team_assets/connor.png"
+    },
+    {
+        "name": "Lior Belkin",
+        "age": 15,
+        "grade": "th Grade @ VAAS",
+        "role": "Hardware",
+        "hobbies": "Swearing cuz he thinks its cool",
+        "food": "Melasenessa, chimichurri",
+        "photo": "/team_assets/lior.png"
+    }
+]

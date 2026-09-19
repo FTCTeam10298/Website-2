@@ -27,7 +27,7 @@ const pages = [
   {name: "Awards", link: "/awards"},
   {name: "Team", link: "/team"},
   {name: "Sponsors", link: "/sponsors"},    
-  {name: "Contact Us", link: "/contact"},   
+  // {name: "Contact Us", link: "/contact"},   
   // {name: "Donate Now!", link: "/donations"},  
 ]
 
@@ -97,6 +97,19 @@ function NavBar() {
           <>
             <div className="navBar">
                 <a href="/" className="left"><img src="/navbar_assets/logoWebsite.svg" alt="Logo"/></a>
+                <div className="site-switcher dropdown">
+                    <button type="button" className="site-switcher-btn" aria-label="Switch site">
+                        <svg viewBox="0 0 400 420" xmlns="http://www.w3.org/2000/svg">
+                            <polygon points="100,110 300,110 300,70 380,130 300,190 300,150 100,150" />
+                            <polygon points="300,270 100,270 100,230 20,290 100,350 100,310 300,310" />
+                        </svg>
+                    </button>
+                    <div className="dropdown-content">
+                        <a href="/">Brain Stormz (FTC)</a>
+                        <a href="/FLL/index.html">FLL</a>
+                        <a href="/neuron-pathing/index.html">Neuron Pathing</a>
+                    </div>
+                </div>
                 <div className="right">
                     <a id="bar" onClick={showMenu} className="bar"><img src="/navbar_assets/hamburgerMenu.svg" alt="Menu"/></a>
                     <div id="menu" className="menu" style={{display: menuDisplay}}>

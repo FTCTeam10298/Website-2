@@ -1,0 +1,83 @@
+[
+    {
+        "name": "Hansen Chen",
+        "age": 16,
+        "grade": "Junior @ FTHS Technology High",
+        "role": "Hardware / Drive",
+        "hobbies": "Valorant, Anime, and Golf",
+        "food": "Sushi",
+        "photo": "/team_assets/hansen.png"
+    },
+    {
+        "name": "Albert Ruan",
+        "age": 16,
+        "grade": "Junior @ Oak Park High",
+        "role": "Hardware / Drive",
+        "hobbies": "Marvel Rivals, Eating, and Manwha",
+        "food": "Everything",
+        "photo": "/team_assets/albert.png"
+    },
+    {
+        "name": "Aaden Scalise",
+        "age": 17,
+        "grade": "Senior @ Trinity Pacific Christian",
+        "role": "Hardware / Drive",
+        "hobbies": "Racing, robotics, mock trial",
+        "food": "Chicken Picatta",
+        "photo": "/team_assets/aaden.png"
+    },
+    {
+        "name": "John Bryson",
+        "age": 17,
+        "grade": "Senior @ Trinity Pacific Christian",
+        "role": "Hardware",
+        "hobbies": "Touching grass",
+        "food": "None",
+        "photo": "/team_assets/john.png"
+    },
+    {
+        "name": "Kevin Fei",
+        "age": 17,
+        "grade": "Senior @ Westlake High School",
+        "role": "Software / Drive",
+        "hobbies": "League of Legends and ",
+        "food": "Pho",
+        "photo": "/team_assets/kevin.png"
+    },
+    {
+        "name": "Boyi Zheng",
+        "age": 14,
+        "grade": "Freshman @ Oaks Christian High School",
+        "role": "Hardware / Outreach",
+        "hobbies": "Robotics",
+        "food": "Everything",
+        "photo": "/team_assets/boyi.png"
+    },
+    {
+        "name": "Zoe Eisenstein",
+        "age": 14,
+        "grade": "Sophomore @ De Toledo High School",
+        "role": "Outreach",
+        "hobbies": "Dancing idk",
+        "food": "smth",
+        "photo": "/team_assets/zoe.png"
+    },
+    {
+        "name": "Sarah Chen",
+        "age": 14,
+        "grade": "Freshman @ Oaks Park High School",
+        "role": "Outreach",
+        "hobbies": "idk",
+        "food": "idk",
+        "photo": "/team_assets/sarah.png"
+    },
+    {
+        "name": "Joshua dude",
+        "age": 14,
+        "grade": "Freshman @ Indiana High School in Indiana",
+        "role": "Hardware",
+        "hobbies": "idk",
+        "food": "idk",
+        "photo": "/team_assets/joshua.png"
+    }
+]

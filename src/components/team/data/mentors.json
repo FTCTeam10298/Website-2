@@ -1,0 +1,66 @@
+[
+    {
+        "name": "Sung Choi",
+        "role": "Big Boss",
+        "hobbies": "Aura Farming",
+        "food": "Korean Food",
+        "photo": "/team_assets/sung.jpeg"
+    },
+    {
+        "name": "Telly Chi",
+        "role": "Big Boss",
+        "hobbies": "Going around and fixing things",
+        "food": "Tofu",
+        "photo": "/team_assets/telly.png"
+    },
+    {
+        "name": "Stu Penrose",
+        "role": "Big Boss",
+        "hobbies": "Guitar",
+        "food": "N/A",
+        "photo": "/team_assets/stu.png"
+    },
+    {
+        "name": "Garret Smalley",
+        "role": "Hardware",
+        "hobbies": "Robot",
+        "food": "None",
+        "photo": "/team_assets/garret.png"
+    },
+    {
+        "name": "Jacob Newman",
+        "role": "BIG BOSS / Software / Hardware",
+        "aura": "MultiTalented",
+        "hobbies": "Robots",
+        "food": "Coca Cola",
+        "photo": "/team_assets/jacob.png"
+    },
+    {
+        "name": "Alon Belkin",
+        "role": "Hardware",
+        "hobbies": "Battle Bots",
+        "food": "Shwarma",
+        "photo": "/team_assets/alon.png"
+    },
+    {
+        "name": "Teague Shepard",
+        "role": "Hardware",
+        "hobbies": "Mogging",
+        "food": "In-n-out",
+        "photo": "/team_assets/teague.png"
+    },
+    {
+        "name": "James Gasich",
+        "role": "Hardware",
+        "hobbies": "N/A",
+        "food": "N/A",
+        "photo": "/team_assets/jg.png"
+    },
+    {
+        "name": "James Penrose",
+        "role": "Hardware / Software",
+        "hobbies": "N/A",
+        "food": "N/A",
+        "photo": "/team_assets/james.png"
+    }
+]
