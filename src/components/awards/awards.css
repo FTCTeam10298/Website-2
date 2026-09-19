@@ -97,7 +97,7 @@
     .award-chip.inspire {
         background: var(--blue);
         border-color: var(--ink);
-        color: #fff;
+        color: var(--ink);
     }
 
     .award-chip.finalist,

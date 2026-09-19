@@ -1,11 +1,14 @@
 .content {
     text-align: center;
 
-
     .info-container {
         display: grid;
         gap: 1.5rem;
         text-align: left;
+    }
+
+    .subtitle {
+        margin-top: 0;
     }
 
     .about, .core, .first, .ftc {

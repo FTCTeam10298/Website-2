@@ -213,7 +213,7 @@
 
 .dropdown-content a:hover {
     background-color: var(--blue);
-    color: #fff;
+    color: var(--ink);
 }
 
 .dropdown:hover .dropdown-content {

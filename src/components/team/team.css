@@ -82,19 +82,18 @@
         border: var(--border-w) solid var(--ink);
         box-shadow: var(--shadow);
         transition: transform 0.15s ease, box-shadow 0.15s ease;
-
+        color: var(--blue);
         &:hover {
             transform: translate(-3px, -3px);
             box-shadow: 11px 11px 0 var(--ink);
         }
 
         .team-expand-card {
-            background-color: var(--blue-dark);
+            background-color: var(--grey-100);
             border-left: var(--border-w) solid var(--ink);
             padding: 18px;
             width: 250px;
-
-            color: rgba(255, 255, 255, 0.92);
+            color: var(--ink);
             min-height: 306px;
             font-size: 0.92rem;
             line-height: 1.45;
@@ -116,6 +115,7 @@
             .team-main-card {
                 width: 100%;
                 min-height: 250px;
+                flex-shrink: 0;
                 border-right: var(--border-w) solid var(--ink);
                 border-bottom: 0;
             }
@@ -130,6 +130,9 @@
                 min-width: 0;
                 max-width: none;
                 min-height: auto;
+                flex: 1 1 auto;
+                background-color: #45454c;
+                color: rgba(255, 255, 255, 0.92);
                 border-left: var(--border-w) solid var(--ink);
                 border-top: var(--border-w) solid var(--ink);
             }
@@ -185,8 +188,8 @@
                 padding: 0.34rem 0.58rem;
                 border-radius: 0;
                 background: var(--blue);
-                border: 2px solid rgba(255, 255, 255, 0.5);
-                color: #fff;
+                border: 2px solid var(--ink);
+                color: var(--ink);
                 font-family: 'Inter', system-ui, sans-serif;
                 font-size: 0.78rem;
                 font-weight: 800;
@@ -246,23 +249,26 @@
     h1 {
         text-align: center;
     }
-    
+
     .Drive {
-        background-color: var(--grey-300);
+        background-color: #d4d4d8;
+        color: var(--ink);
     }
     .Hardware {
-        background-color: var(--grey-100);
+        background-color: #ececee;
+        color: var(--ink);
     }
     .Software {
         background-color: var(--blue);
-        color: #fff;
+        color: var(--ink);
     }
     .Outreach {
         background-color: var(--blue-dark);
         color: #fff;
     }
     .Big {
-        background-color: var(--grey-100);
+        background-color: #ececee;
+        color: var(--ink);
     }
     .Alumni{
         background-color: var(--blue-dark);

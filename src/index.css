@@ -29,16 +29,16 @@
   font-synthesis: none;
   text-rendering: optimizeLegibility;
 
-  /* neo-brutalist tokens: dark blue + grey, hard black borders/shadows */
+  /* neo-brutalist tokens: lighter blue (main) + baby blue (sub), hard black borders/shadows */
   --ink: #0b0b0d;
-  --blue-dark: #0d1747;
-  --brand-blue: #0d1747;
-  --brand-blue-dark: #0a123a;
-  --blue: #1334f0;
-  --grey-100: #eeeeec;
-  --grey-300: #d2d3cf;
-  --grey-500: #8c8e97;
-  --grey-800: #2c2d33;
+  --blue-dark: #2547e6;
+  --brand-blue: #2547e6;
+  --brand-blue-dark: #1935b0;
+  --blue: #8fc4ff;
+  --grey-100: #f2f6ff;
+  --grey-300: #dcebff;
+  --grey-500: #6b7280;
+  --grey-800: #1f2733;
   --brand-red: #f2323f;
   --muted: var(--grey-500);
   --line: var(--ink);
@@ -58,6 +58,11 @@ html {
   background: var(--blue-dark);
 }
 
+::selection {
+  background: var(--blue);
+  color: var(--ink);
+}
+
 body {
   margin: 0;
   min-width: 320px;
@@ -72,7 +77,7 @@ h1, h2, h3, h4 {
 }
 
 a {
-  color: var(--blue);
+  color: var(--blue-dark);
   text-underline-offset: 0.18em;
 }
 

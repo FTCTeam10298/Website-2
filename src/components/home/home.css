@@ -15,7 +15,7 @@
     width: min(1180px, 100%);
     margin: 0 auto;
     display: grid;
-    grid-template-columns: 1.1fr 1fr;
+    grid-template-columns: 0.85fr 1.15fr;
     gap: clamp(2rem, 4vw, 3.5rem);
     align-items: center;
 }
@@ -23,7 +23,7 @@
 .welcome .tag {
     display: inline-block;
     background: var(--blue);
-    color: #fff;
+    color: var(--ink);
     border: 2px solid var(--ink);
     padding: 0.3rem 0.75rem;
     font-family: "Outfit", sans-serif;
@@ -71,6 +71,7 @@
     border: var(--border-w) solid var(--ink);
     box-shadow: var(--shadow);
     background: var(--surface);
+    aspect-ratio: 5 / 4;
 }
 
 .photo-frame img {

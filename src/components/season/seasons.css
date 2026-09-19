@@ -116,7 +116,7 @@
         border-radius: 0;
         border: 2px solid var(--ink);
         background: var(--blue);
-        color: #fff;
+        color: var(--ink);
         text-decoration: none;
         text-transform: uppercase;
         font-family: "Outfit", sans-serif;
