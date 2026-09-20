@@ -2694,12 +2694,6 @@
  <div class="outline-panel op-show" id="outline-ip">
  <div style="font-size:.82rem;color:var(--text-muted);margin-bottom:1rem;line-height:1.6;">You have <strong style="color:var(--teal)">5 minutes</strong> to present, then judges ask questions. Pick the most important points for each section below. One strong sentence beats three weak ones.</div>
 
- <div class="pres-toolbar2">
- <button class="pres-action-btn pab-primary" onclick="buildOutlinePreview('ip')">Build Outline</button>
- <button class="pres-action-btn pab-ghost" onclick="printOutline('ip')">Print Outline</button>
- <button class="pres-action-btn pab-ghost" onclick="clearOutline('ip')">Clear</button>
- </div>
-
  <!-- 1. The Problem -->
  <div class="outline-card">
  <div class="oc-head">
@@ -2773,18 +2767,18 @@
  </div>
  </div>
 
+ <div class="pres-toolbar2">
+ <button class="pres-action-btn pab-primary" onclick="buildOutlinePreview('ip')">Build Outline</button>
+ <button class="pres-action-btn pab-ghost" onclick="printOutline('ip')">Print Outline</button>
+ <button class="pres-action-btn pab-ghost" onclick="clearOutline('ip')">Clear</button>
+ </div>
+
  <div id="outline-preview-ip" class="outline-preview"></div>
  </div>
 
  <!-- ── ROBOT OUTLINE ── -->
  <div class="outline-panel" id="outline-robot">
  <div style="font-size:.82rem;color:var(--text-muted);margin-bottom:1rem;line-height:1.6;">Robot Design is an <strong style="color:var(--blue)">explanation, not a presentation</strong>. Judges will ask questions throughout. Every team member should be able to answer about any part of the robot.</div>
-
- <div class="pres-toolbar2">
- <button class="pres-action-btn pab-primary" onclick="buildOutlinePreview('robot')">Build Outline</button>
- <button class="pres-action-btn pab-ghost" onclick="printOutline('robot')">Print Outline</button>
- <button class="pres-action-btn pab-ghost" onclick="clearOutline('robot')">Clear</button>
- </div>
 
  <!-- 1. Strategy -->
  <div class="outline-card">
@@ -2841,6 +2835,12 @@
  <div class="oc-judge-note"><strong>Judges want:</strong> one thing that made them think "I haven't seen that before." It doesn't have to be complicated. It has to be yours.</div>
  <div class="oc-input-row"><div class="oc-bullet" style="background:var(--blue)"></div><input class="oc-input" id="rb-4-a" placeholder="Your most creative or original idea this season"></div>
  </div>
+ </div>
+
+ <div class="pres-toolbar2">
+ <button class="pres-action-btn pab-primary" onclick="buildOutlinePreview('robot')">Build Outline</button>
+ <button class="pres-action-btn pab-ghost" onclick="printOutline('robot')">Print Outline</button>
+ <button class="pres-action-btn pab-ghost" onclick="clearOutline('robot')">Clear</button>
  </div>
 
  <div id="outline-preview-robot" class="outline-preview"></div>
