@@ -553,7 +553,7 @@ const curAuto = () => state.autos[state.activeAuto];
 function adoptState(s) { state = migrate(s); installAccessors(state); }
 let state;
 adoptState(load() || defaultState());
-const DEFAULT_BG = 'decode.png';   // bundled DECODE field, sits next to this file
+const DEFAULT_BG = 'field.png';   // bundled DECODE field, sits next to this file
 let bgImg = null;
 function setBackground() {          // custom uploaded image if present, else the DECODE field
   bgImg = new Image();
