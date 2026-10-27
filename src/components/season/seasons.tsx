@@ -84,19 +84,15 @@ function Seasons() {
                             {alt && <figcaption>{alt}</figcaption>}
                         </figure>
                     ),
-                    a: ({ href, children }) => {
-                        const isVideo = href?.includes("youtube.com") || href?.includes("youtu.be");
-                        return (
-                            <a
-                                className={isVideo ? "season-video-link" : undefined}
-                                href={href}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                            >
-                                {children}
-                            </a>
-                        );
-                    },
+                    a: ({ href, children }) => (
+                        <a
+                            href={href}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                        >
+                            {children}
+                        </a>
+                    ),
                     table: ({ children }) => (
                         <div className="season-table-wrap">
                             <table>{children}</table>
