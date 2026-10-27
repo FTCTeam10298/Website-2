@@ -7,7 +7,7 @@ This season was a complete new generation of Brain Stormz.  Over half of our pre
 # Robot Version 1.0
 ![Robot Version 1.0](/season_assets/1.png)
 
-We started out the season with a relatively simple robot version 1.0 for league meet 0 and [league meet 1\(https://www.youtube.com/watch?v=skUIMHqMl80), to allow us to get a feel for the game, and give us room to further iterate.  This robot focused on collecting samples to deposit in the scoring baskets.
+We started out the season with a relatively simple robot version 1.0 for league meet 0 and [league meet 1](https://www.youtube.com/watch?v=skUIMHqMl80), to allow us to get a feel for the game, and give us room to further iterate.  This robot focused on collecting samples to deposit in the scoring baskets.
 
 # Robot Version 2.0
 ![Robot Version 2.0](/season_assets/2.png)
@@ -19,7 +19,7 @@ With robot version 2.0 for [league meet 2](https://www.youtube.com/watch?v=Db4-e
 # Robot Version 3.0
 ![Robot Version 3.0](/season_assets/3.png)
 
-Our old design was too front heavy, kept tipping over, and was just generally not able to perform how we wanted it to.  We decided on a risky ground-up redesign for our version 3.0.  For this redesign, we switched from focusing on sample scoring to focusing primarily on specimen scoring.  This new robot was used for our Inter-League Tournament, and the SoCal Regional Championship.
+Our old design was too front heavy, kept tipping over, and was just generally not able to perform how we wanted it to.  We decided on a risky ground-up redesign for our version 3.0.  For this redesign, we switched from focusing on sample scoring to focusing primarily on specimen scoring.  This new robot was used for our [Inter-League Tournament](https://www.youtube.com/watch?v=RMBgNXnjsvI&list=PLCB71CP6YAzg), and the SoCal Regional Championship ([part 1](https://www.youtube.com/watch?v=Vo2ejUMBUpw), [part 2](https://www.youtube.com/watch?v=85o3pawam7c), [part 3](https://www.youtube.com/watch?v=1pB0SLT9qZ8)).
 
 At the SoCal Regional Championships, we started with a rough run during the qualification matches, ending up ranked 23rd out of 42 teams.  However, we were able to prove our potential well enough that the 3rd seed, team 4348 RoboKnights, picked us.  We made it all the way through the playoffs, and in the final match, not only won, but broke the California state record with a score of 437 points!
 
