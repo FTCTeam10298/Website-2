@@ -14,6 +14,15 @@ type AwardSeason = {
 
 const decodeMarkdownText = (text: string) => text.replace(/&amp;/g, "&").replace(/&nbsp;/g, " ");
 
+const renderInlineMarkdown = (text: string) => {
+    const escaped = text
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;");
+
+    return escaped.replace(/\*(.+?)\*/g, "<em>$1</em>");
+};
+
 function getAwardType(award: string) {
     const lowerAward = award.toLowerCase();
 
@@ -31,11 +40,12 @@ function getAwardType(award: string) {
 }
 
 function parseAwards(markdown: string): AwardSeason[] {
+    const cleanedMarkdown = markdown.replace(/<!--[\s\S]*?-->/g, "");
     const seasons: AwardSeason[] = [];
     let currentSeason: AwardSeason | undefined;
     let currentEvent: AwardEvent | undefined;
 
-    markdown.split(/\r?\n/).forEach((rawLine) => {
+    cleanedMarkdown.split(/\r?\n/).forEach((rawLine) => {
         const line = rawLine.trim();
         if (!line) return;
 
@@ -85,7 +95,7 @@ function Awards() {
             <div className="awards-timeline">
                 {awardSeasons.map((season) => (
                     <section className="award-season" key={season.title}>
-                        <h3>{season.title}</h3>
+                        <h3 dangerouslySetInnerHTML={{ __html: renderInlineMarkdown(season.title) }} />
                         {season.events.length > 0 ? (
                             <div className="award-event-grid">
                                 {season.events.map((event) => (
@@ -94,12 +104,14 @@ function Awards() {
                                             <img src={event.image} alt={`${event.title} awards`} />
                                         )}
                                         <div className="award-event-body">
-                                            <h4>{event.title}</h4>
+                                            <h4 dangerouslySetInnerHTML={{ __html: renderInlineMarkdown(event.title) }} />
                                             <div className="award-chip-list">
                                                 {event.awards.map((award) => (
-                                                    <span className={`award-chip ${getAwardType(award)}`} key={award}>
-                                                        {award}
-                                                    </span>
+                                                    <span
+                                                        className={`award-chip ${getAwardType(award)}`}
+                                                        key={award}
+                                                        dangerouslySetInnerHTML={{ __html: renderInlineMarkdown(award) }}
+                                                    />
                                                 ))}
                                             </div>
                                         </div>
