@@ -88,7 +88,7 @@ extra Gradle dependencies</strong> beyond what <code>FtcRobotController</code> a
 <li>Select <strong>Get from VCS</strong>. Make sure <strong>Repository URL</strong> is selected in the sidebar, then paste the repository URL into the field:</li>
 </ol>
 <pre><code>https://github.com/FTCTeam10298/Neuron-Pathing-Quickstart.git</code></pre>
-<div class="tip">💡 Consider also changing the name of the final folder in the Directory textbox from <code>Neuron-Pathing-Quickstart</code> to something that reflects your team and the season, e.g. team number 99999 might use <code>99999-2026-27-code</code>.</div>
+<p class="tip">💡 Consider also changing the name of the final folder in the Directory textbox from <code>Neuron-Pathing-Quickstart</code> to something that reflects your team and the season, e.g. team number 99999 might use <code>99999-2026-27-code</code>.</p>
 <img src="https://raw.githubusercontent.com/gamemanual0/gm0/1ef047ce037c1e5b7cf9910bdda4612cee58ec40/source/docs/software/getting-started/images/using-android-studio/as-get-from-vcs.png" alt="Get from VCS dialog in Android Studio" />
 <ol start="4">
 <li>When Android Studio asks if you want to trust and open the project, choose <strong>Trust Project</strong>.</li>
@@ -105,7 +105,6 @@ extra Gradle dependencies</strong> beyond what <code>FtcRobotController</code> a
 <h2 id="where-everything-lives">Where everything lives</h2>
 <pre><code>TeamCode/.../neuronpathing/   the library: Pose2D, Spline, NeuronLocalizer, NeuronDrive, ...
 TeamCode/.../opmodes/         example OpModes built on the library
-
 </code></pre>
 <h2 id="wire-up-your-robot">Wire up your robot</h2>
 <ol>
@@ -118,23 +117,20 @@ TeamCode/.../opmodes/         example OpModes built on the library
    conventions). You'll need these numbers next.</li>
 <li>In your OpMode, construct the library:</li>
 </ol>
-<p><code>java
-   NeuronLocalizer localizer = new NeuronLocalizer(hardwareMap, telemetry,
-           /*xOffsetMm=*/ -78.74, /*yOffsetMm=*/ -184.15);
-   NeuronDrive drive = new NeuronDrive(hardwareMap, localizer, /*trackWidthIn=*/ 14);</code></p>
+<p><pre><code>NeuronLocalizer localizer = new NeuronLocalizer(hardwareMap, telemetry,
+                            /*xOffsetMm=*/ -78.74, /*yOffsetMm=*/ -184.15);
+NeuronDrive drive = new NeuronDrive(hardwareMap, localizer, /*trackWidthIn=*/ 14);</code></pre></p>
 <p><code>trackWidthIn</code> is the distance between your left and right wheel contact points, in
    inches; measure your actual robot, don't guess.</p>
 <p>If your hardware config uses different motor names than the default four, use the
    longer constructor instead:</p>
-<p><code>java
-   NeuronDrive drive = new NeuronDrive(hardwareMap, localizer, trackWidthIn,
-           "myFrontLeft", "myFrontRight", "myBackLeft", "myBackRight");</code></p>
+<p><pre><code>NeuronDrive drive = new NeuronDrive(hardwareMap, localizer, trackWidthIn,
+                    "myFrontLeft", "myFrontRight", "myBackLeft", "myBackRight");</code></pre></p>
 <ol>
 <li>Before trusting any pose data, calibrate once (blocks briefly, ~1s):</li>
 </ol>
-<p><code>java
-   localizer.setPosition(new Pose2D(0, 0, 0)); // wherever your robot actually starts
-   localizer.calibrate(true);</code></p>
+<p><pre><code>localizer.setPosition(new Pose2D(0, 0, 0)); // wherever your robot actually starts
+localizer.calibrate(true);</code></pre></p>
 <ol>
 <li>Call <code>drive.update()</code> every loop. That's it: <code>drive.pose</code> now tracks the robot's
    field position, and <code>drive.goToPoint()</code> / <code>drive.splineToPoint()</code> will drive there.</li>
