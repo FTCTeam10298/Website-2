@@ -28,6 +28,11 @@
         gap: 1.25rem;
     }
 
+    /* Don't allow single card to take full width on desktop, only half width */
+    .award-event-grid:has(> :only-child) {
+        grid-template-columns: repeat(auto-fill,minmax(380px,1fr));
+    }
+
     .award-empty {
         width: fit-content;
         margin: 0 auto;
