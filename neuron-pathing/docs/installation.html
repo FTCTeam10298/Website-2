@@ -44,6 +44,7 @@
   .doc pre { background:var(--ink); color:#dce6ff; border-radius:10px; padding:16px 18px; overflow-x:auto;
     font-size:13px; line-height:1.6; margin:14px 0; }
   .doc pre code { background:none; border:none; padding:0; color:inherit; }
+  .doc img { display:block; max-width:100%; height:auto; border:1px solid var(--line); border-radius:10px; margin:16px 0; }
   .doc table { border-collapse:collapse; width:100%; margin:16px 0; font-size:13.5px; }
   .doc th, .doc td { border:1px solid var(--line); padding:8px 12px; text-align:left; vertical-align:top; }
   .doc th { background:var(--panel2); color:var(--ink); font-family:'Montserrat',sans-serif; }
@@ -74,10 +75,23 @@
 <p>The Pinpoint driver ships inside the stock FTC SDK itself, so this quickstart needs <strong>no
 extra Gradle dependencies</strong> beyond what <code>FtcRobotController</code> already provides.</p>
 <h2 id="get-the-code">Get the code</h2>
-<p>Clone this repo (or download it as a zip from GitHub) and open the folder in Android
-Studio as an existing project ("Open").</p>
-<pre><code>git clone https://github.com/FTCTeam10298/Neuron-Pathing-Quickstart.git;
-</code></pre>
+<p>Open Android Studio, then download the SDK and clone the quickstart repository.</p>
+<ol>
+<li>Open Android Studio. If you have another project open, close it with <strong>File &rarr; Close Project</strong>. Make sure <strong>Projects</strong> is selected in the sidebar.</li>
+</ol>
+<img src="https://raw.githubusercontent.com/gamemanual0/gm0/1ef047ce037c1e5b7cf9910bdda4612cee58ec40/source/docs/software/getting-started/images/using-android-studio/as-welcome.png" alt="Android Studio welcome screen" />
+<p>Click the gear icon in the bottom-left corner, then select <strong>Check for Updates</strong>. If you do not have the latest version, download the updates.</p>
+<ol start="2">
+<li>Select <strong>Get from VCS</strong>. Make sure <strong>Repository URL</strong> is selected in the sidebar, then paste the repository URL into the field:</li>
+</ol>
+<pre><code>https://github.com/FTCTeam10298/Neuron-Pathing-Quickstart.git</code></pre>
+<img src="https://raw.githubusercontent.com/gamemanual0/gm0/1ef047ce037c1e5b7cf9910bdda4612cee58ec40/source/docs/software/getting-started/images/using-android-studio/as-get-from-vcs.png" alt="Get from VCS dialog in Android Studio" />
+<p>When Android Studio asks if you want to trust and open the project, choose <strong>Trust Project</strong>.</p>
+<img src="https://raw.githubusercontent.com/gamemanual0/gm0/1ef047ce037c1e5b7cf9910bdda4612cee58ec40/source/docs/software/getting-started/images/using-android-studio/as-trust-project-dialog.png" alt="Trust project dialog in Android Studio" />
+<p>Select the hammer icon in the top-right corner of the window. This will download any missing modules and build the project.</p>
+<img src="https://raw.githubusercontent.com/gamemanual0/gm0/1ef047ce037c1e5b7cf9910bdda4612cee58ec40/source/docs/software/getting-started/images/using-android-studio/as-make-module.png" alt="Build project icon in Android Studio" />
+<p>Wait for Gradle to finish. The progress indicator is usually at the bottom of the window.</p>
+<img src="https://raw.githubusercontent.com/gamemanual0/gm0/1ef047ce037c1e5b7cf9910bdda4612cee58ec40/source/docs/software/getting-started/images/using-android-studio/build-gradle.png" alt="Gradle build in progress" />
 <p>Build once (<code>Build &gt; Make Project</code>) before doing anything else, to confirm Android Studio,
 the SDK, and Gradle are all happy on a clean checkout.</p>
 <h2 id="where-everything-lives">Where everything lives</h2>
