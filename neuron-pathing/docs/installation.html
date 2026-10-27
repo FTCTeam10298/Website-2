@@ -49,6 +49,7 @@
   .doc th, .doc td { border:1px solid var(--line); padding:8px 12px; text-align:left; vertical-align:top; }
   .doc th { background:var(--panel2); color:var(--ink); font-family:'Montserrat',sans-serif; }
   .doc strong { color:var(--ink); }
+  .doc .tip { background:var(--panel2); border:1px solid var(--line); border-left:4px solid var(--accent); border-radius:8px; padding:12px 14px; margin:12px 0 18px; color:var(--text); }
   .nextprev { display:flex; justify-content:space-between; margin-top:28px; font-size:13.5px; }
   footer { text-align:center; color:var(--muted); font-size:12.5px; margin-top:44px; }
   @media (max-width: 640px) { .doc { padding:24px 22px; } }
@@ -82,15 +83,26 @@ extra Gradle dependencies</strong> beyond what <code>FtcRobotController</code> a
 <img src="https://raw.githubusercontent.com/gamemanual0/gm0/1ef047ce037c1e5b7cf9910bdda4612cee58ec40/source/docs/software/getting-started/images/using-android-studio/as-welcome.png" alt="Android Studio welcome screen" />
 <p>Click the gear icon in the bottom-left corner, then select <strong>Check for Updates</strong>. If you do not have the latest version, download the updates.</p>
 <ol start="2">
+<li>Click the gear icon in the bottom-left corner, then select <strong>Check for Updates</strong>. If you do not have the latest version, download the updates.</li>
+</ol>
+<p>Then select <strong>Get from VCS</strong>.</p>
+<ol start="3">
 <li>Select <strong>Get from VCS</strong>. Make sure <strong>Repository URL</strong> is selected in the sidebar, then paste the repository URL into the field:</li>
 </ol>
 <pre><code>https://github.com/FTCTeam10298/Neuron-Pathing-Quickstart.git</code></pre>
+<div class="tip">Consider also changing the name of the final folder in the Directory textbox from <code>Neuron-Pathing-Quickstart</code> to something that reflects your team and the season, e.g. <code>team-10298-neuron-pathing</code>.</div>
 <img src="https://raw.githubusercontent.com/gamemanual0/gm0/1ef047ce037c1e5b7cf9910bdda4612cee58ec40/source/docs/software/getting-started/images/using-android-studio/as-get-from-vcs.png" alt="Get from VCS dialog in Android Studio" />
-<p>When Android Studio asks if you want to trust and open the project, choose <strong>Trust Project</strong>.</p>
+<ol start="4">
+<li>When Android Studio asks if you want to trust and open the project, choose <strong>Trust Project</strong>.</li>
+</ol>
 <img src="https://raw.githubusercontent.com/gamemanual0/gm0/1ef047ce037c1e5b7cf9910bdda4612cee58ec40/source/docs/software/getting-started/images/using-android-studio/as-trust-project-dialog.png" alt="Trust project dialog in Android Studio" />
-<p>Select the hammer icon in the top-right corner of the window. This will download any missing modules and build the project.</p>
+<ol start="5">
+<li>Select the hammer icon in the top-right corner of the window. This will download any missing modules and build the project.</li>
+</ol>
 <img src="https://raw.githubusercontent.com/gamemanual0/gm0/1ef047ce037c1e5b7cf9910bdda4612cee58ec40/source/docs/software/getting-started/images/using-android-studio/as-make-module.png" alt="Build project icon in Android Studio" />
-<p>Wait for Gradle to finish. The progress indicator is usually at the bottom of the window.</p>
+<ol start="6">
+<li>Wait for Gradle to finish. This indicator is usually located at the bottom of the window by default.</li>
+</ol>
 <img src="https://raw.githubusercontent.com/gamemanual0/gm0/1ef047ce037c1e5b7cf9910bdda4612cee58ec40/source/docs/software/getting-started/images/using-android-studio/build-gradle.png" alt="Gradle build in progress" />
 <p>Build once (<code>Build &gt; Make Project</code>) before doing anything else, to confirm Android Studio,
 the SDK, and Gradle are all happy on a clean checkout.</p>
