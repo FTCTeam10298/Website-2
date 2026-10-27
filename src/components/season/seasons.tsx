@@ -99,7 +99,16 @@ function Seasons() {
                         </div>
                     ),
                     hr: () => <hr className="season-divider" />,
-                    iframe: ({ node, ...props }) => <iframe style={{margin: 'auto'}} {...props} />,
+                    iframe: ({ node, ...props }) => <iframe style={{
+                        boxSizing: 'content-box',
+                        width: "96%",
+                        maxWidth: 720,
+                        height: 'unset',
+                        aspectRatio: 1920/1080,
+                        margin: 'auto',
+                        boxShadow: "var(--shadow)",
+                        border: "var(--border-w) solid var(--ink)",
+                    }} {...props} />,
                 }}
             >
                 {markdownContent}
