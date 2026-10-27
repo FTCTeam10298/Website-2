@@ -45,6 +45,15 @@
         margin-bottom: 0;
     }
 
+    .season-markdown ul {
+        width: fit-content;
+        margin: auto;
+    }
+
+    .season-markdown ul li {
+        width: fit-content;
+    }
+
     .season-markdown p {
         max-width: 840px;
         margin-left: auto;
