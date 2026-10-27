@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
+import rehypeRaw from 'rehype-raw';
 import './seasons.css';
 import { useSearchParams } from 'react-router-dom';
 
@@ -71,6 +72,7 @@ function Seasons() {
             <ReactMarkdown
                 className="markdown season-markdown"
                 remarkPlugins={[remarkGfm]}
+                rehypePlugins={[rehypeRaw]}
                 components={{
                     h1: ({ children }) => <h2 className="season-md-heading">{children}</h2>,
                     h2: ({ children }) => <h2 className="season-md-heading">{children}</h2>,
@@ -101,6 +103,7 @@ function Seasons() {
                         </div>
                     ),
                     hr: () => <hr className="season-divider" />,
+                    iframe: ({ node, ...props }) => <iframe style={{margin: 'auto'}} {...props} />,
                 }}
             >
                 {markdownContent}
