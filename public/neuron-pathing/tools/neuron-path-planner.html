@@ -258,7 +258,7 @@
           <label class="fld">X <input type="number" step="0.5" id="startX"></label>
           <label class="fld">Y <input type="number" step="0.5" id="startY"></label>
           <label class="fld">Heading° <input type="number" step="1" id="startH"></label>
-          <span class="mini" style="flex:1">literal numbers used as<br><code>(X, Y*alliance, 180 - H*alliance)</code></span>
+          <span class="mini" style="flex:1">literal numbers used as<br><code>(X, Y*alliance, H*alliance)</code></span>
         </div>
       </div>
 
@@ -443,9 +443,10 @@
 // Neuron Path Planner — standalone tool for Neuron Pathing. Does not touch any
 // project source; paste the generated code into your own OpModes.
 // Field model: 144"x144", origin center, FTC-Dashboard orientation
-// (+X up, +Y left, heading 0 = +X, CCW positive).
+// (+X right, +Y up, heading 0 = +X, CCW positive). Drawn rotated 90° CW from
+// FTC-Dashboard.
 // Generated poses use the Neuron Pathing convention:
-//     new Pose2D(X, Y*alliance, Math.toRadians(180 - H*alliance))
+//     new Pose2D(X, Y*alliance, Math.toRadians(H*alliance))
 // where X,Y,H are the literal "base" numbers the user edits, and `alliance`
 // is -1 for Blue / +1 for Red (mirrors the path across the field's Y axis).
 //==================================================================================
@@ -504,7 +505,7 @@ function defaultState() {
     bgImage:null, bgRot:270, bgFlip:false, bgShow:true,
     robotW:18, robotL:18, simMaxV:93.2, simMaxA:120, defFactor:1, defMaxSpeed:1, accent:'#58a6ff',
     autos:[ defaultAuto('My_Auto') ],
-    activeAuto:0,
+    activeAuto:0, headingV:2,
     selected:null,   // {kind:'start'} | {kind:'step', i}
   };
 }
@@ -541,6 +542,11 @@ function migrate(s) {
   if (s.defFactor === undefined) s.defFactor = 1;
   if (s.defMaxSpeed === undefined) s.defMaxSpeed = 1;
   if (!s.accent) s.accent = '#58a6ff';
+  if (s.headingV !== 2) {                      // v1 headings were emitted as 180 - H; v2 emits H directly
+    const conv = p => { if (p && typeof p.h === 'number') p.h = 180 - p.h; };
+    s.autos.forEach(a => { conv(a.start); (a.steps||[]).forEach(st => { if (st.kind === 'move') conv(st); }); });
+    s.headingV = 2;
+  }
   return s;
 }
 function installAccessors(o) {
@@ -630,16 +636,16 @@ const goalY = () => state.previewAlliance === 'BLUE' ? GOAL_Y_BLUE : GOAL_Y_RED;
 
 // base (code numbers) -> field (previewed real-world) coords
 function baseToField(p) {
-  return { x:p.x, y:p.y * af(), hdeg: 180 - p.h * af() };
+  return { x:p.x, y:p.y * af(), hdeg: p.h * af() };
 }
 // field -> base
 function fieldXYtoBase(fx, fy) { return { x:fx, y:fy * af() }; }     // af is ±1 so /af == *af
-function fieldHtoBase(fhdeg)   { return (180 - fhdeg) * af(); }
+function fieldHtoBase(fhdeg)   { return fhdeg * af(); }
 
 // field inches -> screen (logical px)
-function f2s(fx, fy) { return { sx: CX - fy * SCALE, sy: CY - fx * SCALE }; }
+function f2s(fx, fy) { return { sx: CX + fx * SCALE, sy: CY - fy * SCALE }; }
 // screen -> field inches
-function s2f(sx, sy) { return { fx: (CY - sy) / SCALE, fy: (CX - sx) / SCALE }; }
+function s2f(sx, sy) { return { fx: (sx - CX) / SCALE, fy: (CY - sy) / SCALE }; }
 
 const snapXY = n => state.snap ? Math.round(n * 2) / 2 : Math.round(n * 100) / 100;
 const snapH  = n => Math.round(n);
@@ -679,7 +685,7 @@ function draw() {
   if (state.bgShow && bgImg && bgImg.complete && bgImg.naturalWidth) {
     ctx.save();
     ctx.translate(CX, CY);
-    ctx.rotate((state.bgRot || 0) * Math.PI / 180);
+    ctx.rotate(((state.bgRot || 0) + 90) * Math.PI / 180);   // +90: field view is rotated CW
     if (state.bgFlip) ctx.scale(-1, 1);
     ctx.drawImage(bgImg, -LOGICAL/2, -LOGICAL/2, LOGICAL, LOGICAL);
     ctx.restore();
@@ -780,7 +786,7 @@ function drawNode(base, color, label, selected, dimmed) {
   const f = baseToField(base);
   const s = f2s(f.x, f.y);
   const th = f.hdeg * Math.PI / 180;
-  // heading arrow (field dir -> screen: dx=-sin, dy=-cos)
+  // heading arrow (field dir -> screen: dx=cos, dy=-sin)
   const tip = f2s(f.x + HEAD_LEN * Math.cos(th), f.y + HEAD_LEN * Math.sin(th));
   ctx.strokeStyle = color; ctx.lineWidth = 2.5;
   ctx.beginPath(); ctx.moveTo(s.sx, s.sy); ctx.lineTo(tip.sx, tip.sy); ctx.stroke();
@@ -1646,7 +1652,7 @@ function actionBody(st, i) {
 
 //------------------------------ code generation -----------------------------------
 function pose(base) {
-  return `new Pose2D(${fmt(base.x)}, ${fmt(base.y)}*alliance, Math.toRadians(180 - ${fmt(base.h)}*alliance))`;
+  return `new Pose2D(${fmt(base.x)}, ${fmt(base.y)}*alliance, Math.toRadians(${fmt(base.h)}*alliance))`;
 }
 function genStep(st, i, steps, start) {
   if (st.kind === 'move') {
@@ -2385,10 +2391,10 @@ window.addEventListener('keydown', e => {
   // nudge in FIELD space then convert, so arrows feel natural in the preview
   const f = baseToField(node);
   let moved = true;
-  if (e.key==='ArrowUp')    f.x += step;
-  else if (e.key==='ArrowDown')  f.x -= step;
-  else if (e.key==='ArrowLeft')  f.y += step;
-  else if (e.key==='ArrowRight') f.y -= step;
+  if (e.key==='ArrowUp')    f.y += step;
+  else if (e.key==='ArrowDown')  f.y -= step;
+  else if (e.key==='ArrowLeft')  f.x -= step;
+  else if (e.key==='ArrowRight') f.x += step;
   else moved = false;
   if (moved) { const b = fieldXYtoBase(f.x, f.y); node.x=b.x; node.y=b.y; renderAll(); save(); e.preventDefault(); }
 });
@@ -2428,7 +2434,8 @@ function loadExample() {
 //------------------------------ import an existing OpMode (.java) ------------------
 // Parses a Neuron Path Planner-generated OpMode back into editable autos.
 // Recognises the pose convention
-//   new Pose2D(X, Y*alliance, Math.toRadians(180 - H*alliance))
+//   new Pose2D(X, Y*alliance, Math.toRadians(H*alliance))
+// and the older `Math.toRadians(180 - H*alliance)` form (converted to H' = 180 - H).
 // drive.splineToPoint()/drive.goToPoint() become move steps (their paired
 // driveToTarget() call is dropped, it's re-emitted automatically); waitMs()
 // becomes a wait action; anything else (for/if/braces/your own subsystem
@@ -2439,13 +2446,14 @@ function loadExample() {
 const ALLI = '(?:(-?[\\d.]+)\\s*\\*\\s*alliance|alliance\\s*\\*\\s*(-?[\\d.]+))';
 const POSE_RE = new RegExp(
   'new\\s+Pose2D\\(\\s*(-?[\\d.]+)\\s*,\\s*' + ALLI +
-  '\\s*,\\s*Math\\.toRadians\\(\\s*180\\s*-\\s*' + ALLI + '\\s*\\)\\s*\\)');
+  '\\s*,\\s*Math\\.toRadians\\(\\s*(180\\s*-\\s*)?' + ALLI + '\\s*\\)\\s*\\)');
 
 function parsePose(str) {
   const m = POSE_RE.exec(str || '');
   if (!m) return null;
-  // groups: 1=x, (2|3)=y, (4|5)=h
-  return { x:+m[1], y:+(m[2] !== undefined ? m[2] : m[3]), h:+(m[4] !== undefined ? m[4] : m[5]) };
+  // groups: 1=x, (2|3)=y, 4=legacy "180 -" prefix, (5|6)=h
+  const h = +(m[5] !== undefined ? m[5] : m[6]);
+  return { x:+m[1], y:+(m[2] !== undefined ? m[2] : m[3]), h: m[4] ? 180 - h : h };
 }
 function extractMethodBody(src, name) {
   const re = new RegExp('public\\s+void\\s+' + name + '\\s*\\([^)]*\\)\\s*\\{');
