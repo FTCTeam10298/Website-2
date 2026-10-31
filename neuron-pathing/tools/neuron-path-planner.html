@@ -128,14 +128,9 @@
   <div class="left">
     <div class="topbar">
       <a href="../" class="mini" style="color:var(--muted); text-decoration:none; margin-right:2px" title="Back to Neuron Pathing home">&larr; Neuron Pathing</a>
-      <h1>Neuron Path Planner <small>· Neuron Pathing by FTC 10298 Brain Stormz · generates NeuronDrive-ready code</small></h1>
+      <h1>Neuron Path Planner <small>· Neuron Pathing by FTC 10298 Brain Stormz</small></h1>
       <div class="spacer"></div>
-      <button id="themeToggle" class="sm ghost" title="Toggle dark mode">🌙 Dark</button>
-      <span class="mini">Preview side:</span>
-      <div class="seg" id="allianceSeg">
-        <button data-a="BLUE" class="on">Blue</button>
-        <button data-a="RED">Red</button>
-      </div>
+      <button id="themeToggle" class="sm ghost" title="Toggle dark mode">Dark</button>
     </div>
 
     <div class="canvas-wrap">
@@ -258,7 +253,7 @@
           <label class="fld">X <input type="number" step="0.5" id="startX"></label>
           <label class="fld">Y <input type="number" step="0.5" id="startY"></label>
           <label class="fld">Heading° <input type="number" step="1" id="startH"></label>
-          <span class="mini" style="flex:1">literal numbers used as<br><code>(X, Y*alliance, H*alliance)</code></span>
+          <span class="mini" style="flex:1">literal numbers used as<br><code>(X, Y, H)</code></span>
         </div>
       </div>
 
@@ -290,8 +285,8 @@
           <button class="sm" id="addGoto">＋ GoTo</button>
           <select id="addActionType" class="sm" style="padding:4px 6px"></select>
           <button class="sm" id="addAction">＋ Action</button>
-          <button class="sm" id="addRepeat" title="Wrap following steps in a for-loop">🔁 Repeat</button>
-          <button class="sm" id="addIfElse" title="Branch on the loop index (e.g. i % 2 == 0)">❓ If/Else</button>
+          <button class="sm" id="addRepeat" title="Wrap following steps in a for-loop">Repeat</button>
+          <button class="sm" id="addIfElse" title="Branch on the loop index (e.g. i % 2 == 0)">If/Else</button>
         </div>
       </div>
 
@@ -442,19 +437,16 @@
 //==================================================================================
 // Neuron Path Planner — standalone tool for Neuron Pathing. Does not touch any
 // project source; paste the generated code into your own OpModes.
-// Field model: 144"x144", origin center, FTC-Dashboard orientation
-// (+X right, +Y up, heading 0 = +X, CCW positive). Drawn rotated 90° CW from
-// FTC-Dashboard.
-// Generated poses use the Neuron Pathing convention:
-//     new Pose2D(X, Y*alliance, Math.toRadians(H*alliance))
-// where X,Y,H are the literal "base" numbers the user edits, and `alliance`
-// is -1 for Blue / +1 for Red (mirrors the path across the field's Y axis).
+// Field model: 144"x144", origin at the bottom-left corner
+// (+X right, +Y up, heading 0 = +X, CCW positive).
+// Generated poses are the literal numbers the user edits:
+//     new Pose2D(X, Y, Math.toRadians(H))
+// The field is symmetric, so the same path is used for both alliances.
 //==================================================================================
 
 const FIELD = 144, HALF = 72, LOGICAL = 720, SCALE = LOGICAL / FIELD; // 5 px / inch
 const CX = LOGICAL / 2, CY = LOGICAL / 2;
 const HEAD_LEN = 11;            // heading-arrow length, inches
-const GOAL_X = -64.75, GOAL_Y_BLUE = -64.75, GOAL_Y_RED = 64.75;
 const ROBOT_IN = 22;            // robot footprint, inches
 
 // ---- action catalog: drives the dropdowns + code generation -------------------
@@ -492,11 +484,11 @@ const ACTIONS = {
 const LS_KEY = 'autoPathPlanner.v1';
 function defaultAuto(name, start) {
   return { name: name || 'My_Auto', label: (name || 'My_Auto').replace(/_/g,' '),
-           start: start || { x:-7, y:14, h:90 }, steps: [] };
+           start: start || { x:65, y:86, h:90 }, steps: [] };
 }
 function defaultState() {
   return {
-    previewAlliance:'BLUE', output:'method', opModeName:'auto',
+    output:'method', opModeName:'auto',
     includeSetPos:true, clickAdds:'spline',
     showGrid:true, showZones:true, snap:true, showRobot:false, showSpeed:false, cmpCount:0,
     videoShow:true, videoOpacity:0.55, videoRot:0, youtubeUrl:'',
@@ -505,7 +497,7 @@ function defaultState() {
     bgImage:null, bgRot:270, bgFlip:false, bgShow:true,
     robotW:18, robotL:18, simMaxV:93.2, simMaxA:120, defFactor:1, defMaxSpeed:1, accent:'#58a6ff',
     autos:[ defaultAuto('My_Auto') ],
-    activeAuto:0, headingV:2,
+    activeAuto:0, headingV:2, originV:2,
     selected:null,   // {kind:'start'} | {kind:'step', i}
   };
 }
@@ -547,6 +539,12 @@ function migrate(s) {
     s.autos.forEach(a => { conv(a.start); (a.steps||[]).forEach(st => { if (st.kind === 'move') conv(st); }); });
     s.headingV = 2;
   }
+  if (s.originV !== 2) {                       // v1 origin was the field centre; v2 is the bottom-left corner
+    const conv = p => { if (p && typeof p.x === 'number') { p.x += HALF; p.y += HALF; } };
+    s.autos.forEach(a => { conv(a.start); (a.steps||[]).forEach(st => { if (st.kind === 'move') conv(st); }); });
+    s.originV = 2;
+  }
+  delete s.previewAlliance;
   return s;
 }
 function installAccessors(o) {
@@ -631,21 +629,18 @@ function updateUndoButtons() {
 }
 
 //------------------------------ coordinate math -----------------------------------
-const af = () => state.previewAlliance === 'BLUE' ? -1 : 1;
-const goalY = () => state.previewAlliance === 'BLUE' ? GOAL_Y_BLUE : GOAL_Y_RED;
-
-// base (code numbers) -> field (previewed real-world) coords
+// base (code numbers) -> field coords. The same now; kept as the seam between the two.
 function baseToField(p) {
-  return { x:p.x, y:p.y * af(), hdeg: p.h * af() };
+  return { x:p.x, y:p.y, hdeg: p.h };
 }
 // field -> base
-function fieldXYtoBase(fx, fy) { return { x:fx, y:fy * af() }; }     // af is ±1 so /af == *af
-function fieldHtoBase(fhdeg)   { return fhdeg * af(); }
+function fieldXYtoBase(fx, fy) { return { x:fx, y:fy }; }
+function fieldHtoBase(fhdeg)   { return fhdeg; }
 
 // field inches -> screen (logical px)
-function f2s(fx, fy) { return { sx: CX + fx * SCALE, sy: CY - fy * SCALE }; }
+function f2s(fx, fy) { return { sx: fx * SCALE, sy: LOGICAL - fy * SCALE }; }
 // screen -> field inches
-function s2f(sx, sy) { return { fx: (sx - CX) / SCALE, fy: (CY - sy) / SCALE }; }
+function s2f(sx, sy) { return { fx: sx / SCALE, fy: (LOGICAL - sy) / SCALE }; }
 
 const snapXY = n => state.snap ? Math.round(n * 2) / 2 : Math.round(n * 100) / 100;
 const snapH  = n => Math.round(n);
@@ -696,30 +691,22 @@ function draw() {
   // grid (24" tiles)
   if (state.showGrid) {
     ctx.lineWidth = 1;
-    for (let i = -HALF; i <= HALF; i += 24) {
-      const a = f2s(i, HALF), b = f2s(i, -HALF);
-      ctx.strokeStyle = i === 0 ? cssVar('--grid-axis') : cssVar('--grid-line');
+    for (let i = 0; i <= FIELD; i += 24) {
+      const a = f2s(i, FIELD), b = f2s(i, 0);
+      ctx.strokeStyle = i === HALF ? cssVar('--grid-axis') : cssVar('--grid-line');
       ctx.beginPath(); ctx.moveTo(a.sx, a.sy); ctx.lineTo(b.sx, b.sy); ctx.stroke();
-      const c = f2s(HALF, i), d = f2s(-HALF, i);
+      const c = f2s(FIELD, i), d = f2s(0, i);
       ctx.beginPath(); ctx.moveTo(c.sx, c.sy); ctx.lineTo(d.sx, d.sy); ctx.stroke();
     }
   }
 
-  // launch / park zones: pointInZone = (x<=0 && |y|<=-x) || (x>=48 && |y|<=x-48)
+  // launch / park zones: with c = 72 (field centre),
+  // pointInZone = (x<=c && |y-c|<=c-x) || (x>=c+48 && |y-c|<=x-c-48)
   if (state.showZones) {
     ctx.fillStyle = 'rgba(88,166,255,0.08)';
-    fillFieldPoly([[0,0],[-HALF,HALF],[-HALF,-HALF]]);          // x<=0 triangle
-    fillFieldPoly([[48,0],[HALF,HALF-48],[HALF,-(HALF-48)]]);   // x>=48 triangle
+    fillFieldPoly([[HALF,HALF],[0,FIELD],[0,0]]);                   // left triangle
+    fillFieldPoly([[HALF+48,HALF],[FIELD,FIELD-48],[FIELD,48]]);    // right triangle
   }
-
-  // goal marker (current preview side)
-  const g = f2s(GOAL_X, goalY());
-  ctx.fillStyle = '#f0c000';
-  ctx.beginPath(); ctx.arc(g.sx, g.sy, 6, 0, 7); ctx.fill();
-  ctx.strokeStyle = 'rgba(240,192,0,0.5)';
-  ctx.beginPath(); ctx.arc(g.sx, g.sy, 11, 0, 7); ctx.stroke();
-  ctx.fillStyle = '#f0c000'; ctx.font = '11px sans-serif'; ctx.textAlign='center';
-  ctx.fillText('GOAL', g.sx, g.sy - 16);
 
   // ---- neighbouring autos faded underneath (Compare slider), each its own colour ----
   shownNeighbors().forEach((ai, k) =>
@@ -1026,7 +1013,7 @@ function parseBlocks(steps) {
 function evalCond(cond, scope) {
   try {
     const names = scope.map(s => s.name), vals = scope.map(s => s.value);
-    names.push('alliance'); vals.push(af());
+    names.push('alliance'); vals.push(1);   // paths are alliance-independent; simulate as Red
     return !!(Function(...names, 'return (' + cond + ');')(...vals));
   } catch (e) { return true; }   // unknown/invalid condition -> take the then-branch
 }
@@ -1332,7 +1319,7 @@ function endDrag(e) {
   if (mouseDown && !mouseDown.moved && !drag && !mouseDown.consumed) {
     // plain click on empty field -> add a waypoint there
     const f = s2f(mouseDown.sx, mouseDown.sy);
-    if (Math.abs(f.fx) <= HALF+6 && Math.abs(f.fy) <= HALF+6) addMoveAt(f.fx, f.fy);
+    if (f.fx >= -6 && f.fx <= FIELD+6 && f.fy >= -6 && f.fy <= FIELD+6) addMoveAt(f.fx, f.fy);
   }
   if (drag) save();
   drag = null; mouseDown = null;
@@ -1652,7 +1639,7 @@ function actionBody(st, i) {
 
 //------------------------------ code generation -----------------------------------
 function pose(base) {
-  return `new Pose2D(${fmt(base.x)}, ${fmt(base.y)}*alliance, Math.toRadians(${fmt(base.h)}*alliance))`;
+  return `new Pose2D(${fmt(base.x)}, ${fmt(base.y)}, Math.toRadians(${fmt(base.h)}))`;
 }
 function genStep(st, i, steps, start) {
   if (st.kind === 'move') {
@@ -1752,7 +1739,7 @@ genBodyFor(a, '        ', false),
 `    Robot robot;`,
 `    NeuronLocalizer localizer;`,
 `    NeuronDrive drive;`,
-`    int alliance = -1; // -1 = Blue, +1 = Red—mirrors X across the field`,
+`    int alliance = -1; // -1 = Blue, +1 = Red—for subsystems; paths are the same for both`,
 `    int autoIndex = 0;`,
 `    String[] autoNames = {`,
 namesArr,
@@ -1895,7 +1882,6 @@ function syncInputs() {
   applyAccent();
   document.getElementById('simRate').value = String(sim.rate);
   document.getElementById('opModeNameRow').style.display = state.output === 'opmode' ? '' : 'none';
-  segSet('allianceSeg','a',state.previewAlliance);
   segSet('outputSeg','o',state.output);
   segSet('clickAddsSeg','k',state.clickAdds);
   renderAutoTabs();
@@ -2124,7 +2110,6 @@ function bindSeg(id, attr, fn) {
   document.querySelectorAll(`#${id} button`).forEach(b =>
     b.addEventListener('click', () => { fn(b.dataset[attr]); }));
 }
-bindSeg('allianceSeg','a', v => { state.previewAlliance=v; renderAll(); save(); });
 bindSeg('outputSeg','o',   v => { state.output=v; renderAll(); save(); });
 bindSeg('clickAddsSeg','k',v => { state.clickAdds=v; renderAll(); save(); });
 
@@ -2416,13 +2401,13 @@ function loadExample() {
   adoptState(defaultState());
   state.opModeName = 'auto';
   state.autos = [{
-    name:'Example_Close', label:'Example Close', start:{ x:-7, y:14, h:90 },
+    name:'Example_Close', label:'Example Close', start:{ x:65, y:86, h:90 },
     steps:[
       { kind:'action', type:'turret', mode:'AUTO' },
-      { kind:'move', move:'goto', x:-7, y:14, h:90, through:false, factor:1, maxSpeed:1 },
+      { kind:'move', move:'goto', x:65, y:86, h:90, through:false, factor:1, maxSpeed:1 },
       { kind:'action', type:'shoot' },
-      { kind:'move', move:'spline', x:12, y:58, h:90, through:true, factor:1, maxSpeed:1 },
-      { kind:'move', move:'spline', x:-7, y:14, h:90, through:false, factor:1, maxSpeed:1 },
+      { kind:'move', move:'spline', x:84, y:130, h:90, through:true, factor:1, maxSpeed:1 },
+      { kind:'move', move:'spline', x:65, y:86, h:90, through:false, factor:1, maxSpeed:1 },
       { kind:'action', type:'shoot' },
       { kind:'action', type:'turret', mode:'OFF' },
     ],
@@ -2434,8 +2419,9 @@ function loadExample() {
 //------------------------------ import an existing OpMode (.java) ------------------
 // Parses a Neuron Path Planner-generated OpMode back into editable autos.
 // Recognises the pose convention
-//   new Pose2D(X, Y*alliance, Math.toRadians(H*alliance))
-// and the older `Math.toRadians(180 - H*alliance)` form (converted to H' = 180 - H).
+//   new Pose2D(X, Y, Math.toRadians(H))
+// and the older centre-origin `new Pose2D(X, Y*alliance, Math.toRadians([180 -] H*alliance))`
+// forms (shifted by +72 to the corner origin; `180 - H` converted to H' = 180 - H).
 // drive.splineToPoint()/drive.goToPoint() become move steps (their paired
 // driveToTarget() call is dropped, it's re-emitted automatically); waitMs()
 // becomes a wait action; anything else (for/if/braces/your own subsystem
@@ -2444,16 +2430,22 @@ function loadExample() {
 // `n*alliance` and `alliance*n` both appear in the codebase, so each alliance-scaled
 // term is matched in either order (two capture groups, whichever fired wins).
 const ALLI = '(?:(-?[\\d.]+)\\s*\\*\\s*alliance|alliance\\s*\\*\\s*(-?[\\d.]+))';
+const NUM = '(-?[\\d.]+)';
 const POSE_RE = new RegExp(
+  'new\\s+Pose2D\\(\\s*' + NUM + '\\s*,\\s*' + NUM +
+  '\\s*,\\s*Math\\.toRadians\\(\\s*' + NUM + '\\s*\\)\\s*\\)');
+const LEGACY_POSE_RE = new RegExp(
   'new\\s+Pose2D\\(\\s*(-?[\\d.]+)\\s*,\\s*' + ALLI +
   '\\s*,\\s*Math\\.toRadians\\(\\s*(180\\s*-\\s*)?' + ALLI + '\\s*\\)\\s*\\)');
 
 function parsePose(str) {
-  const m = POSE_RE.exec(str || '');
+  const n = POSE_RE.exec(str || '');
+  if (n) return { x:+n[1], y:+n[2], h:+n[3] };
+  const m = LEGACY_POSE_RE.exec(str || '');
   if (!m) return null;
   // groups: 1=x, (2|3)=y, 4=legacy "180 -" prefix, (5|6)=h
   const h = +(m[5] !== undefined ? m[5] : m[6]);
-  return { x:+m[1], y:+(m[2] !== undefined ? m[2] : m[3]), h: m[4] ? 180 - h : h };
+  return { x:+m[1] + HALF, y:+(m[2] !== undefined ? m[2] : m[3]) + HALF, h: m[4] ? 180 - h : h };
 }
 function extractMethodBody(src, name) {
   const re = new RegExp('public\\s+void\\s+' + name + '\\s*\\([^)]*\\)\\s*\\{');
@@ -2539,7 +2531,7 @@ function parseOpMode(src) {
       if (bm) start = parsePose(bm[1]);
     }
     autos.push({ name: nm, label: labels[idx] || nm.replace(/_/g,' '),
-                 start: start || { x:-7, y:14, h:90 }, steps });
+                 start: start || { x:65, y:86, h:90 }, steps });
   });
   return autos;
 }
@@ -2563,7 +2555,7 @@ function importOpMode(src) {
 const themeBtn = document.getElementById('themeToggle');
 function applyTheme(dark) {
   document.body.classList.toggle('dark', dark);
-  themeBtn.textContent = dark ? '☀ Light' : '🌙 Dark';
+  themeBtn.textContent = dark ? '☀ Light' : 'Dark';
   try { localStorage.setItem('app_theme', dark ? 'dark' : 'light'); } catch(e) {}
   if (typeof draw === 'function') draw();   // repaint canvas with theme colors
 }
