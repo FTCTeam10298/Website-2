@@ -1,0 +1,109 @@
+/* Neuron Path Planner. Everything is scoped under .np-planner and prefixed np- so the
+   main site's global styles (.left/.right, h1, a, …) can't leak in, and vice versa. */
+.np-planner {
+  /* Brain Stormz palette: white/soft-blue surfaces, navy ink, electric blue + red accents */
+  --np-bg:#eef3fb; --np-panel:#ffffff; --np-panel2:#eef4ff; --np-line:#dbe3ef;
+  --np-text:#172033; --np-muted:#637083; --np-accent:#1334f0; --np-accent2:#f2323f;
+  --np-green:#04aa6d; --np-red:#f2323f; --np-blue:#1334f0; --np-yellow:#d29922;
+  --np-brand-blue-dark:#1029bf; --np-ink:#11224c;
+  --np-page-grad:linear-gradient(180deg,#fff,#f4f7fb 42%,#eef3fb);
+  --np-input-bg:#ffffff; --np-step-bg:#ffffff; --np-control-bg:#fffdf3; --np-chip-bg:#dcf7ef;
+  --np-on-text:#fff;
+  /* canvas/field colours, read by FieldCanvas */
+  --np-field:#f4f7fb; --np-grid-axis:#11224c; --np-grid-line:#dbe3ef;
+  --np-field-overlay:rgba(244,247,251,0.40); --np-robot-stroke:rgba(17,34,76,0.55);
+
+  height:100vh; overflow:hidden;
+  background:var(--np-page-grad) var(--np-bg) fixed; color:var(--np-text);
+  font-family:'montserrat',-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif; font-size:13px;
+}
+.np-planner.np-dark {
+  --np-bg:#0e1116; --np-panel:#161b22; --np-panel2:#1c2230; --np-line:#2a3242;
+  --np-text:#e6edf3; --np-muted:#8b949e; --np-accent2:#f0883e;
+  --np-green:#3fb950; --np-red:#f85149; --np-blue:#58a6ff; --np-yellow:#d29922;
+  --np-brand-blue-dark:#1f6feb; --np-ink:#cdd9ff;
+  --np-page-grad:none;
+  --np-input-bg:#0d1117; --np-step-bg:#0f141c; --np-control-bg:#15131c; --np-chip-bg:#0f141c;
+  --np-on-text:#04121f;
+  --np-field:#0a0d12; --np-grid-axis:#3b475c; --np-grid-line:#1b2230;
+  --np-field-overlay:rgba(10,13,18,0.32); --np-robot-stroke:rgba(255,255,255,0.5);
+}
+
+.np-app { display:flex; height:100vh; overflow:hidden; }
+.np-left { flex:1; display:flex; flex-direction:column; min-width:0; padding:12px; gap:8px; }
+.np-right { width:430px; min-width:430px; background:var(--np-panel); border-left:1px solid var(--np-line);
+  display:flex; flex-direction:column; overflow:hidden; }
+.np-planner h1 { font-size:16px; margin:0; font-weight:400; font-family:'Robotech GP','montserrat',sans-serif;
+  letter-spacing:.5px; color:var(--np-ink); text-transform:uppercase; }
+.np-planner h1 small { color:var(--np-muted); font-weight:400; font-size:12px; }
+.np-topbar { display:flex; align-items:center; gap:10px; flex-wrap:wrap; }
+.np-back { color:var(--np-muted); text-decoration:none; margin-right:2px; }
+.np-canvas-wrap { flex:1; display:flex; align-items:center; justify-content:center; min-height:0; position:relative; overflow:hidden; }
+.np-field { background:#f4f7fb; border:1px solid var(--np-line); border-radius:8px;
+  max-width:100%; max-height:100%; aspect-ratio:1/1; touch-action:none; cursor:crosshair; position:relative; z-index:1; }
+.np-video-frame { position:absolute; border:1px solid var(--np-line); border-radius:8px; background:#000;
+  pointer-events:none; z-index:2; display:none; transform-origin:center center; }
+.np-hint { color:var(--np-muted); font-size:11.5px; display:flex; gap:14px; flex-wrap:wrap; align-items:center; }
+.np-hint b { color:var(--np-text); font-weight:600; }
+.np-legend { display:flex; gap:12px; align-items:center; flex-wrap:wrap; }
+.np-legend > span { display:inline-flex; align-items:center; gap:5px; }
+.np-swatch { width:14px; height:3px; border-radius:2px; display:inline-block; }
+.np-dot { width:9px; height:9px; border-radius:50%; display:inline-block; }
+.np-wide-range { min-width:120px; flex:1; }
+.np-panel-scroll { overflow-y:auto; padding:12px; display:flex; flex-direction:column; gap:12px; }
+.np-card { background:var(--np-panel2); border:1px solid var(--np-line); border-radius:8px; padding:10px; }
+.np-field-card { width:min(720px,100%); align-self:center; flex:0 0 auto; }
+.np-card h2 { font-size:12px; margin:0 0 8px; text-transform:uppercase; letter-spacing:.5px; color:var(--np-muted);
+  font-family:inherit; font-weight:600; }
+.np-row { display:flex; gap:8px; align-items:center; flex-wrap:wrap; }
+.np-row + .np-row { margin-top:7px; }
+.np-fld { display:flex; flex-direction:column; gap:3px; font-size:11px; color:var(--np-muted); }
+.np-planner input[type=text], .np-planner input[type=number], .np-planner select, .np-planner textarea {
+  background:var(--np-input-bg); color:var(--np-text); border:1px solid var(--np-line); border-radius:6px;
+  padding:5px 7px; font-size:12px; font-family:inherit; }
+.np-planner input[type=number] { width:64px; }
+.np-planner input:focus, .np-planner select:focus, .np-planner textarea:focus { outline:none; border-color:var(--np-accent); }
+.np-planner code { font-family:ui-monospace,Menlo,Consolas,monospace; }
+.np-planner button { background:var(--np-panel2); color:var(--np-text); border:1px solid var(--np-line);
+  border-radius:6px; padding:6px 10px; cursor:pointer; font-size:12px; font-family:inherit; }
+.np-planner button:hover { border-color:var(--np-accent); }
+.np-planner button.np-primary { background:var(--np-accent); color:var(--np-on-text); border-color:var(--np-accent); font-weight:600; }
+.np-planner button.np-primary:hover { background:var(--np-brand-blue-dark); border-color:var(--np-brand-blue-dark); }
+.np-planner button.np-ghost { background:transparent; }
+.np-planner button.np-danger:hover { border-color:var(--np-red); color:var(--np-red); }
+.np-planner button.np-sm { padding:3px 7px; font-size:11px; }
+.np-planner button:disabled { opacity:.4; cursor:default; }
+.np-planner button:disabled:hover { border-color:var(--np-line); }
+.np-planner button.np-auto-on { background:var(--np-accent); color:#04121f; }
+.np-seg { display:inline-flex; border:1px solid var(--np-line); border-radius:6px; overflow:hidden; }
+.np-planner .np-seg button { border:none; border-radius:0; background:transparent; }
+.np-planner .np-seg button.np-on { background:var(--np-accent); color:var(--np-on-text); font-weight:600; }
+.np-steps { display:flex; flex-direction:column; gap:7px; }
+.np-step { border:1px solid var(--np-line); border-radius:7px; padding:8px; background:var(--np-step-bg); position:relative; }
+.np-step.np-sel { border-color:var(--np-accent); box-shadow:0 0 0 1px var(--np-accent) inset; }
+.np-step.np-move { border-left:3px solid var(--np-blue); }
+.np-step.np-goto { border-left:3px solid var(--np-accent2); }
+.np-step.np-action { border-left:3px solid var(--np-green); }
+.np-step.np-control { border-left:3px solid var(--np-yellow); background:var(--np-control-bg); padding:6px 8px; }
+.np-step-head { display:flex; align-items:center; gap:6px; margin-bottom:6px; }
+.np-step-num { font-weight:700; color:var(--np-muted); font-size:11px; min-width:30px; }
+.np-step-title { font-weight:600; font-size:12px; flex:1; }
+.np-planner button.np-icbtn { padding:2px 6px; font-size:12px; line-height:1; }
+.np-mini { font-size:11px; color:var(--np-muted); }
+.np-planner textarea.np-code { width:100%; height:230px; resize:vertical; font-family:ui-monospace,Menlo,Consolas,monospace;
+  font-size:11.5px; line-height:1.5; white-space:pre; overflow:auto; tab-size:4; }
+.np-codebar { display:flex; gap:8px; align-items:center; margin-bottom:8px; flex-wrap:wrap; }
+.np-toast { position:fixed; bottom:18px; left:50%; transform:translateX(-50%); background:var(--np-green);
+  color:#fff; padding:8px 16px; border-radius:8px; font-weight:600; opacity:0; transition:opacity .2s;
+  pointer-events:none; z-index:50; }
+.np-toast.np-show { opacity:1; }
+.np-chk { display:inline-flex; align-items:center; gap:5px; font-size:12px; color:var(--np-text); cursor:pointer; }
+.np-spacer { flex:1; }
+.np-planner details summary { cursor:pointer; color:var(--np-muted); font-size:11px; }
+.np-addbar { display:flex; gap:6px; flex-wrap:wrap; position:sticky; bottom:0; z-index:3;
+  background:var(--np-panel2); border-top:1px solid var(--np-line); padding-top:8px; margin-top:9px; }
+.np-planner .np-addbar button.np-chip { background:var(--np-chip-bg); border-color:var(--np-green); color:var(--np-green); }
+.np-quickbar { display:flex; gap:6px; flex-wrap:wrap; width:100%; }
+.np-filelbl { color:var(--np-accent); cursor:pointer; text-decoration:underline; font-size:11px; }
+.np-planner .np-pill { font-size:10px; padding:1px 6px; border-radius:10px; background:var(--np-line); color:var(--np-muted);
+  border:none; font-weight:400; text-transform:none; letter-spacing:0; }

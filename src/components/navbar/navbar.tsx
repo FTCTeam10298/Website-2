@@ -107,7 +107,7 @@ function NavBar() {
                     <div className="dropdown-content">
                         <a href="/">Brain Stormz (FTC)</a>
                         <a href="/FLL/index.html">FLL</a>
-                        <a href="/neuron-pathing/index.html">Neuron Pathing</a>
+                        <a href="/neuron-pathing">Neuron Pathing</a>
                     </div>
                 </div>
                 <div className="right">
