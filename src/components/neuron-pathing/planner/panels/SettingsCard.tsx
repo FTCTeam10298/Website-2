@@ -1,7 +1,8 @@
 import { memo } from 'react';
+import { clampAllToField } from '../model/stepOps';
 import type { PlannerState } from '../model/types';
 import type { Update } from '../hooks/usePlanner';
-import { Card, NumInput } from './ui';
+import { Card, NumField, NumInput } from './ui';
 
 // speed/accel re-time the simulator; defaults seed new waypoints; theme recolours the UI
 function SettingsCard({ state, update, save }: { state: PlannerState; update: Update; save: () => void }) {
@@ -38,6 +39,15 @@ function SettingsCard({ state, update, save }: { state: PlannerState; update: Up
             onChange={e => update(d => { d.accent = e.target.value; })} onBlur={save} />
         </label>
         <span className="np-mini" style={{ flex: 1, alignSelf: 'flex-end' }}>applied to new waypoints</span>
+      </div>
+      <div className="np-row" style={{ marginTop: 8 }}>
+        {(['Front', 'Back', 'Left', 'Right'] as const).map(side => (
+          <NumField key={side} label={`Robot ${side.toLowerCase()}`} value={state[`robot${side}`]} step={0.5} min={0}
+            style={{ width: 56 }} title={`Inches from the robot's centre (its tracked pose) to its ${side.toLowerCase()} edge`}
+            onChange={v => update(d => { d[`robot${side}`] = Math.max(0, v); d.showRobot = true; })}
+            onCommit={() => update(clampAllToField, { save: true })} />
+        ))}
+        <span className="np-mini" style={{ flex: 1, alignSelf: 'flex-end' }}>inches from the robot's centre; waypoints can't push this box through a wall</span>
       </div>
       <div className="np-mini" style={{ marginTop: 6 }}>All distances in inches, speeds in inches/sec. Field image: use <b>field image</b> / <b>reset field</b> below.</div>
     </Card>

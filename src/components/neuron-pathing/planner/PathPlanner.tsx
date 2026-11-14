@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 import fieldPng from './assets/field.png';
 import FieldCanvas, { type FieldCanvasHandle } from './canvas/FieldCanvas';
 import { generateCode, sanitize } from './model/codegen';
+import { clampToField, robotDims } from './model/geometry';
 import { parseOpMode } from './model/importJava';
 import { defaultState, exampleState, parseStateFile } from './model/state';
 import { activeAuto, delStep, selectedNode } from './model/stepOps';
@@ -87,7 +88,7 @@ export default function PathPlanner() {
     const delta = { ArrowUp: [0, step], ArrowDown: [0, -step], ArrowLeft: [-step, 0], ArrowRight: [step, 0] }[e.key];
     if (!delta) return;
     e.preventDefault();
-    update(d => { const n = selectedNode(d)!; n.x += delta[0]; n.y += delta[1]; }, { save: true });
+    update(d => { const n = selectedNode(d)!; n.x += delta[0]; n.y += delta[1]; clampToField(n, robotDims(d)); }, { save: true });
   };
   useEffect(() => {
     const handler = (e: KeyboardEvent) => onKey.current(e);
@@ -169,14 +170,14 @@ export default function PathPlanner() {
             sim={{ active: simulator.sim.active, t: simulator.sim.t, timeline: simulator.timeline }}
             video={video} readoutRef={readoutRef} />
           <SimulatorCard simulator={simulator} />
-          <FieldToolbar state={state} update={update} save={save} onFit={onFit} readoutRef={readoutRef} />
+          <FieldToolbar state={state} update={update} onFit={onFit} readoutRef={readoutRef} />
         </div>
 
         <div className="np-right">
           <div className="np-panel-scroll">
             <OutputCard state={state} update={update} save={save} onLoadExample={onLoadExample} />
             <AutosCard state={state} update={update} save={save} onImportJava={onImportJava} />
-            <StartPoseCard start={activeAuto(state).start} update={update} save={save} />
+            <StartPoseCard start={activeAuto(state).start} update={update} />
             <StepsCard state={state} update={update} save={save} undo={undo} redo={redo} canUndo={canUndo} canRedo={canRedo} />
             <SettingsCard state={state} update={update} save={save} />
             <VideoOverlayCard state={state} update={update} save={save} video={video} toast={toast} />

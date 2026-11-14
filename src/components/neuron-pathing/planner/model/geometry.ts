@@ -1,5 +1,5 @@
-import { HEAD_LEN, LOGICAL, SCALE } from './constants';
-import type { FieldPose, MoveStep, PathNode, Pose, ScreenPt, Step } from './types';
+import { FIELD, HEAD_LEN, LOGICAL, SCALE } from './constants';
+import type { FieldPose, MoveStep, PathNode, PlannerState, Pose, ScreenPt, Step } from './types';
 
 // field inches -> screen (logical px)
 export function f2s(fx: number, fy: number): ScreenPt {
@@ -118,14 +118,30 @@ export function factorHandleField(p: MoveStep) {
   return { x: p.x + dist * Math.cos(th), y: p.y + dist * Math.sin(th) };
 }
 
-// corners of a robot-sized box centred on a pose, in field inches
-export function robotCorners(fx: number, fy: number, hdeg: number, robotW: number, robotL: number) {
+// robot footprint: distance from the tracked pose to each side of the robot, inches
+export interface RobotDims { front: number; back: number; left: number; right: number }
+
+export const robotDims = (s: PlannerState): RobotDims =>
+  ({ front: s.robotFront, back: s.robotBack, left: s.robotLeft, right: s.robotRight });
+
+// corners of the robot's footprint at a pose, in field inches
+export function robotCorners(fx: number, fy: number, hdeg: number, d: RobotDims) {
   const th = rad(hdeg);
-  const halfL = (robotL || 18) / 2, halfW = (robotW || 18) / 2;
-  return [[halfL, halfW], [halfL, -halfW], [-halfL, -halfW], [-halfL, halfW]].map(([fwd, left]) => ({
+  return [[d.front, d.left], [d.front, -d.right], [-d.back, -d.right], [-d.back, d.left]].map(([fwd, left]) => ({
     x: fx + fwd * Math.cos(th) - left * Math.sin(th),
     y: fy + fwd * Math.sin(th) + left * Math.cos(th),
   }));
+}
+
+// The robot collides with the field walls: shift a pose (keeping its heading) so its whole
+// footprint stays inside the field. Bounds are rounded inward to 0.01".
+export function clampToField(p: Pose, d: RobotDims) {
+  const offs = robotCorners(0, 0, p.h, d);
+  const xs = offs.map(o => o.x), ys = offs.map(o => o.y);
+  const clamp = (v: number, lo: number, hi: number) =>
+    Math.min(Math.floor(hi * 100) / 100, Math.max(Math.ceil(lo * 100) / 100, v));
+  p.x = clamp(p.x, -Math.min(...xs), FIELD - Math.max(...xs));
+  p.y = clamp(p.y, -Math.min(...ys), FIELD - Math.max(...ys));
 }
 
 // power -> colour for the velocity overlay (1=full=green, 0=slow=red)

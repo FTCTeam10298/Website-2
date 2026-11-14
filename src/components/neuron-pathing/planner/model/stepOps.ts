@@ -1,7 +1,7 @@
 // Edits to the planner state. Each takes a draft (see usePlanner's update()) and mutates it.
 import { newAction } from './actions';
 import { blockOpenerOf, isControl, LOOP_VARS, matchingEnd, openLoopVarsAt } from './blocks';
-import { snapXY } from './geometry';
+import { clampToField, robotDims, snapXY } from './geometry';
 import { defaultAuto } from './state';
 import type { ActionType, Auto, MoveKind, MoveStep, PlannerState, Pose, Step } from './types';
 
@@ -42,11 +42,24 @@ function newMove(s: PlannerState, kind: MoveKind, x: number, y: number): MoveSte
 }
 
 export function addMoveAt(s: PlannerState, fx: number, fy: number) {
-  insertSteps(s, [newMove(s, s.clickAdds, snapXY(fx, s.snap), snapXY(fy, s.snap))]);
+  const st = newMove(s, s.clickAdds, snapXY(fx, s.snap), snapXY(fy, s.snap));
+  clampToField(st, robotDims(s));
+  insertSteps(s, [st]);
 }
 
 export function addMove(s: PlannerState, kind: MoveKind) {
-  insertSteps(s, [newMove(s, kind, 0, 0)]);
+  const st = newMove(s, kind, 0, 0);
+  clampToField(st, robotDims(s));
+  insertSteps(s, [st]);
+}
+
+// push every start pose + waypoint back inside the walls (after typed coords or a robot-size change)
+export function clampAllToField(s: PlannerState) {
+  const dims = robotDims(s);
+  s.autos.forEach(a => {
+    clampToField(a.start, dims);
+    a.steps.forEach(st => { if (st.kind === 'move') clampToField(st, dims); });
+  });
 }
 
 export function addAction(s: PlannerState, type: ActionType) {

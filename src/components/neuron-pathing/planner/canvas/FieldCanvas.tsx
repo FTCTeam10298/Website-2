@@ -1,7 +1,7 @@
 import { forwardRef, useEffect, useImperativeHandle, useRef, type PointerEvent, type RefObject } from 'react';
 import { FIELD, HEAD_LEN, LOGICAL } from '../model/constants';
 import {
-  distToSeg2, f2s, factorHandleField, headingTip, rad, s2f, sampledFieldPath, snapH, snapXY,
+  clampToField, distToSeg2, f2s, factorHandleField, headingTip, rad, robotDims, s2f, sampledFieldPath, snapH, snapXY,
 } from '../model/geometry';
 import type { Timeline } from '../model/simulator';
 import { activeAuto, addMoveAt, shownNeighbors, switchAuto } from '../model/stepOps';
@@ -223,12 +223,14 @@ const FieldCanvas = forwardRef<FieldCanvasHandle, Props>(function FieldCanvas(
       const p = h.ref.kind === 'start' ? auto.start : auto.steps[h.ref.i] as MoveStep;
       if (h.kind === 'pos') {
         p.x = snapXY(f.fx, d.snap); p.y = snapXY(f.fy, d.snap);
+        clampToField(p, robotDims(d));
       } else if (h.kind === 'factor') {           // drag the diamond to set spline factor
         const th = rad(p.h);
         const proj = (f.fx - p.x) * Math.cos(th) + (f.fy - p.y) * Math.sin(th);
         (p as MoveStep).factor = Math.max(0.1, Math.min(3, Math.round(((proj - HEAD_LEN) / 10) / 0.05) * 0.05));
       } else {                                    // rotate
         p.h = snapH(Math.atan2(f.fy - p.y, f.fx - p.x) * 180 / Math.PI);
+        clampToField(p, robotDims(d));            // rotating next to a wall slides the robot off it
       }
     });
   };

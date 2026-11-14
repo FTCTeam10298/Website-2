@@ -80,8 +80,11 @@ export interface PlannerState {
   bgRot: number;
   bgFlip: boolean;
   bgShow: boolean;
-  robotW: number;
-  robotL: number;
+  // robot footprint: distance from the robot's centre (the tracked pose) to each side, inches
+  robotFront: number;
+  robotBack: number;
+  robotLeft: number;
+  robotRight: number;
   simMaxV: number;
   simMaxA: number;
   defFactor: number;

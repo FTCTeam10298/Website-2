@@ -4,18 +4,17 @@ import { sanitize } from '../model/codegen';
 import { shownNeighbors } from '../model/stepOps';
 import type { PlannerState } from '../model/types';
 import type { Update } from '../hooks/usePlanner';
-import { Check, NumInput } from './ui';
+import { Check } from './ui';
 
 interface Props {
   state: PlannerState;
   update: Update;
-  save: () => void;
   onFit: () => void;
   readoutRef: RefObject<HTMLSpanElement>;
 }
 
 // hint row + legend / display options under the field
-function FieldToolbar({ state, update, save, onFit, readoutRef }: Props) {
+function FieldToolbar({ state, update, onFit, readoutRef }: Props) {
   const toggle = (key: 'bgShow' | 'showGrid' | 'showZones' | 'snap' | 'showSpeed' | 'showRobot') =>
     (v: boolean) => update(d => { d[key] = v; }, { save: true });
   const maxCmp = Math.max(0, state.autos.length - 1);
@@ -65,13 +64,8 @@ function FieldToolbar({ state, update, save, onFit, readoutRef }: Props) {
             </span>
           ))}
         </span>
-        <Check label="Robot box" checked={state.showRobot} onChange={toggle('showRobot')} />
-        <NumInput value={state.robotW} step={0.5} min={1} style={{ width: 46 }} title="Robot width, inches (left-right)"
-          onChange={v => update(d => { d.robotW = v; d.showRobot = true; })} onCommit={save} />
-        <span className="np-mini">×</span>
-        <NumInput value={state.robotL} step={0.5} min={1} style={{ width: 46 }} title="Robot length, inches (forward)"
-          onChange={v => update(d => { d.robotL = v; d.showRobot = true; })} onCommit={save} />
-        <span className="np-mini">in</span>
+        <Check label="Robot box" checked={state.showRobot} onChange={toggle('showRobot')}
+          title="Draw the robot's footprint at every waypoint (size it in Settings)" />
       </div>
     </>
   );

@@ -1,6 +1,6 @@
 import { CX, CY, FIELD, HALF, LOGICAL, NEIGH_COLORS } from '../model/constants';
 import {
-  effectiveReversed, f2s, factorHandleField, headingTip, pathNodesOf, robotCorners, speedColor, splineSamples,
+  effectiveReversed, f2s, factorHandleField, headingTip, pathNodesOf, robotCorners, robotDims, speedColor, splineSamples,
 } from '../model/geometry';
 import { posAlong, poseAt, type Timeline } from '../model/simulator';
 import { activeAuto, shownNeighbors } from '../model/stepOps';
@@ -87,7 +87,7 @@ function drawRobotBox(ctx: Ctx, colors: SceneColors, state: PlannerState, p: Pos
   ctx.save();
   if (dimmed) ctx.globalAlpha = 0.3;
   ctx.strokeStyle = colors.robotStroke; ctx.lineWidth = 1.5; ctx.setLineDash([4, 3]);
-  tracePoly(ctx, robotCorners(p.x, p.y, p.h, state.robotW, state.robotL));
+  tracePoly(ctx, robotCorners(p.x, p.y, p.h, robotDims(state)));
   ctx.closePath(); ctx.stroke(); ctx.setLineDash([]);
   ctx.restore();
 }
@@ -143,7 +143,7 @@ function drawFactorHandle(ctx: Ctx, state: PlannerState) {
 function drawFieldRobot(ctx: Ctx, state: PlannerState, fx: number, fy: number, hdeg: number, color: string) {
   ctx.setLineDash([]);
   ctx.fillStyle = 'rgba(63,185,80,0.18)'; ctx.strokeStyle = color; ctx.lineWidth = 2;
-  tracePoly(ctx, robotCorners(fx, fy, hdeg, state.robotW, state.robotL));
+  tracePoly(ctx, robotCorners(fx, fy, hdeg, robotDims(state)));
   ctx.closePath(); ctx.fill(); ctx.stroke();
   const c0 = f2s(fx, fy), t = headingTip({ x: fx, y: fy, h: hdeg }), tip = f2s(t.x, t.y);
   ctx.beginPath(); ctx.moveTo(c0.sx, c0.sy); ctx.lineTo(tip.sx, tip.sy); ctx.stroke();

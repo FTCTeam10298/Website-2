@@ -19,7 +19,7 @@ export function defaultState(): PlannerState {
     videoScale: 1, videoOffsetX: 0, videoOffsetY: 0,
     videoPerspectiveX: 0, videoPerspectiveY: 0,
     bgImage: null, bgRot: 270, bgFlip: false, bgShow: true,
-    robotW: 18, robotL: 18, simMaxV: 93.2, simMaxA: 120, defFactor: 1, defMaxSpeed: 1, accent: '#58a6ff',
+    robotFront: 9, robotBack: 9, robotLeft: 9, robotRight: 9, simMaxV: 93.2, simMaxA: 120, defFactor: 1, defMaxSpeed: 1, accent: '#58a6ff',
     autos: [defaultAuto('My_Auto')],
     activeAuto: 0, headingV: 2, originV: 2,
     selected: null,
@@ -29,6 +29,7 @@ export function defaultState(): PlannerState {
 // A saved/imported blob from any earlier version of the planner.
 type LegacyState = Partial<Omit<PlannerState, 'headingV' | 'originV'>> & {
   headingV?: number; originV?: number;
+  robotW?: number; robotL?: number;
   start?: Pose; steps?: Step[]; methodName?: string;
   showAll?: unknown; previewAlliance?: unknown;
 };
@@ -52,7 +53,12 @@ export function migrate(blob: LegacyState): PlannerState {
   autos.forEach(a => { if (a.label === undefined) a.label = (a.name || '').replace(/_/g, ' '); });
   if (s.headingV !== 2) forEachPose(autos, p => { p.h = 180 - p.h; });           // v1 emitted 180 - H
   if (s.originV !== 2) forEachPose(autos, p => { p.x += HALF; p.y += HALF; });    // v1 origin was the field centre
+  if (s.robotFront === undefined) {           // v1 had a centred width × length box
+    const halfL = (s.robotL || 18) / 2, halfW = (s.robotW || 18) / 2;
+    Object.assign(s, { robotFront: halfL, robotBack: halfL, robotLeft: halfW, robotRight: halfW });
+  }
   delete s.start; delete s.steps; delete s.methodName; delete s.showAll; delete s.previewAlliance;
+  delete s.robotW; delete s.robotL;
 
   const out: PlannerState = { ...defaultState(), ...s, autos, headingV: 2, originV: 2,
                               simMaxV: s.simMaxV ?? 93.258267716535, simMaxA: s.simMaxA ?? 80 };
