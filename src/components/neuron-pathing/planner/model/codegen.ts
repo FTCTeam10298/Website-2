@@ -1,28 +1,31 @@
 import { ACTIONS } from './actions';
-import { fmt, reversedForStep } from './geometry';
+import { codeOrigin, fmt, reversedForStep, toCode } from './geometry';
 import type { Auto, PlannerState, Pose, Step } from './types';
 
 export function sanitize(s: string | undefined) { return (s || '').trim().replace(/[^A-Za-z0-9_]/g, '_'); }
 
-function pose(p: Pose) {
-  return `new Pose2D(${fmt(p.x)}, ${fmt(p.y)}, Math.toRadians(${fmt(p.h)}))`;
+type Origin = { x: number; y: number };
+
+// field pose -> code coordinates
+function pose(p: Pose, o: Origin) {
+  return `new Pose2D(${fmt(toCode(p.x, o.x))}, ${fmt(toCode(p.y, o.y))}, Math.toRadians(${fmt(p.h)}))`;
 }
 
-function genStep(st: Step, i: number, auto: Auto) {
+function genStep(st: Step, i: number, auto: Auto, o: Origin) {
   if (st.kind === 'move') {
     if (st.move === 'goto')
-      return `drive.goToPoint(${pose(st)}, ${st.through}, ${fmt(st.maxSpeed)});\ndriveToTarget();`;
+      return `drive.goToPoint(${pose(st, o)}, ${st.through}, ${fmt(st.maxSpeed)});\ndriveToTarget();`;
     const rev = st.reversed != null ? st.reversed : reversedForStep(i, auto.steps, auto.start);
-    return `drive.splineToPoint(${pose(st)}, ${st.through}, ${rev}, ${fmt(st.factor)}, ${fmt(st.maxSpeed)});\ndriveToTarget();`;
+    return `drive.splineToPoint(${pose(st, o)}, ${st.through}, ${rev}, ${fmt(st.factor)}, ${fmt(st.maxSpeed)});\ndriveToTarget();`;
   }
   if (st.kind === 'action') return ACTIONS[st.type].gen(st);
   return '';
 }
 
 // Walks the flat step list, emitting for/if/else/} blocks with nested indentation.
-function genBodyFor(auto: Auto, baseIndent: string, withSetPos: boolean) {
+function genBodyFor(auto: Auto, o: Origin, baseIndent: string, withSetPos: boolean) {
   const out: string[] = [];
-  if (withSetPos) out.push(baseIndent + `localizer.setPosition(${pose(auto.start)});`);
+  if (withSetPos) out.push(baseIndent + `localizer.setPosition(${pose(auto.start, o)});`);
   let depth = 0;
   const ind = () => baseIndent + '    '.repeat(depth);
   auto.steps.forEach((st, i) => {
@@ -37,7 +40,7 @@ function genBodyFor(auto: Auto, baseIndent: string, withSetPos: boolean) {
     } else if (st.kind === 'end') {
       depth = Math.max(0, depth - 1); out.push(`${ind()}}`);
     } else {
-      genStep(st, i, auto).split('\n').forEach(line => out.push(ind() + line));
+      genStep(st, i, auto, o).split('\n').forEach(line => out.push(ind() + line));
     }
   });
   return out.join('\n');
@@ -55,20 +58,20 @@ function genMethod(state: PlannerState) {
     '//     and an `alliance` field (-1 Blue / +1 Red), for the shoot/intake/gate/turret calls.',
     '// Or switch this tool to "Full OpMode" output to generate all of that scaffolding too.',
     `public void ${name}() {`,
-    genBodyFor(auto, '    ', state.includeSetPos),
+    genBodyFor(auto, codeOrigin(state), '    ', state.includeSetPos),
     '}',
   ].join('\n');
 }
 
 function genOpMode(state: PlannerState) {
   const cls = sanitize(state.opModeName) || 'auto';
-  const autos = state.autos;
+  const autos = state.autos, o = codeOrigin(state);
   // Each auto becomes: a selectable name, an init-loop start pose (by index), a
   // run-time switch case, and its own method—mirroring NeuronSplineAuto.java.
   const namesArr = autos.map(a => `            "${(a.label || a.name).replace(/"/g, '\\"')}",`).join('\n');
   const initCases = autos.map((a, i) =>
 `                case ${i}:
-                    localizer.setPosition(${pose(a.start)});
+                    localizer.setPosition(${pose(a.start, o)});
                     break;`).join('\n');
   const runCases = autos.map((a, i) =>
 `            case ${i}:
@@ -76,7 +79,7 @@ function genOpMode(state: PlannerState) {
                 break;`).join('\n');
   const methods = autos.map(a => [
 `    public void ${sanitize(a.name) || 'Auto'}() {`,
-genBodyFor(a, '        ', false),
+genBodyFor(a, o, '        ', false),
 `    }`].join('\n')).join('\n\n');
   return [
 `package org.firstinspires.ftc.teamcode.opmodes;`,

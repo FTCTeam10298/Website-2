@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 import fieldPng from './assets/field.png';
 import FieldCanvas, { type FieldCanvasHandle } from './canvas/FieldCanvas';
 import { generateCode, sanitize } from './model/codegen';
-import { clampToField, robotDims } from './model/geometry';
+import { clampToField, codeOrigin, robotDims } from './model/geometry';
 import { parseOpMode } from './model/importJava';
 import { defaultState, exampleState, parseStateFile } from './model/state';
 import { activeAuto, delStep, selectedNode } from './model/stepOps';
@@ -101,7 +101,7 @@ export default function PathPlanner() {
 
   const onImportJava = useCallback(async (file: File) => {
     try {
-      const { autos, className } = parseOpMode(await readFile(file, 'text'));
+      const { autos, className } = parseOpMode(await readFile(file, 'text'), codeOrigin(stateRef.current));
       if (!autos.length) { toast('No autos found in that file'); return; }
       // keep the user's view prefs; only the autos + output target change
       update(d => {
@@ -112,7 +112,7 @@ export default function PathPlanner() {
     } catch {
       toast('Could not parse file');
     }
-  }, [update, toast]);
+  }, [update, toast, stateRef]);
 
   const onCopy = useCallback(async (textarea: HTMLTextAreaElement | null) => {
     try { await navigator.clipboard.writeText(code); }
@@ -177,7 +177,7 @@ export default function PathPlanner() {
           <div className="np-panel-scroll">
             <OutputCard state={state} update={update} save={save} onLoadExample={onLoadExample} />
             <AutosCard state={state} update={update} save={save} onImportJava={onImportJava} />
-            <StartPoseCard start={activeAuto(state).start} update={update} />
+            <StartPoseCard start={activeAuto(state).start} origin={codeOrigin(state)} update={update} />
             <StepsCard state={state} update={update} save={save} undo={undo} redo={redo} canUndo={canUndo} canRedo={canRedo} />
             <SettingsCard state={state} update={update} save={save} />
             <VideoOverlayCard state={state} update={update} save={save} video={video} toast={toast} />

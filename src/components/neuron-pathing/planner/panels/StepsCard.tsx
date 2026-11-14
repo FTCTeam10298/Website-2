@@ -1,5 +1,6 @@
 import { memo, useState } from 'react';
 import { ACTIONS, ACTION_TYPES } from '../model/actions';
+import { codeOrigin } from '../model/geometry';
 import { activeAuto, addAction, addIfElse, addMove, addRepeat } from '../model/stepOps';
 import type { ActionType, MoveKind, PlannerState } from '../model/types';
 import type { Update } from '../hooks/usePlanner';
@@ -25,7 +26,7 @@ const QUICK_ADD: { type: ActionType; label: string; title: string }[] = [
 ];
 
 function StepsCard({ state, update, save, undo, redo, canUndo, canRedo }: Props) {
-  const auto = activeAuto(state);
+  const auto = activeAuto(state), origin = codeOrigin(state);
   const [actionType, setActionType] = useState<ActionType>('sleep');
   const add = (fn: (d: PlannerState) => void) => update(fn, { save: true });
 
@@ -37,7 +38,7 @@ function StepsCard({ state, update, save, undo, redo, canUndo, canRedo }: Props)
     else if (st.kind === 'end') depth = Math.max(0, depth - 1);
     if (st.kind === 'move') moveNo++;
     const sel = state.selected?.kind === 'step' && state.selected.i === i;
-    return <StepItem key={i} auto={auto} step={st} i={i} moveNo={moveNo} depth={myDepth}
+    return <StepItem key={i} auto={auto} origin={origin} step={st} i={i} moveNo={moveNo} depth={myDepth}
       selected={sel} update={update} save={save} />;
   });
 

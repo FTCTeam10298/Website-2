@@ -1,7 +1,8 @@
 // Field model: 144"x144", origin at the bottom-left corner
-// (+X right, +Y up, heading 0 = +X, CCW positive).
-// Generated poses are the literal numbers the user edits:
-//     new Pose2D(X, Y, Math.toRadians(H))
+// (+X right, +Y up, heading 0 = +X, CCW positive). Poses in state are field inches.
+// Code coordinates (what the user types and what's generated) are shifted so (0,0) is the
+// robot's centre when it sits in the bottom-left corner at heading 0, i.e.
+//     code = field - (robotBack, robotRight)       (see codeOrigin)
 // The field is symmetric, so the same path is used for both alliances.
 
 export type MoveKind = 'spline' | 'goto';

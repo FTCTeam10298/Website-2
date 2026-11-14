@@ -1,7 +1,7 @@
 import { forwardRef, useEffect, useImperativeHandle, useRef, type PointerEvent, type RefObject } from 'react';
 import { FIELD, HEAD_LEN, LOGICAL } from '../model/constants';
 import {
-  clampToField, distToSeg2, f2s, factorHandleField, headingTip, rad, robotDims, s2f, sampledFieldPath, snapH, snapXY,
+  clampToField, codeOrigin, distToSeg2, f2s, factorHandleField, headingTip, rad, robotDims, s2f, sampledFieldPath, snapH, snapXY,
 } from '../model/geometry';
 import type { Timeline } from '../model/simulator';
 import { activeAuto, addMoveAt, shownNeighbors, switchAuto } from '../model/stepOps';
@@ -206,7 +206,8 @@ const FieldCanvas = forwardRef<FieldCanvasHandle, Props>(function FieldCanvas(
 
   const onPointerMove = (e: PointerEvent<HTMLCanvasElement>) => {
     const m = mousePos(e), f = s2f(m.sx, m.sy);
-    if (readoutRef.current) readoutRef.current.textContent = `field x ${f.fx.toFixed(1)}  y ${f.fy.toFixed(1)}`;
+    const o = codeOrigin(state);
+    if (readoutRef.current) readoutRef.current.textContent = `x ${(f.fx - o.x).toFixed(1)}  y ${(f.fy - o.y).toFixed(1)}`;
     const md = mouseDown.current;
     if (!md) return;
     if ((m.sx - md.sx) ** 2 + (m.sy - md.sy) ** 2 > 9) md.moved = true;
@@ -222,7 +223,8 @@ const FieldCanvas = forwardRef<FieldCanvasHandle, Props>(function FieldCanvas(
       const auto = activeAuto(d);
       const p = h.ref.kind === 'start' ? auto.start : auto.steps[h.ref.i] as MoveStep;
       if (h.kind === 'pos') {
-        p.x = snapXY(f.fx, d.snap); p.y = snapXY(f.fy, d.snap);
+        const o = codeOrigin(d);                  // snap to round numbers in code coordinates
+        p.x = snapXY(f.fx - o.x, d.snap) + o.x; p.y = snapXY(f.fy - o.y, d.snap) + o.y;
         clampToField(p, robotDims(d));
       } else if (h.kind === 'factor') {           // drag the diamond to set spline factor
         const th = rad(p.h);
