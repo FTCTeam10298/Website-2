@@ -200,7 +200,7 @@ export function drawScene(ctx: Ctx, { state, view, dpr, bgImg, colors, sim }: Sc
   if (state.bgShow && bgImg && bgImg.complete && bgImg.naturalWidth) {
     ctx.save();
     ctx.translate(CX, CY);
-    ctx.rotate(((state.bgRot || 0) + 90) * Math.PI / 180);   // +90: field view is rotated CW
+    ctx.rotate(((state.bgRot || 0) + 180) * Math.PI / 180);  // +180: bundled image's base orientation
     if (state.bgFlip) ctx.scale(-1, 1);
     ctx.drawImage(bgImg, -LOGICAL / 2, -LOGICAL / 2, LOGICAL, LOGICAL);
     ctx.restore();

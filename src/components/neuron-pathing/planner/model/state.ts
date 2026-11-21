@@ -107,13 +107,10 @@ export function exampleState(): PlannerState {
     autos: [{
       name: 'Example_Close', label: 'Example Close', start: { x: 65, y: 86, h: 90 },
       steps: [
-        { kind: 'action', type: 'turret', mode: 'AUTO' },
         { kind: 'move', move: 'goto', x: 65, y: 86, h: 90, through: false, factor: 1, maxSpeed: 1 },
-        { kind: 'action', type: 'shoot' },
+        { kind: 'action', type: 'sleep', ms: 500 },
         { kind: 'move', move: 'spline', x: 84, y: 130, h: 90, through: true, factor: 1, maxSpeed: 1 },
         { kind: 'move', move: 'spline', x: 65, y: 86, h: 90, through: false, factor: 1, maxSpeed: 1 },
-        { kind: 'action', type: 'shoot' },
-        { kind: 'action', type: 'turret', mode: 'OFF' },
       ],
     }],
   };

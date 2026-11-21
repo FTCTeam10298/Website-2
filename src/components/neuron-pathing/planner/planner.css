@@ -100,8 +100,8 @@
 .np-chk { display:inline-flex; align-items:center; gap:5px; font-size:12px; color:var(--np-text); cursor:pointer; }
 .np-spacer { flex:1; }
 .np-planner details summary { cursor:pointer; color:var(--np-muted); font-size:11px; }
-.np-addbar { display:flex; gap:6px; flex-wrap:wrap; position:sticky; bottom:0; z-index:3;
-  background:var(--np-panel2); border-top:1px solid var(--np-line); padding-top:8px; margin-top:9px; }
+.np-addbar { display:flex; gap:6px; flex-wrap:wrap;
+  border-top:1px solid var(--np-line); padding-top:8px; margin-top:9px; }
 .np-planner .np-addbar button.np-chip { background:var(--np-chip-bg); border-color:var(--np-green); color:var(--np-green); }
 .np-quickbar { display:flex; gap:6px; flex-wrap:wrap; width:100%; }
 .np-filelbl { color:var(--np-accent); cursor:pointer; text-decoration:underline; font-size:11px; }

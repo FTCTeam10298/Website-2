@@ -1,7 +1,7 @@
 // Edits to the planner state. Each takes a draft (see usePlanner's update()) and mutates it.
 import { newAction } from './actions';
 import { blockOpenerOf, isControl, LOOP_VARS, matchingEnd, openLoopVarsAt } from './blocks';
-import { clampToField, codeOrigin, robotDims, snapXY } from './geometry';
+import { clampToField, robotDims, snapXY } from './geometry';
 import { defaultAuto } from './state';
 import type { ActionType, Auto, MoveKind, MoveStep, PlannerState, Pose, Step } from './types';
 
@@ -42,8 +42,7 @@ function newMove(s: PlannerState, kind: MoveKind, x: number, y: number): MoveSte
 }
 
 export function addMoveAt(s: PlannerState, fx: number, fy: number) {
-  const o = codeOrigin(s);                       // snap to round numbers in code coordinates
-  const st = newMove(s, s.clickAdds, snapXY(fx - o.x, s.snap) + o.x, snapXY(fy - o.y, s.snap) + o.y);
+  const st = newMove(s, s.clickAdds, snapXY(fx, s.snap), snapXY(fy, s.snap));
   clampToField(st, robotDims(s));
   insertSteps(s, [st]);
 }

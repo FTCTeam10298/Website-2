@@ -1,6 +1,4 @@
-import { memo, useState } from 'react';
-import { ACTIONS, ACTION_TYPES } from '../model/actions';
-import { codeOrigin } from '../model/geometry';
+import { memo } from 'react';
 import { activeAuto, addAction, addIfElse, addMove, addRepeat } from '../model/stepOps';
 import type { ActionType, MoveKind, PlannerState } from '../model/types';
 import type { Update } from '../hooks/usePlanner';
@@ -18,16 +16,12 @@ interface Props {
 }
 
 const QUICK_ADD: { type: ActionType; label: string; title: string }[] = [
-  { type: 'shoot', label: '＋ shoot', title: 'Add shoot()' },
-  { type: 'farShoot', label: '＋ farShoot', title: 'Add farShoot()' },
   { type: 'sleep', label: '＋ wait', title: 'Add a wait (ms)' },
-  { type: 'intake', label: '＋ intake', title: 'Add intake state' },
-  { type: 'gate', label: '＋ gate', title: 'Add gate open/close' },
+  { type: 'raw', label: '＋ custom line', title: 'Add a line of your own Java' },
 ];
 
 function StepsCard({ state, update, save, undo, redo, canUndo, canRedo }: Props) {
-  const auto = activeAuto(state), origin = codeOrigin(state);
-  const [actionType, setActionType] = useState<ActionType>('sleep');
+  const auto = activeAuto(state);
   const add = (fn: (d: PlannerState) => void) => update(fn, { save: true });
 
   // control markers indent their *contents*; else/end render one level out
@@ -38,7 +32,7 @@ function StepsCard({ state, update, save, undo, redo, canUndo, canRedo }: Props)
     else if (st.kind === 'end') depth = Math.max(0, depth - 1);
     if (st.kind === 'move') moveNo++;
     const sel = state.selected?.kind === 'step' && state.selected.i === i;
-    return <StepItem key={i} auto={auto} origin={origin} step={st} i={i} moveNo={moveNo} depth={myDepth}
+    return <StepItem key={i} auto={auto} step={st} i={i} moveNo={moveNo} depth={myDepth}
       selected={sel} update={update} save={save} />;
   });
 
@@ -70,11 +64,6 @@ function StepsCard({ state, update, save, undo, redo, canUndo, canRedo }: Props)
         </div>
         <button className="np-sm" onClick={() => add(d => addMove(d, 'spline'))}>＋ Spline</button>
         <button className="np-sm" onClick={() => add(d => addMove(d, 'goto'))}>＋ GoTo</button>
-        <select className="np-sm" style={{ padding: '4px 6px' }} value={actionType}
-          onChange={e => setActionType(e.target.value as ActionType)}>
-          {ACTION_TYPES.map(k => <option key={k} value={k}>{ACTIONS[k].label}</option>)}
-        </select>
-        <button className="np-sm" onClick={() => add(d => addAction(d, actionType))}>＋ Action</button>
         <button className="np-sm" onClick={() => add(addRepeat)} title="Wrap following steps in a for-loop">Repeat</button>
         <button className="np-sm" onClick={() => add(addIfElse)} title="Branch on the loop index (e.g. i % 2 == 0)">If/Else</button>
       </div>

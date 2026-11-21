@@ -34,7 +34,9 @@ export const ACTIONS: Record<ActionType, ActionDef> = {
                   gen: a => a.text ?? '' },
 };
 
-export const ACTION_TYPES = Object.keys(ACTIONS) as ActionType[];
+// the actions offered when adding/changing a step. The season-specific ones above stay in
+// the catalog so autos that already use them (saved or imported) still display and generate.
+export const BASIC_ACTIONS: ActionType[] = ['sleep', 'raw'];
 
 export function newAction(type: ActionType): ActionStep {
   return { kind: 'action', type, ...structuredClone(ACTIONS[type].def ?? {}) };

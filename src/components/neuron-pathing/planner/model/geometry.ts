@@ -133,11 +133,6 @@ export function robotCorners(fx: number, fy: number, hdeg: number, d: RobotDims)
   }));
 }
 
-// field position of code (0,0): the robot's centre with its back-right corner in the
-// field's bottom-left corner at heading 0
-export const codeOrigin = (s: PlannerState) => ({ x: s.robotBack, y: s.robotRight });
-export const toCode = (field: number, origin: number) => Math.round((field - origin) * 1000) / 1000;
-
 // The robot collides with the field walls: shift a pose (keeping its heading) so its whole
 // footprint stays inside the field. Bounds are rounded inward to 0.01".
 export function clampToField(p: Pose, d: RobotDims) {

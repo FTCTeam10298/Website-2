@@ -1,6 +1,6 @@
 import type { MouseEvent, ReactNode } from 'react';
-import { ACTIONS, ACTION_TYPES } from '../model/actions';
-import { clampToField, codeOrigin, reversedForStep, robotDims, toCode } from '../model/geometry';
+import { ACTIONS, BASIC_ACTIONS } from '../model/actions';
+import { clampToField, reversedForStep, robotDims } from '../model/geometry';
 import { activeAuto, delStep, dupStep, moveStep, setActionType } from '../model/stepOps';
 import type { ActionStep, ActionType, Auto, MoveKind, MoveStep, PlannerState, Step } from '../model/types';
 import type { Update } from '../hooks/usePlanner';
@@ -8,7 +8,6 @@ import { Check, NumField, NumInput, Seg, TextInput } from './ui';
 
 interface Props {
   auto: Auto;
-  origin: ReturnType<typeof codeOrigin>;
   step: Step;
   i: number;
   moveNo: number;      // 1-based number among move steps (moves only)
@@ -20,7 +19,7 @@ interface Props {
 
 const stop = (fn: () => void) => (e: MouseEvent) => { e.stopPropagation(); fn(); };
 
-export default function StepItem({ auto, origin, step, i, moveNo, depth, selected, update, save }: Props) {
+export default function StepItem({ auto, step, i, moveNo, depth, selected, update, save }: Props) {
   // edit this step on the draft (it's the same index in the active auto)
   const edit = <T extends Step>(fn: (st: T) => void, opts?: { save?: boolean }) =>
     update(d => fn(activeAuto(d).steps[i] as T), opts);
@@ -46,7 +45,7 @@ export default function StepItem({ auto, origin, step, i, moveNo, depth, selecte
         <Seg<MoveKind> style={{ marginLeft: 'auto' }} value={step.move}
           options={[{ value: 'spline', label: 'Spline' }, { value: 'goto', label: 'GoTo' }]}
           onChange={v => edit<MoveStep>(st => { st.move = v; }, { save: true })} />)}
-      <MoveBody auto={auto} origin={origin} st={step} i={i} edit={edit} save={save}
+      <MoveBody auto={auto} st={step} i={i} edit={edit} save={save}
         commitPose={() => update(d => clampToField(activeAuto(d).steps[i] as MoveStep, robotDims(d)), { save: true })} />
     </>;
   } else if (step.kind === 'action') {
@@ -74,16 +73,16 @@ export default function StepItem({ auto, origin, step, i, moveNo, depth, selecte
 type Edit = <T extends Step>(fn: (st: T) => void, opts?: { save?: boolean }) => void;
 
 // commitPose: typed coords are checked against the walls once the edit is done, not mid-typing
-function MoveBody({ auto, origin, st, i, edit, save, commitPose }: {
-  auto: Auto; origin: ReturnType<typeof codeOrigin>; st: MoveStep; i: number; edit: Edit; save: () => void; commitPose: () => void;
+function MoveBody({ auto, st, i, edit, save, commitPose }: {
+  auto: Auto; st: MoveStep; i: number; edit: Edit; save: () => void; commitPose: () => void;
 }) {
-  const set = (key: 'x' | 'y' | 'h' | 'maxSpeed' | 'factor', off = 0) => (v: number) => edit<MoveStep>(s => { s[key] = v + off; });
+  const set = (key: 'x' | 'y' | 'h' | 'maxSpeed' | 'factor') => (v: number) => edit<MoveStep>(s => { s[key] = v; });
   const eff = st.reversed != null ? st.reversed : reversedForStep(i, auto.steps, auto.start);
   return (
     <div>
       <div className="np-row">
-        <NumField label="X" value={toCode(st.x, origin.x)} step={0.5} onChange={set('x', origin.x)} onCommit={commitPose} />
-        <NumField label="Y" value={toCode(st.y, origin.y)} step={0.5} onChange={set('y', origin.y)} onCommit={commitPose} />
+        <NumField label="X" value={st.x} step={0.5} onChange={set('x')} onCommit={commitPose} />
+        <NumField label="Y" value={st.y} step={0.5} onChange={set('y')} onCommit={commitPose} />
         <NumField label="H°" value={st.h} step={1} onChange={set('h')} onCommit={commitPose} />
         <NumField label="maxSpeed" value={st.maxSpeed} step={0.05} onChange={set('maxSpeed')} onCommit={save} />
       </div>
@@ -114,10 +113,12 @@ function ActionBody({ st, i, update, edit, save }: {
   st: ActionStep; i: number; update: Update; edit: Edit; save: () => void;
 }) {
   const meta = ACTIONS[st.type];
+  // a season action from an older/imported auto stays listed so the step still shows its type
+  const types = BASIC_ACTIONS.includes(st.type) ? BASIC_ACTIONS : [...BASIC_ACTIONS, st.type];
   return (
     <div className="np-row">
       <select value={st.type} onChange={e => update(d => setActionType(d, i, e.target.value as ActionType), { save: true })}>
-        {ACTION_TYPES.map(k => <option key={k} value={k}>{ACTIONS[k].label}</option>)}
+        {types.map(k => <option key={k} value={k}>{ACTIONS[k].label}</option>)}
       </select>
       {meta.field === 'ms' && (
         <NumField label="ms" value={st.ms ?? 0} step={50} onCommit={save}

@@ -1,9 +1,8 @@
 // Parses a Neuron Path Planner-generated OpMode back into editable autos.
 // Recognises the pose convention
 //   new Pose2D(X, Y, Math.toRadians(H))
-// in code coordinates (shifted back to field inches by the code origin), and the older
-// centre-origin `new Pose2D(X, Y*alliance, Math.toRadians([180 -] H*alliance))` forms
-// (shifted by +72 to field inches; `180 - H` converted to H' = 180 - H).
+// and the older centre-origin `new Pose2D(X, Y*alliance, Math.toRadians([180 -] H*alliance))`
+// forms (shifted by +72 to the corner origin; `180 - H` converted to H' = 180 - H).
 // drive.splineToPoint()/drive.goToPoint() become move steps (their paired
 // driveToTarget() call is dropped, it's re-emitted automatically); waitMs()
 // becomes a wait action; anything else (your own subsystem calls) is preserved
@@ -22,11 +21,9 @@ const LEGACY_POSE_RE = new RegExp(
   'new\\s+Pose2D\\(\\s*(-?[\\d.]+)\\s*,\\s*' + ALLI +
   '\\s*,\\s*Math\\.toRadians\\(\\s*(180\\s*-\\s*)?' + ALLI + '\\s*\\)\\s*\\)');
 
-type Origin = { x: number; y: number };
-
-function parsePose(str: string, o: Origin): Pose | null {
+function parsePose(str: string): Pose | null {
   const n = POSE_RE.exec(str || '');
-  if (n) return { x: +n[1] + o.x, y: +n[2] + o.y, h: +n[3] };
+  if (n) return { x: +n[1], y: +n[2], h: +n[3] };
   const m = LEGACY_POSE_RE.exec(str || '');
   if (!m) return null;
   // groups: 1=x, (2|3)=y, 4=legacy "180 -" prefix, (5|6)=h
@@ -45,7 +42,7 @@ function extractMethodBody(src: string, name: string) {
   return src.slice(start, i - 1);
 }
 
-function parseStatement(line: string, o: Origin): Step | null {
+function parseStatement(line: string): Step | null {
   let m: RegExpMatchArray | null;
   // ---- control flow (repeat / if / else / end) ----
   if ((m = line.match(/^for\s*\(\s*int\s+(\w+)\s*=\s*0\s*;\s*\w+\s*<\s*(\d+)\s*;\s*\w+\s*\+\+\s*\)\s*\{?\s*$/)))
@@ -55,13 +52,13 @@ function parseStatement(line: string, o: Origin): Step | null {
   if ((m = line.match(/^if\s*\((.+)\)\s*\{?\s*$/)))   return { kind: 'if', cond: m[1].trim() };
   // ---- moves ----
   if (/drive\.goToPoint\(/.test(line)) {
-    const p = parsePose(line, o);
+    const p = parsePose(line);
     const t = line.match(/,\s*(true|false)\s*,\s*([\d.]+)\s*\)\s*;?\s*$/);
     if (p) return { kind: 'move', move: 'goto', x: p.x, y: p.y, h: p.h,
                     through: t ? t[1] === 'true' : false, factor: 1, maxSpeed: t ? +t[2] : 1 };
   }
   if (/drive\.splineToPoint\(/.test(line)) {
-    const p = parsePose(line, o);
+    const p = parsePose(line);
     const t = line.match(/,\s*(true|false)\s*,\s*(true|false)\s*,\s*([\d.]+)\s*,\s*([\d.]+)\s*\)\s*;?\s*$/);
     if (p) return { kind: 'move', move: 'spline', x: p.x, y: p.y, h: p.h,
                     through: t ? t[1] === 'true' : false, reversed: t ? t[2] === 'true' : undefined,
@@ -80,12 +77,12 @@ function parseStatement(line: string, o: Origin): Step | null {
   return { kind: 'action', type: 'raw', text: line };   // your own subsystem calls, etc.
 }
 
-function parseStatements(body: string, o: Origin) {
+function parseStatements(body: string) {
   const steps: Step[] = [];
   body.split('\n').forEach(raw => {
     const line = raw.trim();
     if (!line || line.startsWith('//')) return;        // drop blank lines + standalone comments
-    const st = parseStatement(line, o);
+    const st = parseStatement(line);
     if (st) steps.push(st);                            // driveToTarget() lines parse to null, skipped
   });
   return steps;
@@ -95,8 +92,7 @@ const HELPER_METHODS = new Set(['driveToTarget', 'waitMs', 'shoot', 'farShoot', 
 
 export interface ParsedOpMode { autos: Auto[]; className: string | null }
 
-// o: field position of code (0,0), see codeOrigin
-export function parseOpMode(src: string, o: Origin): ParsedOpMode {
+export function parseOpMode(src: string): ParsedOpMode {
   // Driver-Station labels
   let labels: string[] = [];
   const namesM = src.match(/String\[\]\s*autoNames\s*=\s*\{([\s\S]*?)\}/);
@@ -109,7 +105,7 @@ export function parseOpMode(src: string, o: Origin): ParsedOpMode {
   // init switch: case N: ...setPosition(pose) -> start pose per index
   const starts: Pose[] = [];
   const reInit = /case\s+(\d+)\s*:[\s\S]*?setPosition\(\s*(new\s+Pose2D\([^;]*?\))\s*\)\s*;/g;
-  while ((m = reInit.exec(src))) { const p = parsePose(m[2], o); if (p) starts[+m[1]] = p; }
+  while ((m = reInit.exec(src))) { const p = parsePose(m[2]); if (p) starts[+m[1]] = p; }
   // method names: prefer the switch order; otherwise every non-helper public void
   const names = order.filter(Boolean);
   if (!names.length) {
@@ -123,10 +119,10 @@ export function parseOpMode(src: string, o: Origin): ParsedOpMode {
     let start: Pose | null = starts[idx] ?? null;
     if (!start) {
       const bm = body.match(/setPosition\(\s*(new\s+Pose2D\([^;]*?\))\s*\)/);
-      if (bm) start = parsePose(bm[1], o);
+      if (bm) start = parsePose(bm[1]);
     }
     autos.push({ name: nm, label: labels[idx] || nm.replace(/_/g, ' '),
-                 start: start || { ...DEFAULT_START }, steps: parseStatements(body, o) });
+                 start: start || { ...DEFAULT_START }, steps: parseStatements(body) });
   });
   const clsM = src.match(/public\s+class\s+([A-Za-z_]\w*)\s+extends\s+LinearOpMode/);
   return { autos, className: clsM ? clsM[1] : null };
