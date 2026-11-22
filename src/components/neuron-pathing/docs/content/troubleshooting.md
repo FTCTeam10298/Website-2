@@ -53,12 +53,11 @@ test speed.
 
 ## Path Planner-specific
 
-**Generated code references `robot.something` and won't compile.**
-The shooter-pipeline actions (shoot/farShoot/intake/gate/turret) intentionally generate
-calls into *your season's* `Robot`/`Turret`/`Gate`/`Intake`/`Shooter` classes, not the
-pathing library. They're meant for your real season repo, not a bare Neuron Pathing
-checkout. Either add those classes, or don't use those actions (movement-only autos
-compile fine against just `NeuronDrive`/`NeuronLocalizer`).
+**Generated code has commented-out lines like `// shoot();`.**
+The planner only generates calls the quickstart has (`NeuronDrive`/`NeuronLocalizer`).
+Older autos, or OpModes imported back into the planner, can contain season-specific
+actions (shoot/intake/gate/turret); those are kept as comments so the file still compiles.
+Replace them with **custom line** steps that call your own subsystems.
 
 **Importing an existing OpMode back into the planner finds "No autos found."**
 The importer looks for `public class X extends LinearOpMode` plus a `case N: method();`
