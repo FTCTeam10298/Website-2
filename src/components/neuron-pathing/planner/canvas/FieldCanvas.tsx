@@ -7,7 +7,6 @@ import type { Timeline } from '../model/simulator';
 import { activeAuto, addMoveAt, shownNeighbors, switchAuto } from '../model/stepOps';
 import type { MoveStep, NodeRef, PlannerState, Pose, ScreenPt } from '../model/types';
 import type { Update } from '../hooks/usePlanner';
-import type { VideoOverlay } from '../hooks/useVideoOverlay';
 import { drawScene, isSel, selNodeRef, type SceneColors, type View } from './draw';
 
 export interface FieldCanvasHandle {
@@ -22,7 +21,6 @@ interface Props {
   bgImg: HTMLImageElement | null;
   dark: boolean;
   sim: { active: boolean; t: number; timeline: Timeline };
-  video: VideoOverlay;
   readoutRef: RefObject<HTMLSpanElement>;
 }
 
@@ -84,7 +82,7 @@ interface MouseDown extends ScreenPt {
 }
 
 const FieldCanvas = forwardRef<FieldCanvasHandle, Props>(function FieldCanvas(
-  { state, update, save, bgImg, dark, sim, video, readoutRef }, ref,
+  { state, update, save, bgImg, dark, sim, readoutRef }, ref,
 ) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const view = useRef<View>({ scale: 1, ox: 0, oy: 0 });
@@ -92,39 +90,14 @@ const FieldCanvas = forwardRef<FieldCanvasHandle, Props>(function FieldCanvas(
   const mouseDown = useRef<MouseDown | null>(null);
   const dpr = useRef(1);
 
-  // the latest draw, so pan/zoom/resize handlers can repaint without a React render
+  // the latest draw, so pan/zoom handlers can repaint without a React render
   const drawRef = useRef(() => {});
   drawRef.current = () => {
     const canvas = canvasRef.current, ctx = canvas?.getContext('2d');
     if (!canvas || !ctx) return;
     const root = canvas.closest('.np-planner') ?? canvas;
     drawScene(ctx, { state, view: view.current, dpr: dpr.current, bgImg, colors: readColors(root), sim });
-    layoutVideoFrames();
   };
-
-  // keep the video overlay glued to the canvas box, with the user's alignment transform on top
-  function layoutVideoFrames() {
-    const canvas = canvasRef.current, frame = video.videoRef.current, yt = video.iframeRef.current;
-    if (!canvas) return;
-    const ytShown = state.videoShow && video.kind === 'youtube' && !!video.youtubeSrc;
-    const localShown = state.videoShow && video.kind === 'local' && !!video.localSrc;
-    if (yt) yt.style.display = ytShown ? 'block' : 'none';
-    if (frame) frame.style.display = localShown ? 'block' : 'none';
-    if (!ytShown && !localShown) return;
-    const wrap = canvas.parentElement!.getBoundingClientRect(), box = canvas.getBoundingClientRect();
-    const r = box.width / LOGICAL;
-    const transform = `perspective(1000px) translate3d(${(state.videoOffsetX || 0) * r}px, ${(state.videoOffsetY || 0) * r}px, 0px) `
-      + `rotateX(${state.videoPerspectiveX || 0}deg) rotateY(${state.videoPerspectiveY || 0}deg) `
-      + `rotateZ(${state.videoRot || 0}deg) scale(${state.videoScale ?? 1})`;
-    [yt, frame].forEach(f => {
-      if (!f) return;
-      Object.assign(f.style, {
-        left: `${box.left - wrap.left}px`, top: `${box.top - wrap.top}px`,
-        width: `${box.width}px`, height: `${box.height}px`,
-        opacity: String(Math.max(0, Math.min(1, state.videoOpacity ?? 0.55))), transform,
-      });
-    });
-  }
 
   useEffect(() => {
     const canvas = canvasRef.current!;
@@ -134,12 +107,6 @@ const FieldCanvas = forwardRef<FieldCanvasHandle, Props>(function FieldCanvas(
 
   useEffect(() => { drawRef.current(); });   // repaint after every render (state, sim, theme, …)
   useEffect(() => { drawRef.current(); }, [dark]);
-
-  useEffect(() => {
-    const onResize = () => drawRef.current();
-    window.addEventListener('resize', onResize);
-    return () => window.removeEventListener('resize', onResize);
-  }, []);
 
   const zoomAt = (px: number, py: number, factor: number) => {
     const v = view.current;
@@ -250,11 +217,6 @@ const FieldCanvas = forwardRef<FieldCanvasHandle, Props>(function FieldCanvas(
     <div className="np-canvas-wrap">
       <canvas ref={canvasRef} className="np-field" width={LOGICAL} height={LOGICAL}
         onPointerDown={onPointerDown} onPointerMove={onPointerMove} onPointerUp={endDrag} onPointerCancel={endDrag} />
-      <iframe ref={video.iframeRef} className="np-video-frame" title="YouTube video overlay"
-        src={video.youtubeSrc ?? undefined}
-        allow="autoplay; encrypted-media; picture-in-picture" referrerPolicy="strict-origin-when-cross-origin" allowFullScreen />
-      <video ref={video.videoRef} className="np-video-frame" src={video.localSrc ?? undefined}
-        playsInline muted loop {...video.videoEvents} />
     </div>
   );
 });

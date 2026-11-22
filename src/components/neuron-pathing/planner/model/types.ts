@@ -67,15 +67,6 @@ export interface PlannerState {
   showRobot: boolean;
   showSpeed: boolean;
   cmpCount: number;
-  videoShow: boolean;
-  videoOpacity: number;
-  videoRot: number;
-  youtubeUrl: string;
-  videoScale: number;
-  videoOffsetX: number;
-  videoOffsetY: number;
-  videoPerspectiveX: number;
-  videoPerspectiveY: number;
   bgImage: string | null;   // data URL of a custom field image, else the bundled DECODE field
   bgRot: number;
   bgFlip: boolean;

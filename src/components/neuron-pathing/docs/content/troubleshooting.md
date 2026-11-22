@@ -65,7 +65,6 @@ switch structure matching what the planner itself generates in "Full OpMode" mod
 written by hand in a different structure won't parse, but any unrecognized line is kept
 as a raw custom line if it appears *inside* a method the importer does recognize.
 
-**The field background/video overlay doesn't line up with real match footage.**
-Use the rotate/flip controls on the field image, and the perspective/scale/offset sliders
-under the video overlay. These are separate from the path's actual coordinates and only
-affect what you see while planning, not the generated code.
+**The field background is turned or mirrored the wrong way.**
+Use the rotate/flip controls next to the **Field** checkbox under the field. They only change
+the picture, not the path's coordinates or the generated code.

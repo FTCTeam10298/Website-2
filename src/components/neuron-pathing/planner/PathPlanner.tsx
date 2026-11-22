@@ -13,7 +13,6 @@ import { usePlanner } from './hooks/usePlanner';
 import { useSimulator } from './hooks/useSimulator';
 import { useTheme } from './hooks/useTheme';
 import { useToast } from './hooks/useToast';
-import { useVideoOverlay } from './hooks/useVideoOverlay';
 import AutosCard from './panels/AutosCard';
 import CodeCard from './panels/CodeCard';
 import FieldToolbar from './panels/FieldToolbar';
@@ -22,7 +21,6 @@ import SettingsCard from './panels/SettingsCard';
 import SimulatorCard from './panels/SimulatorCard';
 import StartPoseCard from './panels/StartPoseCard';
 import StepsCard from './panels/StepsCard';
-import VideoOverlayCard from './panels/VideoOverlayCard';
 import './planner.css';
 
 function downloadBlob(text: string, name: string, type: string) {
@@ -47,7 +45,6 @@ export default function PathPlanner() {
   const { state, stateRef, update, save, replace, undo, redo, canUndo, canRedo } = usePlanner(toast);
   const { dark, toggle: toggleTheme } = useTheme();
   const simulator = useSimulator(state);
-  const video = useVideoOverlay(state.youtubeUrl, update, toast);
   const canvas = useRef<FieldCanvasHandle>(null);
   const readoutRef = useRef<HTMLSpanElement>(null);
   const code = useMemo(() => generateCode(state), [state]);
@@ -168,7 +165,7 @@ export default function PathPlanner() {
           </div>
           <FieldCanvas ref={canvas} state={state} update={update} save={save} bgImg={bgImg} dark={dark}
             sim={{ active: simulator.sim.active, t: simulator.sim.t, timeline: simulator.timeline }}
-            video={video} readoutRef={readoutRef} />
+            readoutRef={readoutRef} />
           <SimulatorCard simulator={simulator} />
           <FieldToolbar state={state} update={update} onFit={onFit} readoutRef={readoutRef} />
         </div>
@@ -180,7 +177,6 @@ export default function PathPlanner() {
             <StartPoseCard start={activeAuto(state).start} update={update} />
             <StepsCard state={state} update={update} save={save} undo={undo} redo={redo} canUndo={canUndo} canRedo={canRedo} />
             <SettingsCard state={state} update={update} save={save} />
-            <VideoOverlayCard state={state} update={update} save={save} video={video} toast={toast} />
             <CodeCard code={code} onCopy={onCopy} onDownload={onDownload} onExport={onExport} onImport={onImport}
               onFieldImage={onFieldImage} onResetField={onResetField} />
             <button className="np-ghost np-danger np-sm" style={{ alignSelf: 'flex-start' }} onClick={onClearAll}>Clear everything</button>

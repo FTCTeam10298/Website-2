@@ -15,9 +15,6 @@ export function defaultState(): PlannerState {
     output: 'method', opModeName: 'auto',
     includeSetPos: true, clickAdds: 'spline',
     showGrid: true, showZones: true, snap: true, showRobot: false, showSpeed: false, cmpCount: 0,
-    videoShow: true, videoOpacity: 0.55, videoRot: 0, youtubeUrl: '',
-    videoScale: 1, videoOffsetX: 0, videoOffsetY: 0,
-    videoPerspectiveX: 0, videoPerspectiveY: 0,
     bgImage: null, bgRot: 270, bgFlip: false, bgShow: true,
     robotFront: 9, robotBack: 9, robotLeft: 9, robotRight: 9, simMaxV: 93.2, simMaxA: 120, defFactor: 1, defMaxSpeed: 1, accent: '#58a6ff',
     autos: [defaultAuto('My_Auto')],
@@ -26,12 +23,15 @@ export function defaultState(): PlannerState {
   };
 }
 
+// settings from removed features (preview side, YouTube / video overlay, …), dropped on load
+const OBSOLETE_KEYS = ['showAll', 'previewAlliance', 'youtubeUrl', 'videoShow', 'videoOpacity', 'videoRot',
+  'videoScale', 'videoOffsetX', 'videoOffsetY', 'videoPerspectiveX', 'videoPerspectiveY'];
+
 // A saved/imported blob from any earlier version of the planner.
 type LegacyState = Partial<Omit<PlannerState, 'headingV' | 'originV'>> & {
   headingV?: number; originV?: number;
   robotW?: number; robotL?: number;
   start?: Pose; steps?: Step[]; methodName?: string;
-  showAll?: unknown; previewAlliance?: unknown;
 };
 
 function forEachPose(autos: Auto[], fn: (p: Pose) => void) {
@@ -57,7 +57,8 @@ export function migrate(blob: LegacyState): PlannerState {
     const halfL = (s.robotL || 18) / 2, halfW = (s.robotW || 18) / 2;
     Object.assign(s, { robotFront: halfL, robotBack: halfL, robotLeft: halfW, robotRight: halfW });
   }
-  delete s.start; delete s.steps; delete s.methodName; delete s.showAll; delete s.previewAlliance;
+  delete s.start; delete s.steps; delete s.methodName;
+  for (const k of OBSOLETE_KEYS) delete (s as Record<string, unknown>)[k];
   delete s.robotW; delete s.robotL;
 
   const out: PlannerState = { ...defaultState(), ...s, autos, headingV: 2, originV: 2,
